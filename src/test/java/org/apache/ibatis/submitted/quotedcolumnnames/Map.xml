@@ -23,12 +23,11 @@
 <mapper namespace="org.apache.ibatis.submitted.quotedcolumnnames.Map">
 
     <select id="doSelect" resultType="java.util.HashMap">
-		select
-			ID as "id",
-			FIRST_NAME as "firstName",
-			LAST_NAME as "lastName"
-		from names
-	</select>
+        select ID         as "id",
+               FIRST_NAME as "firstName",
+               LAST_NAME  as "lastName"
+        from names
+    </select>
 
 
     <resultMap id="myResultMap" type="java.util.HashMap">
@@ -38,7 +37,7 @@
     </resultMap>
 
     <select id="doSelectWithResultMap" resultMap="myResultMap">
-		select *
-		from names
-	</select>
+        select *
+        from names
+    </select>
 </mapper>

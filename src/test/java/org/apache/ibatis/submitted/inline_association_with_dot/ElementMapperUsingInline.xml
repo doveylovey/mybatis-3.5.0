@@ -31,7 +31,8 @@
     </resultMap>
 
     <select id="selectElement" resultMap="selectElementValueInContainerUsingInline">
-      select VALUECOLUMN from VALUETABLE
-  </select>
+        select VALUECOLUMN
+        from VALUETABLE
+    </select>
 
 </mapper>

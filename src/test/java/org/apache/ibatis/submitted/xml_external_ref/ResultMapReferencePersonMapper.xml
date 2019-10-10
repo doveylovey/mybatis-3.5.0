@@ -22,8 +22,8 @@
     <!-- Referencing a result map in another file -->
     <select id="selectPet" parameterType="java.lang.Integer"
             resultMap="org.apache.ibatis.submitted.xml_external_ref.ResultMapReferencePetMapper.petResult">
-		SELECT pet_id, owner_id, pet_name
-		FROM pet
-		WHERE pet_id = #{id}
-	</select>
+        SELECT pet_id, owner_id, pet_name
+        FROM pet
+        WHERE pet_id = #{id}
+    </select>
 </mapper>

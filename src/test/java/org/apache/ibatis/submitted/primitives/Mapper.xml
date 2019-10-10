@@ -23,8 +23,10 @@
 <mapper namespace="org.apache.ibatis.submitted.primitives.Mapper">
 
     <select id="select" resultMap="assetrightMap">
-		Select * from A left join B on B.REF = A.ID
-	</select>
+        Select *
+        from A
+                 left join B on B.REF = A.ID
+    </select>
 
     <resultMap id="assetrightMap" type="org.apache.ibatis.submitted.primitives.Assetright">
         <id property="id" column="ID" jdbcType="NUMERIC"/>

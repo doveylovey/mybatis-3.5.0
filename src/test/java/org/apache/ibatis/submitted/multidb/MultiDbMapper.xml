@@ -23,25 +23,30 @@
 <mapper namespace="org.apache.ibatis.submitted.multidb.MultiDbMapper">
 
     <select id="select1" resultType="string" parameterType="int">
-		select
-		name from common where id=#{value}
-	</select>
+        select name
+        from common
+        where id = #{value}
+    </select>
 
     <select id="select1" databaseId="hsql"
             resultType="string" parameterType="int">
-		select name from hsql where
-		id=#{value}
-	</select>
+        select name
+        from hsql
+        where id = #{value}
+    </select>
 
     <select id="select2" resultType="string" parameterType="int">
-		select
-		name from common where id=#{value}
-	</select>
+        select name
+        from common
+        where id = #{value}
+    </select>
 
     <select id="select2" databaseId="OTHER" resultType="string"
             parameterType="int">
-		select name from oracle where id=#{value}
-	</select>
+        select name
+        from oracle
+        where id = #{value}
+    </select>
 
     <select id="select3" resultType="string" parameterType="int">
         select name from
@@ -55,12 +60,12 @@
     </select>
 
     <sql id="sql1" databaseId="hsql">
-		hsql
-	</sql>
+            hsql
+    </sql>
 
     <sql id="sql1">
-		common
-	</sql>
+            common
+    </sql>
 
     <select id="select4" resultType="string" parameterType="int">
         select name from

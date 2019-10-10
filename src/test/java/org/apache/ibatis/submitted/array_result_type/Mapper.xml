@@ -23,7 +23,8 @@
 <mapper namespace="org.apache.ibatis.submitted.array_result_type.Mapper">
 
     <select id="getUsersXml" resultType="org.apache.ibatis.submitted.array_result_type.User">
-    select * from users
-  </select>
+        select *
+        from users
+    </select>
 
 </mapper>

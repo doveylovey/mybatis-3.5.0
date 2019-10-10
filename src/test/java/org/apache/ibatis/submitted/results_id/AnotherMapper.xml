@@ -22,6 +22,8 @@
 
 <mapper namespace="org.apache.ibatis.submitted.results_id.AnotherMapper">
     <select id="getUser" resultMap="org.apache.ibatis.submitted.results_id.Mapper.userResult">
-		select * from users where uid = #{id}
-	</select>
+        select *
+        from users
+        where uid = #{id}
+    </select>
 </mapper>

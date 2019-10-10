@@ -34,8 +34,9 @@
     </resultMap>
 
     <select id="selectAuthor" resultMap="selectAuthor">
-    select id, username, password, email, bio, favourite_section
-    from author where id = #{id}
-  </select>
+        select id, username, password, email, bio, favourite_section
+        from author
+        where id = #{id}
+    </select>
 
 </mapper>

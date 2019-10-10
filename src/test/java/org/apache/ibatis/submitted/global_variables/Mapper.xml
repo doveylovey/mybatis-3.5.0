@@ -29,7 +29,9 @@
     </cache>
 
     <select id="getUser" resultType="org.apache.ibatis.submitted.global_variables.User">
-		select * from ${table} where id = #{id}
-	</select>
+        select *
+        from ${table}
+        where id = #{id}
+    </select>
 
 </mapper>

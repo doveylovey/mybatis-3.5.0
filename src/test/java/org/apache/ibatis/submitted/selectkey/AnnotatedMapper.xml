@@ -35,8 +35,9 @@
 
     <insert id="insertTable2WithGeneratedKeyXml" useGeneratedKeys="true" keyProperty="nameId,generatedName"
             keyColumn="ID,NAME_FRED">
-    insert into table2 (name) values(#{name})
-  </insert>
+        insert into table2 (name)
+        values (#{name})
+    </insert>
 
     <update id="updateTable2WithSelectKeyWithKeyMapXml">
         <selectKey keyProperty="generatedName" keyColumn="NAME_FRED" order="AFTER" resultType="java.lang.String">
@@ -54,6 +55,8 @@
 
     <update id="updateTable2WithGeneratedKeyXml" useGeneratedKeys="true" keyProperty="generatedName"
             keyColumn="NAME_FRED">
-    update table2 set name = #{name} where id = #{nameId}
-  </update>
+        update table2
+        set name = #{name}
+        where id = #{nameId}
+    </update>
 </mapper>

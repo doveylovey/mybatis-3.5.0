@@ -23,8 +23,9 @@
 <mapper namespace="org.apache.ibatis.submitted.include_property.DuplicatedIncludePropertiesMapper">
 
     <sql id="colsSuffix">
-    col_${suffix}
-  </sql>
+            col_
+                ${suffix}
+    </sql>
 
     <select id="select" resultType="string">
         select

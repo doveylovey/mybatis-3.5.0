@@ -33,7 +33,8 @@
     </resultMap>
 
     <select id="selectElement" resultMap="selectElementValueInContainerUsingSubMap">
-        select VALUECOLUMN from VALUETABLE
+        select VALUECOLUMN
+        from VALUETABLE
     </select>
 
 </mapper>

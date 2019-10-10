@@ -33,7 +33,9 @@
     </resultMap>
 
     <select id="mapConstructorWithoutParamAnnosXml" resultMap="twoArgsConstructorRM">
-    select * from users where id = #{id}
-  </select>
+        select *
+        from users
+        where id = #{id}
+    </select>
 
 </mapper>

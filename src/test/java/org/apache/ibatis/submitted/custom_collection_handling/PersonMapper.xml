@@ -48,7 +48,8 @@
 
     <select id="findWithResultMap" resultMap="personRM">
         select p.id, p.name, c.address, c.phone, c.id as c_id
-        from person p left join contact c on c.person_id = p.id
+        from person p
+                 left join contact c on c.person_id = p.id
         order by p.id, c.address
     </select>
 

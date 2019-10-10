@@ -29,14 +29,16 @@
     </resultMap>
 
     <select id="getUser" resultMap="userMap">
-    select * from users u
-    where id = #{id}
-  </select>
+        select *
+        from users u
+        where id = #{id}
+    </select>
 
     <select id="getNum" resultType="_int">
-    select num from udata
-    where user_id = #{id}
-    order by num
-  </select>
+        select num
+        from udata
+        where user_id = #{id}
+        order by num
+    </select>
 
 </mapper>

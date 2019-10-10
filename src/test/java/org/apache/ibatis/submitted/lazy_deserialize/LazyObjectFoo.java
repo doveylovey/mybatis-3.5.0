@@ -18,8 +18,8 @@ package org.apache.ibatis.submitted.lazy_deserialize;
 import java.io.Serializable;
 
 /**
- * @since 2011-04-06T10:57:30+0200
  * @author Franta Mejta
+ * @since 2011-04-06T10:57:30+0200
  */
 public class LazyObjectFoo implements Serializable {
 

@@ -23,16 +23,17 @@
 <mapper namespace="org.apache.ibatis.submitted.include_property.Mapper">
 
     <sql id="colsStatic">
-    col_c
-  </sql>
+            col_c
+    </sql>
 
     <sql id="colsSuffix">
-    col_${suffix}
-  </sql>
+            col_
+                ${suffix}
+    </sql>
 
     <sql id="colsPrefix">
-    ${prefix}a
-  </sql>
+            ${prefix}a
+    </sql>
 
     <sql id="nested">
         <include refid="${sqlToInclude}"/>

@@ -30,15 +30,18 @@
     </insert>
 
     <select id="select" resultType="org.apache.ibatis.submitted.batch_keys.User">
-  	select id, name from users
-  </select>
+        select id, name
+        from users
+    </select>
 
     <insert id="insertIdentity" keyProperty="id" useGeneratedKeys="true">
-  	insert into users2 (name) values(#{name})
-  </insert>
+        insert into users2 (name)
+        values (#{name})
+    </insert>
 
     <select id="selectIdentity" resultType="org.apache.ibatis.submitted.batch_keys.User">
-  	select id, name from users2
-  </select>
+        select id, name
+        from users2
+    </select>
 
 </mapper>

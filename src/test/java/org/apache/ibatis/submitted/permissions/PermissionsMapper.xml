@@ -40,8 +40,9 @@
     </resultMap>
 
     <select id="getResources" resultMap="resourceResults">
-		select * from permissions
-	</select>
+        select *
+        from permissions
+    </select>
 
     <!-- testing nested select loop -->
 
@@ -64,18 +65,21 @@
     </resultMap>
 
     <select id="getResource" resultMap="resourceResultsSelect">
-		select distinct(resourceName)
-		from permissions where permission = #{permission}
-	</select>
+        select distinct(resourceName)
+        from permissions
+        where permission = #{permission}
+    </select>
 
     <select id="getPrincipal" resultMap="principalResultsSelect">
-		select
-		distinct(principalName) from permissions where resourceName = #{name}
-	</select>
+        select distinct(principalName)
+        from permissions
+        where resourceName = #{name}
+    </select>
 
     <select id="getPermission" resultMap="permisionResultsSelect">
-		select distinct(permission)
-		from permissions where principalName = #{principalName}
-	</select>
+        select distinct(permission)
+        from permissions
+        where principalName = #{principalName}
+    </select>
 
 </mapper>

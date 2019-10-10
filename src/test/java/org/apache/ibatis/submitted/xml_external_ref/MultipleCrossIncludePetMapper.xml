@@ -31,8 +31,8 @@
                      resultMap="org.apache.ibatis.submitted.xml_external_ref.MultipleCrossIncludePersonMapper.personResult"/>
     </resultMap>
     <sql id="personIdColumnList">
-		person_id
-	</sql>
+            person_id
+    </sql>
     <sql id="petColumnList">
         <include refid="org.apache.ibatis.submitted.xml_external_ref.MultipleCrossIncludePersonMapper.petIdColumnList"/>
         ,

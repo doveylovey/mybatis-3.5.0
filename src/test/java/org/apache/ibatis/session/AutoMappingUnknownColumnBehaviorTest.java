@@ -35,8 +35,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Tests for specify the behavior when detects an unknown column (or unknown property type) of automatic mapping target.
  *
- * @since 3.4.0
  * @author Kazuki Shimizu
+ * @since 3.4.0
  */
 public class AutoMappingUnknownColumnBehaviorTest {
 

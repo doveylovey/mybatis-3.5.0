@@ -29,13 +29,13 @@
     </resultMap>
 
     <select id="getUser" resultMap="usermap">
-		select * from users
-	</select>
+        select *
+        from users
+    </select>
     <insert id="insert" parameterType="org.apache.ibatis.submitted.rounding.User">
-	    insert into users (id, name, funkyNumber, roundingMode) values (
-	    	#{id}, #{name}, #{funkyNumber}, #{roundingMode}
-	    )
-	</insert>
+        insert into users (id, name, funkyNumber, roundingMode)
+        values (#{id}, #{name}, #{funkyNumber}, #{roundingMode})
+    </insert>
 
     <resultMap type="org.apache.ibatis.submitted.rounding.User" id="usermap2">
         <id column="id" property="id"/>
@@ -44,12 +44,12 @@
         <result column="roundingMode" property="roundingMode" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
     </resultMap>
     <select id="getUser2" resultMap="usermap2">
-		select * from users2
-	</select>
+        select *
+        from users2
+    </select>
     <insert id="insert2" parameterType="org.apache.ibatis.submitted.rounding.User">
-	    insert into users2 (id, name, funkyNumber, roundingMode) values (
-	    	#{id}, #{name}, #{funkyNumber}, #{roundingMode, typeHandler=org.apache.ibatis.type.EnumTypeHandler}
-	    )
-	</insert>
+        insert into users2 (id, name, funkyNumber, roundingMode)
+        values (#{id}, #{name}, #{funkyNumber}, #{roundingMode, typeHandler=org.apache.ibatis.type.EnumTypeHandler})
+    </insert>
 
 </mapper>

@@ -31,13 +31,10 @@
     </resultMap>
 
     <select id="getById" parameterType="Integer" resultMap="map">
-        SELECT
-			department.nr_id,
-			department.nr_attribute,
-			department.person
-        FROM
-        	department
-        WHERE
-        	nr_id = #{id}
+        SELECT department.nr_id,
+               department.nr_attribute,
+               department.person
+        FROM department
+        WHERE nr_id = #{id}
     </select>
 </mapper>

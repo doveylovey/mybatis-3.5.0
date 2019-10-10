@@ -68,67 +68,67 @@
      -->
 
     <select id="adderAsSelect" parameterType="org.apache.ibatis.submitted.sptests.Parameter" statementType="CALLABLE">
-    {call sptest.adder(
-      #{addend1,jdbcType=INTEGER,mode=IN},
-      #{addend2,jdbcType=INTEGER,mode=IN},
-      #{sum,jdbcType=INTEGER,mode=OUT}
-    )}
-  </select>
+        {call sptest.adder(
+                #{addend1,jdbcType=INTEGER,mode=IN},
+                #{addend2,jdbcType=INTEGER,mode=IN},
+                #{sum,jdbcType=INTEGER,mode=OUT}
+            )}
+    </select>
 
     <update id="adderAsUpdate" parameterType="org.apache.ibatis.submitted.sptests.Parameter" statementType="CALLABLE">
-    {call sptest.adder(
-      #{addend1,jdbcType=INTEGER,mode=IN},
-      #{addend2,jdbcType=INTEGER,mode=IN},
-      #{sum,jdbcType=INTEGER,mode=OUT}
-    )}
-  </update>
+        {call sptest.adder(
+                #{addend1,jdbcType=INTEGER,mode=IN},
+                #{addend2,jdbcType=INTEGER,mode=IN},
+                #{sum,jdbcType=INTEGER,mode=OUT}
+            )}
+    </update>
 
     <update id="adderWithParameterMap" parameterMap="testParameterMap" statementType="CALLABLE">
-    {call sptest.adder(?, ?, ?)}
-  </update>
+        {call sptest.adder(?, ?, ?)}
+    </update>
 
     <select id="getName" parameterType="java.lang.Integer" statementType="CALLABLE"
             resultMap="nameResult">
-    {call sptest.getname(
-      #{id,jdbcType=INTEGER,mode=IN})}
-  </select>
+        {call sptest.getname(
+                #{id,jdbcType=INTEGER,mode=IN})}
+    </select>
 
     <select id="getNames" parameterType="java.util.Map" statementType="CALLABLE"
             resultMap="nameResult">
-    {call sptest.getnames(
-      #{lowestId,jdbcType=INTEGER,mode=IN},
-      #{totalRows,jdbcType=INTEGER,mode=OUT})}
-  </select>
+        {call sptest.getnames(
+                #{lowestId,jdbcType=INTEGER,mode=IN},
+                #{totalRows,jdbcType=INTEGER,mode=OUT})}
+    </select>
 
     <select id="getNamesWithArray" parameterType="java.util.Map" statementType="CALLABLE"
             resultMap="nameResult">
-    {call sptest.arraytest(
-      #{ids,mode=IN,jdbcType=ARRAY},
-      #{requestedRows,jdbcType=INTEGER,mode=OUT},
-      #{returnedIds,mode=OUT,jdbcType=ARRAY})}
-  </select>
+        {call sptest.arraytest(
+                #{ids,mode=IN,jdbcType=ARRAY},
+                #{requestedRows,jdbcType=INTEGER,mode=OUT},
+                #{returnedIds,mode=OUT,jdbcType=ARRAY})}
+    </select>
 
     <select id="getNamesAndItems" statementType="CALLABLE"
             resultMap="nameResult,itemResult">
-    {call sptest.getnamesanditems()}
-  </select>
+        {call sptest.getnamesanditems()}
+    </select>
 
     <select id="getNamesAndItemsLinked" statementType="CALLABLE" resultSets="names,items" resultMap="nameResultLinked">
-    {call sptest.getnamesanditems()}
-  </select>
+        {call sptest.getnamesanditems()}
+    </select>
 
     <select id="getNamesAndItemsLinkedById" statementType="CALLABLE" resultSets="names,items"
             resultMap="nameResultLinkedNoMatchingInfo">
-    {call sptest.getnamesanditemsbyid(#{id,jdbcType=INTEGER,mode=IN})}
-  </select>
+        {call sptest.getnamesanditemsbyid(#{id,jdbcType=INTEGER,mode=IN})}
+    </select>
 
     <!-- issue #145 -->
     <select id="echoDate" parameterType="java.util.HashMap" statementType="CALLABLE">
-    {call sptest.echoDate(
-      #{input date,jdbcType=DATE,mode=IN},
-      #{output date,jdbcType=DATE,mode=OUT}
-    )}
-  </select>
+        {call sptest.echoDate(
+                #{input date,jdbcType=DATE,mode=IN},
+                #{output date,jdbcType=DATE,mode=OUT}
+            )}
+    </select>
 
     <resultMap type="org.apache.ibatis.submitted.sptests.Book" id="bookAndGenreRM">
         <id column="ID" property="id"/>
@@ -144,7 +144,7 @@
     </resultMap>
 
     <select id="getBookAndGenre" statementType="CALLABLE" resultSets="bookRS,genreRS" resultMap="bookAndGenreRM">
-    {call sptest.getbookandgenre()}
-  </select>
+        {call sptest.getbookandgenre()}
+    </select>
 
 </mapper>

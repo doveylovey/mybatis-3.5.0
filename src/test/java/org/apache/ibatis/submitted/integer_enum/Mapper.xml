@@ -29,14 +29,14 @@
     </resultMap>
 
     <select id="select" resultMap="tastCaseResultMap">
-    select field1, field2, field3
-    from SomeTable
-  </select>
+        select field1, field2, field3
+        from SomeTable
+    </select>
 
     <update id="update" parameterType="org.apache.ibatis.submitted.integer_enum.Record">
-    update SomeTable
-    set Field2 = #{field2,jdbcType=INTEGER},
-    Field3 = #{field3,jdbcType=VARCHAR},
-    where field1 = #{field1,jdbcType=INTEGER}
-  </update>
+        update SomeTable
+        set Field2 = #{field2,jdbcType=INTEGER},
+            Field3 = #{field3,jdbcType=VARCHAR},
+            where field1 = #{field1,jdbcType=INTEGER}
+    </update>
 </mapper>

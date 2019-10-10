@@ -27,8 +27,8 @@
     </cache>
 
     <select id="ping" flushCache="true" resultType="string">
-		${ping.sql:SELECT 'Hello' FROM INFORMATION_SCHEMA.SYSTEM_USERS}
-	</select>
+        ${ping.sql:SELECT 'Hello' FROM INFORMATION_SCHEMA.SYSTEM_USERS}
+    </select>
 
     <select id="selectOne" flushCache="true" resultType="string">
         <include refid="select">
@@ -41,7 +41,8 @@
     </select>
 
     <sql id="select">
-		SELECT ${select.columns:'9999'} FROM INFORMATION_SCHEMA.SYSTEM_USERS
-	</sql>
+        SELECT ${select.columns:'9999'}
+        FROM INFORMATION_SCHEMA.SYSTEM_USERS
+    </sql>
 
 </mapper>

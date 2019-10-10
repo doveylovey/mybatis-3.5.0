@@ -31,23 +31,18 @@
     </resultMap>
     <select id="collectPageByBirthMonth" resultMap="resultMapAccount" resultOrdered="true">
         <![CDATA[
-
-        SELECT
-          a.account_uuid
-          ,a.account_name
-          ,a.birth_date
-          ,aa.zip_code
-          ,aa.address
-        FROM
-          t_account a
-        LEFT OUTER JOIN
-          t_account_address aa
-            ON aa.account_uuid = a.account_uuid
-        WHERE
-          a.birth_date >= #{birthMonth} AND a.birth_date < ADD_MONTHS(#{birthMonth}, 1)
-        ORDER BY
-          a.account_uuid
-
+        SELECT a.account_uuid
+             , a.account_name
+             , a.birth_date
+             , aa.zip_code
+             , aa.address
+        FROM t_account a
+                 LEFT OUTER JOIN
+             t_account_address aa
+             ON aa.account_uuid = a.account_uuid
+        WHERE a.birth_date >= #{birthMonth}
+          AND a.birth_date < ADD_MONTHS(#{birthMonth}, 1)
+        ORDER BY a.account_uuid
         ]]>
     </select>
 </mapper>

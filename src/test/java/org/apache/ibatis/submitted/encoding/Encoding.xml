@@ -22,10 +22,12 @@
 
 <mapper namespace="org.apache.ibatis.submitted.encoding.EncodingMapper">
     <select id="select1" resultType="string">
-    select lastName from names
-  </select>
+        select lastName
+        from names
+    </select>
 
     <select id="select2" resultType="string">
-    select 'Marañón' from names
-  </select>
+        select 'Marañón'
+        from names
+    </select>
 </mapper>

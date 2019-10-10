@@ -48,14 +48,16 @@
     </resultMap>
 
     <select id="getArticles" resultMap="articleRM"><![CDATA[
-
-    select id key_id, name, author.id author_id, author.name author_name,
-      coauthor.id coauthor_id, coauthor.name coauthor_name
-    from articles
-    left join authors author on author.id = articles.author_id
-    left join authors coauthor on coauthor.id = articles.coauthor_id
-    order by articles.id
-
+        select id            key_id,
+               name,
+               author.id     author_id,
+               author.name   author_name,
+               coauthor.id   coauthor_id,
+               coauthor.name coauthor_name
+        from articles
+                 left join authors author on author.id = articles.author_id
+                 left join authors coauthor on coauthor.id = articles.coauthor_id
+        order by articles.id
         ]]></select>
 
 </mapper>

@@ -14,14 +14,16 @@
 --    limitations under the License.
 --
 
-create table student (
-  id int,
-  name varchar(100),
-  teacher_id int
+create table student
+(
+    id         int,
+    name       varchar(100),
+    teacher_id int
 );
-create table teacher (
-  id int,
-  name varchar(100)
+create table teacher
+(
+    id   int,
+    name varchar(100)
 );
 
 INSERT INTO student (id, name, teacher_id)

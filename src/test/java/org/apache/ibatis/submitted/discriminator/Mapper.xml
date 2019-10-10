@@ -42,9 +42,9 @@
     </resultMap>
 
     <select id="selectVehicles" resultMap="vehicleResult"><![CDATA[
-
-    select * from vehicle order by id
-
+        select *
+        from vehicle
+        order by id
         ]]></select>
 
     <resultMap
@@ -65,28 +65,22 @@
     </resultMap>
 
     <select id="selectOwnersWithAVehicle" resultMap="ownerResult"><![CDATA[
-
-    select id, name, vehicle_type, vehicle_id
-    from owner
-
+        select id, name, vehicle_type, vehicle_id
+        from owner
         ]]></select>
 
     <select id="selectCar"
             resultType="org.apache.ibatis.submitted.discriminator.Car"><![CDATA[
-
-    select id, maker, door_count doorCount
-    from vehicle
-    where id = #{id}
-
+        select id, maker, door_count doorCount
+        from vehicle
+        where id = #{id}
         ]]></select>
 
     <select id="selectTruck"
             resultType="org.apache.ibatis.submitted.discriminator.Truck"><![CDATA[
-
-    select id, maker, door_count carryingCapacity
-    from vehicle
-    where id = #{id}
-
+        select id, maker, door_count carryingCapacity
+        from vehicle
+        where id = #{id}
         ]]></select>
 
 </mapper>

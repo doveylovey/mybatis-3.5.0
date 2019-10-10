@@ -23,35 +23,36 @@
 <mapper namespace="org.apache.ibatis.submitted.language.Mapper">
 
     <select id="selectNames" resultType="Name">
-    SELECT firstName #if($_parameter.includeLastName), lastName#end
-    FROM names
-    WHERE lastName LIKE @{name}
-  </select>
+        SELECT firstName #if($_parameter.includeLastName), lastName#end
+        FROM names
+        WHERE lastName LIKE @{ name}
+    </select>
 
     <select id="selectNamesWithExpressions" resultType="Name">
-    #set( $pattern = $_parameter.name + "%" )
-    SELECT firstName #if($_parameter.includeLastName), lastName#end
-    FROM names
-    WHERE lastName LIKE @{pattern, javaType=string}
-  </select>
+        #set
+            ($pattern = $_parameter.name + "%")
+        SELECT firstName #if($_parameter.includeLastName), lastName#end
+        FROM names
+        WHERE lastName LIKE @{pattern, javaType= string}
+    </select>
 
     <select id="selectNamesWithIteration" resultType="Name">
-    SELECT *
-    FROM names
-    WHERE id IN (
-      #set($sep="")
-      #foreach($id in $_parameter.ids)
-        $sep @{$it.next($id), javaType=int}
-        #set($sep=",")
-      #end
-    )
-  </select>
+        SELECT *
+        FROM names
+        WHERE id IN (
+                     #set($sep="")
+                         #foreach($id in $_parameter.ids)
+                         $sep @{$it.next($id), javaType = int}
+                                               #set( $sep =",")
+                                               #end
+            )
+    </select>
 
     <select id="selectRaw" resultType="Name" lang="raw">
-    SELECT firstName, lastName
-    FROM names
-    WHERE lastName LIKE #{name}
-  </select>
+        SELECT firstName, lastName
+        FROM names
+        WHERE lastName LIKE #{name}
+    </select>
 
     <select id="selectRawWithInclude" resultType="Name" lang="raw">
         SELECT firstName, lastName
@@ -60,8 +61,8 @@
     </select>
 
     <sql id="include">
-  	FROM names
-  </sql>
+        FROM names
+    </sql>
 
     <select id="selectRawWithIncludeAndCData" resultType="Name" lang="raw">
         <![CDATA[
@@ -75,9 +76,7 @@
 
     <sql id="includeWithCData">
   	<![CDATA[
-
-  	FROM names
-
+        FROM names
         ]]>
   </sql>
 

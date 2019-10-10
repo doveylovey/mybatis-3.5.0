@@ -23,11 +23,13 @@
 <mapper namespace="org.apache.ibatis.submitted.camel">
 
     <select id="doSelect" resultType="org.apache.ibatis.submitted.camelcase.Camel">
-		select * from names
-	</select>
+        select *
+        from names
+    </select>
 
     <select id="doSelectMap" resultType="map">
-		select * from names
-	</select>
+        select *
+        from names
+    </select>
 
 </mapper>

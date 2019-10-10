@@ -40,8 +40,8 @@ import static org.mockito.Mockito.when;
 /**
  * Tests for {@link BlobInputStreamTypeHandler}.
  *
- * @since 3.4.0
  * @author Kazuki Shimizu
+ * @since 3.4.0
  */
 public class BlobInputStreamTypeHandlerTest extends BaseTypeHandlerTest {
 

@@ -30,7 +30,8 @@
     </resultMap>
 
     <select id="test" resultMap="pbResultMap" useCache="false">
-        select 'p1' name, null null_value from (VALUES ('dummy'))
+        select 'p1' name, null null_value
+        from (VALUES('dummy'))
     </select>
 
 </mapper>

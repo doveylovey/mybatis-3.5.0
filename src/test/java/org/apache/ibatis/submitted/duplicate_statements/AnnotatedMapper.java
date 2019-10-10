@@ -23,7 +23,6 @@ import org.apache.ibatis.session.RowBounds;
 /**
  * This interface should be OK.  It has duplicate method names, but only
  * because of the RowBounds parameter
- *
  */
 public interface AnnotatedMapper {
 

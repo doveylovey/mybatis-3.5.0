@@ -23,16 +23,14 @@
 <mapper namespace="org.apache.ibatis.submitted.immutable_constructor.ImmutablePOJOMapper">
 
     <select id="getImmutablePOJO" parameterType="int" resultType="ImmutablePOJO">
-        SELECT
-            i.immutable_id,
-            i.immutable_description
+        SELECT i.immutable_id,
+               i.immutable_description
         FROM immutables AS i
         WHERE i.immutable_id = #{pojoID}
     </select>
 
     <select id="getImmutablePOJONoMatchingConstructor" parameterType="int" resultType="ImmutablePOJO">
-        SELECT
-            i.immutable_id
+        SELECT i.immutable_id
         FROM immutables AS i
         WHERE i.immutable_id = #{pojoID}
     </select>

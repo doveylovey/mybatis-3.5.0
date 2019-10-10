@@ -30,8 +30,10 @@
     </insert>
 
     <select id="sel_string_string" resultType="org.apache.ibatis.submitted.foreach_map.StringStringMapEntry">
-		select * from string_string order by id
-	</select>
+        select *
+        from string_string
+        order by id
+    </select>
 
     <insert id="ins_int_bool">
         insert into int_bool (key, value) values
@@ -41,8 +43,10 @@
     </insert>
 
     <select id="sel_int_bool" resultType="org.apache.ibatis.submitted.foreach_map.IntBoolMapEntry">
-		select * from int_bool order by id
-	</select>
+        select *
+        from int_bool
+        order by id
+    </select>
 
     <insert id="ins_nested_bean">
         insert into nested_bean (keya, keyb, valuea, valueb) values
@@ -52,8 +56,10 @@
     </insert>
 
     <select id="sel_nested_bean" resultType="org.apache.ibatis.submitted.foreach_map.NestedBeanMapEntry">
-		select * from nested_bean order by id
-	</select>
+        select *
+        from nested_bean
+        order by id
+    </select>
 
     <select id="sel_key_cols" resultType="int">
         select count(*) from key_cols where

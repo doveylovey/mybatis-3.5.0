@@ -23,9 +23,10 @@
 <mapper namespace="org.apache.ibatis.submitted.bringrags.SimpleChildObjectMapper">
 
     <select id="getSimpleChildObjectById" resultMap="SimpleChildObjectMap">
-        SELECT SimpleChildObject.id as sco_id, SimpleObject.id as so_id FROM SimpleChildObject
-        LEFT JOIN SimpleObject ON SimpleChildObject.simple_object_id=SimpleObject.id
-        WHERE SimpleChildObject.id=#{id}
+        SELECT SimpleChildObject.id as sco_id, SimpleObject.id as so_id
+        FROM SimpleChildObject
+                 LEFT JOIN SimpleObject ON SimpleChildObject.simple_object_id = SimpleObject.id
+        WHERE SimpleChildObject.id = #{id}
     </select>
 
     <resultMap id="SimpleChildObjectMap" type="org.apache.ibatis.submitted.bringrags.SimpleChildObject">

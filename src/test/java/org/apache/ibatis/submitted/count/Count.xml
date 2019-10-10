@@ -22,7 +22,7 @@
 
 <mapper namespace="org.apache.ibatis.submitted.count.CountMapper">
     <select id="count" resultType="int">
-    select count(*)
-    from names
-  </select>
+        select count(*)
+        from names
+    </select>
 </mapper>

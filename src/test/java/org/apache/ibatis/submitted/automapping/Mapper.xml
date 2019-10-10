@@ -23,29 +23,36 @@
 <mapper namespace="org.apache.ibatis.submitted.automapping.Mapper">
 
     <select id="getUser" resultMap="result">
-		select id, name from users where id = #{id}
-	</select>
+        select id, name
+        from users
+        where id = #{id}
+    </select>
 
     <resultMap type="org.apache.ibatis.submitted.automapping.User" id="result" autoMapping="true">
     </resultMap>
 
     <select id="getUserWithPhoneNumber" resultMap="resultWithPhoneNumber">
-		select * from users where id = #{id}
-	</select>
+        select *
+        from users
+        where id = #{id}
+    </select>
 
     <resultMap type="org.apache.ibatis.submitted.automapping.User" id="resultWithPhoneNumber" autoMapping="true">
         <result property="phone" column="phone_number"/>
     </resultMap>
 
     <sql id="selectUserPetBreeder">
-		select users.id, users.name,
-			pets.id as petId, pets.name as petName,
-			breeder.id as breederId, breeder.name as breederName
-		from users
-		left join pets on pets.owner = users.id
-		left join breeder on breeder.id = pets.breeder
-		where users.id = #{id}
-	</sql>
+        select users.id,
+               users.name,
+               pets.id      as petId,
+               pets.name    as petName,
+               breeder.id   as breederId,
+               breeder.name as breederName
+        from users
+                 left join pets on pets.owner = users.id
+                 left join breeder on breeder.id = pets.breeder
+        where users.id = #{id}
+    </sql>
 
     <select id="getUserWithPets_Inline" resultMap="resultWithPets_Inline">
         <include refid="selectUserPetBreeder"/>
@@ -83,10 +90,12 @@
     </resultMap>
 
     <select id="getBooks" resultMap="bookResult">
-		select version, name from books
-	</select>
+        select version, name
+        from books
+    </select>
 
     <select id="getArticle" resultType="org.apache.ibatis.submitted.automapping.Article">
-		select 9 as version from INFORMATION_SCHEMA.SYSTEM_USERS
-	</select>
+        select 9 as version
+        from INFORMATION_SCHEMA.SYSTEM_USERS
+    </select>
 </mapper>

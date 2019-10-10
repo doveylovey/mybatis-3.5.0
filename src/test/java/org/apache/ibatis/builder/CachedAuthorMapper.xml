@@ -26,31 +26,39 @@
 
     <select id="selectAllAuthors"
             resultType="org.apache.ibatis.domain.blog.Author">
-    select * from author
-  </select>
+        select *
+        from author
+    </select>
 
     <select id="selectAuthorWithInlineParams"
             parameterType="int"
             resultType="org.apache.ibatis.domain.blog.Author">
-    select * from author where id = #{id}
-  </select>
+        select *
+        from author
+        where id = #{id}
+    </select>
 
     <insert id="insertAuthor"
             parameterType="org.apache.ibatis.domain.blog.Author">
-    insert into Author (id,username,password,email,bio)
-    values (#{id},#{username},#{password},#{email},#{bio})
-  </insert>
+        insert into Author (id, username, password, email, bio)
+        values (#{id}, #{username}, #{password}, #{email}, #{bio})
+    </insert>
 
     <update id="updateAuthor"
             parameterType="org.apache.ibatis.domain.blog.Author">
-    update Author
-    set username=#{username},password=#{password},email=#{email},bio=#{bio}
-    where id=#{id}
-  </update>
+        update Author
+        set username=#{username},
+            password=#{password},
+            email=#{email},
+            bio=#{bio}
+        where id = #{id}
+    </update>
 
     <delete id="deleteAuthor"
             parameterType="int">
-    delete from Author where id = #{id}
-  </delete>
+        delete
+        from Author
+        where id = #{id}
+    </delete>
 
 </mapper>

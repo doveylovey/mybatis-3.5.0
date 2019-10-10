@@ -22,8 +22,9 @@
 
 <mapper namespace="org.apache.ibatis.submitted.refid_resolution.Mapper">
     <sql id="columnList">
-		field1, field2
-	</sql>
+            field1,
+            field2
+    </sql>
     <select id="selectValid" resultType="map">
         select
         <include refid="columnList"/>

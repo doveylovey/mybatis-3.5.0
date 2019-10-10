@@ -32,6 +32,7 @@
         WHERE person_id = #{id}
     </select>
     <sql id="personColumnList">
-		person_id, person_name
-	</sql>
+            person_id,
+            person_name
+    </sql>
 </mapper>

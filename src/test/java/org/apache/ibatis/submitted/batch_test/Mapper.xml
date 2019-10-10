@@ -27,14 +27,19 @@
         <association property="dept" column="dept_id" select="getDept"/>
     </resultMap>
     <select id="getUser" resultMap="userResultMap">
-		select * from users where id = #{id}
-	</select>
+        select *
+        from users
+        where id = #{id}
+    </select>
 
     <select id="getDept" resultType="org.apache.ibatis.submitted.batch_test.Dept">
-        select * from depts where id = #{id}
+        select *
+        from depts
+        where id = #{id}
     </select>
 
     <insert id="insertUser">
-        insert into users values(#{id}, #{name},#{dept.id})
+        insert into users
+        values (#{id}, #{name}, #{dept.id})
     </insert>
 </mapper>

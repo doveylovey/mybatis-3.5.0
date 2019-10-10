@@ -31,10 +31,12 @@
     </resultMap>
 
     <select id="selectParent" resultMap="parentMap">
-		select * from names
-	</select>
+        select *
+        from names
+    </select>
 
     <select id="selectChild" resultMap="childMap">
-		select * from names
-	</select>
+        select *
+        from names
+    </select>
 </mapper>

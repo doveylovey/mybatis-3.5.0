@@ -23,11 +23,13 @@
 <mapper namespace="org.apache.ibatis.submitted.no_param_type.Mapper">
 
     <insert id="insertUser">
-    insert into users (id, name) values (#{id}, #{name})
-  </insert>
+        insert into users (id, name)
+        values (#{id}, #{name})
+    </insert>
 
     <select id="selectUser" resultType="org.apache.ibatis.submitted.no_param_type.User">
-    select * from users
-  </select>
+        select *
+        from users
+    </select>
 
 </mapper>

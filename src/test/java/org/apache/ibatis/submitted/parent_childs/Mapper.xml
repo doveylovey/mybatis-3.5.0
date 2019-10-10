@@ -37,15 +37,14 @@
     </resultMap>
 
     <select id="getParents" resultMap="ParentMap">
-		select
-		p.Id as p_Id,
-		p.Name as p_Name,
-		p.SurName as p_SurName,
-		c.Id as c_Id,
-		c.Name as c_Name,
-		c.SurName as c_SurName,
-		c.Age as c_Age
-		from Parent p
-		left outer join Child c on p.Id = c.ParentId
-	</select>
+        select p.Id      as p_Id,
+               p.Name    as p_Name,
+               p.SurName as p_SurName,
+               c.Id      as c_Id,
+               c.Name    as c_Name,
+               c.SurName as c_SurName,
+               c.Age     as c_Age
+        from Parent p
+                 left outer join Child c on p.Id = c.ParentId
+    </select>
 </mapper>

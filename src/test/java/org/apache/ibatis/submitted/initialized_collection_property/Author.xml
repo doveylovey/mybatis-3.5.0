@@ -33,14 +33,13 @@
     </resultMap>
 
     <select id="getAllAuthors" resultMap="authorResultMap">
-    SELECT
-    a.author_id as author_id,
-    a.name as author_name,
-    p.post_id as post_id,
-    p.content as post_content
-    FROM author a
-    JOIN post p ON a.author_id = p.author_id
-  </select>
+        SELECT a.author_id as author_id,
+               a.name      as author_name,
+               p.post_id   as post_id,
+               p.content   as post_content
+        FROM author a
+                 JOIN post p ON a.author_id = p.author_id
+    </select>
 
     <resultMap id="authorResultMapNestedQuery" type="Author">
         <id column="author_id" property="id"/>
@@ -49,18 +48,16 @@
     </resultMap>
 
     <select id="getAllAuthorsNestedQuery" resultMap="authorResultMapNestedQuery">
-    SELECT
-    a.author_id as author_id,
-    a.name as author_name
-    FROM author a
-  </select>
+        SELECT a.author_id as author_id,
+               a.name      as author_name
+        FROM author a
+    </select>
 
     <select id="getPostsFromAuthor" resultType="Post">
-    SELECT
-    p.post_id as post_id,
-    p.content as post_content
-    FROM post p
-    WHERE author_id = #{id}
-  </select>
+        SELECT p.post_id as post_id,
+               p.content as post_content
+        FROM post p
+        WHERE author_id = #{id}
+    </select>
 
 </mapper>

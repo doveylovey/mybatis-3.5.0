@@ -27,7 +27,8 @@
     </resultMap>
 
     <select id="selectAllBlogs" resultMap="BlogResult">
-    select * from blog
-  </select>
+        select *
+        from blog
+    </select>
 </mapper>
 

@@ -30,10 +30,10 @@
 
 
     <sql id="columns">
-        Person.id AS Person_id,
-        Person.firstName AS Person_firstName,
-        Person.lastName AS Person_lastName,
-        Person.personType AS Person_personType
+            Person.id         AS Person_id,
+            Person.firstName  AS Person_firstName,
+            Person.lastName   AS Person_lastName,
+            Person.personType AS Person_personType
     </sql>
 
 

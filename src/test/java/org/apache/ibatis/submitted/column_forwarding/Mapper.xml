@@ -23,12 +23,17 @@
 <mapper namespace="org.apache.ibatis.submitted.column_forwarding.Mapper">
 
     <select id="getUser" parameterType="map" resultMap="userResult">
-		select * from users where id=#{id}
-	</select>
+        select *
+        from users
+        where id = #{id}
+    </select>
 
     <select id="getGroup" parameterType="map" resultMap="groupResult">
-		select * from groups where id=#{id} and state=#{state}
-	</select>
+        select *
+        from groups
+        where id = #{id}
+          and state = #{state}
+    </select>
 
     <resultMap id="userResult"
                type="org.apache.ibatis.submitted.column_forwarding.User">

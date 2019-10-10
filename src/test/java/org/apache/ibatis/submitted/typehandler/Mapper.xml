@@ -29,7 +29,9 @@
     </resultMap>
 
     <select id="getProductByNameXml" resultMap="productResult">
-		select * from product where name = #{name}
-	</select>
+        select *
+        from product
+        where name = #{name}
+    </select>
 
 </mapper>

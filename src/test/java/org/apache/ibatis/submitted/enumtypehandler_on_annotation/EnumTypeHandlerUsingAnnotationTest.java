@@ -32,13 +32,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Tests for type handler of enum using annotations.
  *
- * @since #444
- *
  * @author Kazuki Shimizu
- *
  * @see org.apache.ibatis.annotations.Arg
  * @see org.apache.ibatis.annotations.Result
  * @see org.apache.ibatis.annotations.TypeDiscriminator
+ * @since #444
  */
 public class EnumTypeHandlerUsingAnnotationTest {
 

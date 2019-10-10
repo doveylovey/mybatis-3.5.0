@@ -113,9 +113,9 @@
     </insert>
     <insert id="insertUndefineKeyProperty" useGeneratedKeys="true"
             keyProperty="country_id">
-    insert into country (countryname,countrycode) values
-    (#{countryname},#{countrycode})
-  </insert>
+        insert into country (countryname, countrycode)
+        values (#{countryname}, #{countrycode})
+    </insert>
     <insert id="insertPlanets" useGeneratedKeys="true" keyProperty="id,code">
         insert into planet (name) values
         <foreach collection="list" separator="," item="planet">
@@ -129,7 +129,9 @@
         </foreach>
     </insert>
     <insert id="insertPlanetAndCountry" useGeneratedKeys="true" keyProperty="planet.id,planet.code,country.id">
-    insert into planet (name) values (#{planet.name});
-    insert into country (countryname,countrycode) values (#{country.countryname},#{country.countrycode});
-  </insert>
+        insert into planet (name)
+        values (#{planet.name});
+        insert into country (countryname, countrycode)
+        values (#{country.countryname}, #{country.countrycode});
+    </insert>
 </mapper>

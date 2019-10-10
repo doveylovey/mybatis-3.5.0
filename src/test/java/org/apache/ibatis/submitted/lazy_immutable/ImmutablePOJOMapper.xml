@@ -30,9 +30,8 @@
     </resultMap>
 
     <select id="getImmutablePOJO" parameterType="int" resultMap="result">
-        SELECT
-            i.id            AS id,
-            i.description   AS description
+        SELECT i.id          AS id,
+               i.description AS description
         FROM immutables AS i
         WHERE i.id = #{pojoID}
     </select>

@@ -20,8 +20,8 @@ import org.apache.ibatis.submitted.enumtypehandler_on_annotation.Person.PersonTy
 import org.apache.ibatis.type.EnumOrdinalTypeHandler;
 
 /**
- * @since #444
  * @author Kazuki Shimizu
+ * @since #444
  */
 public interface PersonMapper {
 

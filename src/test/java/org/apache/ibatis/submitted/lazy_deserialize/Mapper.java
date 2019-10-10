@@ -18,8 +18,8 @@ package org.apache.ibatis.submitted.lazy_deserialize;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * @since 2011-04-06T11:00:30+0200
  * @author Franta Mejta
+ * @since 2011-04-06T11:00:30+0200
  */
 public interface Mapper {
 

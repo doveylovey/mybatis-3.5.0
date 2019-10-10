@@ -23,15 +23,25 @@
 <mapper namespace="org.apache.ibatis.submitted.multiple_resultsets.Mapper">
 
     <select id="getUsersAndGroups" resultMap="usersResult,groupsResult">
-		select * from mbtest.order_detail order by order_id, line_number ; select * from mbtest.order_header order by order_id
-	</select>
+        select *
+        from mbtest.order_detail
+        order by order_id, line_number;
+        select *
+        from mbtest.order_header
+        order by order_id
+    </select>
 
     <select id="multiResultsWithUpdate" resultMap="usersResult,groupsResult">
-    select * from mbtest.order_detail order by order_id, line_number ;
-    insert into mbtest.order_detail
-      (order_id, line_number, quantity, item_description) values (2, 4, 5, 'Eraser') ;
-    select * from mbtest.order_header order by order_id
-  </select>
+        select *
+        from mbtest.order_detail
+        order by order_id, line_number;
+        insert into mbtest.order_detail
+            (order_id, line_number, quantity, item_description)
+        values (2, 4, 5, 'Eraser');
+        select *
+        from mbtest.order_header
+        order by order_id
+    </select>
 
     <resultMap type="org.apache.ibatis.submitted.multiple_resultsets.OrderDetail" id="usersResult"/>
 

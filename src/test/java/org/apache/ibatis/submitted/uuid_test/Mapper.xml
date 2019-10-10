@@ -23,11 +23,14 @@
 <mapper namespace="org.apache.ibatis.submitted.uuid_test.Mapper">
 
     <select id="getUser" resultType="org.apache.ibatis.submitted.basetest.User">
-		select * from users where id = #{id, typeHandler=org.apache.ibatis.submitted.uuid_test.UUIDTypeHandler}
-	</select>
+        select *
+        from users
+        where id = #{id, typeHandler=org.apache.ibatis.submitted.uuid_test.UUIDTypeHandler}
+    </select>
 
     <insert id="insertUser">
-		insert into users values(#{id, typeHandler=org.apache.ibatis.submitted.uuid_test.UUIDTypeHandler}, #{name})
-	</insert>
+        insert into users
+        values (#{id, typeHandler=org.apache.ibatis.submitted.uuid_test.UUIDTypeHandler}, #{name})
+    </insert>
 
 </mapper>

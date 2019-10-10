@@ -32,33 +32,28 @@
     </resultMap>
 
     <insert id="insertFoo" parameterType="Foo">
-    insert into FOO
-    (
-    field1,
-    field2,
-    field3,
-    field4
-    )
-    values
-    (
-    #{field1,jdbcType=INTEGER},
-    #{field2.field1,jdbcType=INTEGER},
-    #{field3,jdbcType=INTEGER},
-    #{field4,jdbcType=INTEGER}
-    )
-  </insert>
+        insert into FOO
+        (field1,
+         field2,
+         field3,
+         field4)
+        values (#{field1,jdbcType=INTEGER},
+                #{field2.field1,jdbcType=INTEGER},
+                #{field3,jdbcType=INTEGER},
+                #{field4,jdbcType=INTEGER})
+    </insert>
 
     <select id="selectFoo" resultMap="fooResult">
-    select
-    field1,
-    field2 as bar_field1,
-    field3,
-    field4
-    from FOO;
-  </select>
+        select field1,
+               field2 as bar_field1,
+               field3,
+               field4
+        from FOO;
+    </select>
 
     <delete id="deleteAllFoo">
-    delete from FOO;
-  </delete>
+        delete
+        from FOO;
+    </delete>
 
 </mapper>

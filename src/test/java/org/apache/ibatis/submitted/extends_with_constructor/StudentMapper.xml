@@ -34,7 +34,7 @@
     </resultMap>
 
     <select id="selectAllWithTeacher" resultMap="StudentMapWithTeacherMap">
-    	SELECT id, name, teacherId
-    	FROM student
+        SELECT id, name, teacherId
+        FROM student
     </select>
 </mapper>

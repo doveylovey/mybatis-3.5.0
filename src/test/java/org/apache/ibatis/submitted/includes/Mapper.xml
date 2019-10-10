@@ -22,8 +22,8 @@
 
 <mapper namespace="org.apache.ibatis.submitted.includes.mapper">
     <sql id="sometable">
-    ${prefix}Table
-  </sql>
+            ${prefix}Table
+    </sql>
 
     <sql id="someinclude">
         <include refid="${include_target}"/>

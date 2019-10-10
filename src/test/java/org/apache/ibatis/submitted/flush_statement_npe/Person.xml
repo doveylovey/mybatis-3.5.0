@@ -37,7 +37,7 @@
     <update id="update" parameterType="Person">
         UPDATE person
         SET firstName = #{firstName},
-        lastName = #{lastName}
+            lastName  = #{lastName}
         WHERE id = #{id}
     </update>
 </mapper>

@@ -51,8 +51,9 @@
     </select>
 
     <select id="selectNumerics" resultMap="numericRow">
-    select * from ibtest.numerics
-  </select>
+        select *
+        from ibtest.numerics
+    </select>
 
     <select id="selectLike" resultType="map" parameterType="string">
         <bind name="pattern" value="'%' + _parameter + '%'"/>

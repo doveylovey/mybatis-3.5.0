@@ -16,14 +16,19 @@
 
 drop table users if exists;
 
-create table users (
-  id int,
-  name varchar(20),
-  logical_delete boolean default false
+create table users
+(
+    id             int,
+    name           varchar(20),
+    logical_delete boolean default false
 );
 
-insert into users (id, name) values(1, 'User1');
-insert into users (id, name) values(2, 'User2');
-insert into users (id, name) values(3, 'User3');
-insert into users (id, name, logical_delete) values(4, 'User4', true);
+insert into users (id, name)
+values (1, 'User1');
+insert into users (id, name)
+values (2, 'User2');
+insert into users (id, name)
+values (3, 'User3');
+insert into users (id, name, logical_delete)
+values (4, 'User4', true);
 

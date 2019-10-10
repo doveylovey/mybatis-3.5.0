@@ -30,20 +30,17 @@
     </resultMap>
 
     <sql id="columns">
-		person.id,
-		person.nr_department
-	</sql>
+            person.id,
+            person.nr_department
+    </sql>
 
     <sql id="table">person</sql>
 
     <select id="getById" parameterType="Integer" resultMap="map">
-        SELECT
-        	person.id,
-			person.nr_department
-        FROM
-        	person
-        WHERE
-        	id = #{id}
+        SELECT person.id,
+               person.nr_department
+        FROM person
+        WHERE id = #{id}
     </select>
 
 </mapper>

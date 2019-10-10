@@ -33,14 +33,17 @@
     </resultMap>
 
     <insert id="insert" parameterType="org.apache.ibatis.submitted.blobtest.BlobRecord">
-    insert into blobtest.blobs values (#{id}, #{blob})
-  </insert>
+        insert into blobtest.blobs
+        values (#{id}, #{blob})
+    </insert>
 
     <select id="selectAll" resultMap="blobRecordResult">
-    select * from blobtest.blobs
-  </select>
+        select *
+        from blobtest.blobs
+    </select>
 
     <select id="selectAllWithBlobObjects" resultMap="blobRecordResultWithBlobObjects">
-    select * from blobtest.blobs
-  </select>
+        select *
+        from blobtest.blobs
+    </select>
 </mapper>

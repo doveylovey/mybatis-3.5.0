@@ -31,7 +31,8 @@
     </resultMap>
 
     <select id="getUsers" resultMap="userResult">
-		select * from users
-	</select>
+        select *
+        from users
+    </select>
 
 </mapper>

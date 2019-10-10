@@ -20,19 +20,30 @@
 
 <mapper namespace="org.apache.ibatis.submitted.emptycollection.Dao">
     <select id="selectWithEmptyList" resultMap="selectList">
-        select 1 id, null "order", null description from (VALUES ('dummy')) dummy(dummy)
+        select 1 id, null "order", null description
+        from (VALUES('dummy')) dummy(dummy)
     </select>
 
     <select id="selectWithNonEmptyList" resultMap="selectList">
-        select 1 id, 1 "order", 'a description' description from (VALUES ('dummy')) dummy(dummy)
-        union all select 1 id, 2 "order", 'a 2nd description' description from (VALUES ('dummy')) dummy(dummy)
-        union all select 2 id, 1 "order", 'a description' description from (VALUES ('dummy')) dummy(dummy)
+        select 1 id, 1 "order", 'a description' description
+        from (VALUES('dummy')) dummy(dummy)
+        union all
+        select 1 id, 2 "order", 'a 2nd description' description
+        from (VALUES('dummy')) dummy(dummy)
+        union all
+        select 2 id, 1 "order", 'a description' description
+        from (VALUES('dummy')) dummy(dummy)
     </select>
 
     <select id="selectWithNonEmptyList_noCollectionId" resultMap="selectList_noCollectionId">
-        select 1 id, 1 "order", 'a description' description from (VALUES ('dummy')) dummy(dummy)
-        union all select 1 id, 2 "order", 'a 2nd description' description from (VALUES ('dummy')) dummy(dummy)
-        union all select 2 id, 1 "order", 'a description' description from (VALUES ('dummy')) dummy(dummy)
+        select 1 id, 1 "order", 'a description' description
+        from (VALUES('dummy')) dummy(dummy)
+        union all
+        select 1 id, 2 "order", 'a 2nd description' description
+        from (VALUES('dummy')) dummy(dummy)
+        union all
+        select 2 id, 1 "order", 'a description' description
+        from (VALUES('dummy')) dummy(dummy)
     </select>
 
 

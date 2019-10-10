@@ -32,11 +32,11 @@
 
 
     <sql id="columns">
-    Person.id AS Person_id,
-    Person.firstName AS Person_firstName,
-    Person.lastName AS Person_lastName,
-    Person.parent AS Person_parent
-  </sql>
+            Person.id        AS Person_id,
+            Person.firstName AS Person_firstName,
+            Person.lastName  AS Person_lastName,
+            Person.parent    AS Person_parent
+    </sql>
 
 
     <select id="selectById" resultMap="personMap" parameterType="int">
@@ -54,8 +54,8 @@
     </select>
 
     <insert id="insertPerson">
-    INSERT INTO person (id, firstName, lastName, parent)
-    VALUES (#{id}, #{firstName}, #{lastName}, null);
-  </insert>
+        INSERT INTO person (id, firstName, lastName, parent)
+        VALUES (#{id}, #{firstName}, #{lastName}, null);
+    </insert>
 
 </mapper>

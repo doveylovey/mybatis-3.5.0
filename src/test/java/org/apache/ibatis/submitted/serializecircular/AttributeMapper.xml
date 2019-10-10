@@ -26,12 +26,9 @@
     </resultMap>
 
     <select id="getById" parameterType="Integer" resultMap="map">
-        SELECT
-        	productattribute.nr_id
-        FROM
-        	productattribute
-        WHERE
-        	nr_id = #{id}
+        SELECT productattribute.nr_id
+        FROM productattribute
+        WHERE nr_id = #{id}
     </select>
 
 </mapper>

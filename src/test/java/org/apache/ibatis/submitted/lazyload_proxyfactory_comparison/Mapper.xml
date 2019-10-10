@@ -32,8 +32,10 @@
     </resultMap>
 
     <select id="getUserWithGetObjectWithInterface" resultMap="user_with_get_object_with_interface_map">
-		select id, name, owner_id from users where id = #{id}
-	</select>
+        select id, name, owner_id
+        from users
+        where id = #{id}
+    </select>
 
     <!-- UserWithGetObjectWithoutInterface -->
 
@@ -45,8 +47,10 @@
     </resultMap>
 
     <select id="getUserWithGetObjectWithoutInterface" resultMap="user_with_get_object_without_interface_map">
-		select id, name, owner_id from users where id = #{id}
-	</select>
+        select id, name, owner_id
+        from users
+        where id = #{id}
+    </select>
 
     <!-- UserWithGetXxxWithInterface -->
 
@@ -58,8 +62,10 @@
     </resultMap>
 
     <select id="getUserWithGetXxxWithInterface" resultMap="user_with_get_xxx_with_interface_map">
-		select id, name, owner_id from users where id = #{id}
-	</select>
+        select id, name, owner_id
+        from users
+        where id = #{id}
+    </select>
 
     <!-- UserWithGetXxxWithoutInterface -->
 
@@ -71,8 +77,10 @@
     </resultMap>
 
     <select id="getUserWithGetXxxWithoutInterface" resultMap="user_with_get_xxx_without_interface_map">
-		select id, name, owner_id from users where id = #{id}
-	</select>
+        select id, name, owner_id
+        from users
+        where id = #{id}
+    </select>
 
     <!-- UserWithNothingWithInterface -->
 
@@ -84,8 +92,10 @@
     </resultMap>
 
     <select id="getUserWithNothingWithInterface" resultMap="user_with_nothing_with_interface_map">
-		select id, name, owner_id from users where id = #{id}
-	</select>
+        select id, name, owner_id
+        from users
+        where id = #{id}
+    </select>
 
     <!-- UserWithNothingWithoutInterface -->
 
@@ -97,8 +107,10 @@
     </resultMap>
 
     <select id="getUserWithNothingWithoutInterface" resultMap="user_with_nothing_without_interface_map">
-		select id, name, owner_id from users where id = #{id}
-	</select>
+        select id, name, owner_id
+        from users
+        where id = #{id}
+    </select>
 
     <!-- Group -->
 
@@ -108,6 +120,8 @@
     </resultMap>
 
     <select id="getGroup" resultMap="group_map">
-		select id, name from groups where id = #{id}
-	</select>
+        select id, name
+        from groups
+        where id = #{id}
+    </select>
 </mapper>

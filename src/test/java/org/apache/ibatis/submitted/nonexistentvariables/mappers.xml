@@ -22,6 +22,9 @@
 
 <mapper namespace="org.apache.ibatis.submitted.nonexistentvariables.Mapper">
     <select id="count" resultType="int">
-		select count(*) from names where id=#{thisvariabledoesnotexist} and firstName=#{name}
-	</select>
+        select count(*)
+        from names
+        where id = #{thisvariabledoesnotexist}
+          and firstName = #{name}
+    </select>
 </mapper>

@@ -40,13 +40,15 @@
     </resultMap>
 
     <select id="getCarsInfo" resultMap="carResult">
-		SELECT car_id as "id", name
-		FROM car where car_id=#{id}
-	</select>
+        SELECT car_id as "id", name
+        FROM car
+        where car_id = #{id}
+    </select>
 
     <select id="getCarPartInfo" resultMap="partResult">
-		SELECT part_id as "partId", name
-		FROM part where car_id=#{id}
-	</select>
+        SELECT part_id as "partId", name
+        FROM part
+        where car_id = #{id}
+    </select>
 
 </mapper>

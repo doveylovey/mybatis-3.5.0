@@ -35,27 +35,26 @@
     </resultMap>
 
     <insert id="insertFoo" parameterType="Foo">
-    insert into FOO (
-    F_FIELD1,
-    F_FIELD2_FIELD1,
-    F_FIELD2_FIELD2,
-    F_FIELD2_FIELD3,
-    F_FIELD3
-    ) values (
-    #{field1,jdbcType=BIGINT},
-    #{field2.field1,jdbcType=BIGINT},
-    #{field2.field2,jdbcType=BIGINT},
-    #{field2.field3,jdbcType=BIGINT},
-    #{field3,jdbcType=BOOLEAN}
-    )
-  </insert>
+        insert into FOO (F_FIELD1,
+                         F_FIELD2_FIELD1,
+                         F_FIELD2_FIELD2,
+                         F_FIELD2_FIELD3,
+                         F_FIELD3)
+        values (#{field1,jdbcType=BIGINT},
+                #{field2.field1,jdbcType=BIGINT},
+                #{field2.field2,jdbcType=BIGINT},
+                #{field2.field3,jdbcType=BIGINT},
+                #{field3,jdbcType=BOOLEAN})
+    </insert>
 
     <select id="selectFoo" resultMap="fooResult">
-    select * from FOO;
-  </select>
+        select *
+        from FOO;
+    </select>
 
     <delete id="deleteAllFoo">
-    delete from FOO;
-  </delete>
+        delete
+        from FOO;
+    </delete>
 
 </mapper>

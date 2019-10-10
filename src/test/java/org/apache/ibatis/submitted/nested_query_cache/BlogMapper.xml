@@ -41,15 +41,21 @@
     </resultMap>
 
     <select id="selectBlog" parameterType="int" resultMap="blogWithPosts">
-    select * from Blog where id = #{id}
-  </select>
+        select *
+        from Blog
+        where id = #{id}
+    </select>
 
     <select id="selectBlogUsingConstructor" parameterType="int" resultMap="blogUsingConstructor">
-    select * from Blog where id = #{id}
-  </select>
+        select *
+        from Blog
+        where id = #{id}
+    </select>
 
     <select id="selectPostsForBlog" parameterType="int" resultType="Post">
-    select * from Post where blog_id = #{blog_id}
-  </select>
+        select *
+        from Post
+        where blog_id = #{blog_id}
+    </select>
 
 </mapper>

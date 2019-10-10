@@ -40,11 +40,12 @@
     </resultMap>
 
     <select id="findWithSubFolders" resultMap="folderResultMap">
-		select f.id, f.name, f1.id as lvl1_id, f1.name as lvl1_name, f2.id as lvl2_id, f2.name as lvl2_name from folder f
-		left join folder f1 on f1.parent_id = f.id
-		left join folder f2 on f2.parent_id = f1.id
-		where name = #{name}
-		order by f.id, f1.id, f2.id
-	</select>
+        select f.id, f.name, f1.id as lvl1_id, f1.name as lvl1_name, f2.id as lvl2_id, f2.name as lvl2_name
+        from folder f
+                 left join folder f1 on f1.parent_id = f.id
+                 left join folder f2 on f2.parent_id = f1.id
+        where name = #{name}
+        order by f.id, f1.id, f2.id
+    </select>
 
 </mapper>

@@ -29,8 +29,9 @@
     </resultMap>
 
     <select id="getUser" resultMap="rmA">
-    select id userId, name userName
-    from users where id = #{id}
-  </select>
+        select id userId, name userName
+        from users
+        where id = #{id}
+    </select>
 
 </mapper>

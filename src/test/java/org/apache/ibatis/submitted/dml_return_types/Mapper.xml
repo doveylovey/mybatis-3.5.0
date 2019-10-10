@@ -23,11 +23,15 @@
 <mapper namespace="org.apache.ibatis.submitted.dml_return_types.Mapper">
 
     <select id="getUser" parameterType="Integer" resultType="org.apache.ibatis.submitted.dml_return_types.User">
-        select * from users where id = #{id}
+        select *
+        from users
+        where id = #{id}
     </select>
 
     <sql id="update">
-        update users set name = #{name} where id = #{id}
+        update users
+        set name = #{name}
+        where id = #{id}
     </sql>
 
     <update id="updateReturnsVoid" parameterType="org.apache.ibatis.submitted.dml_return_types.User">

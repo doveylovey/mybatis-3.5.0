@@ -22,7 +22,9 @@
 
 <mapper namespace="org.apache.ibatis.submitted.substitution_in_annots.SubstitutionInAnnotsMapper">
     <select id="getPersonNameByIdWithXml" parameterType="int" resultType="String">
-		select firstName from ibtest.names where id=${value}
-	</select>
+        select firstName
+        from ibtest.names
+        where id = ${value}
+    </select>
 
 </mapper>

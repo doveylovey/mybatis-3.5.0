@@ -64,24 +64,33 @@
     </resultMap>
 
     <select id="selectPostLite" resultMap="postLiteMap">
-      select id, blog_id from post where blog_id is not null
-  </select>
+        select id, blog_id
+        from post
+        where blog_id is not null
+    </select>
 
     <select id="selectPostLite2NestedWithSelect" resultMap="postLiteMap2NestedWithSelect">
-      select id, 1 as blog_id from post where blog_id is not null
-  </select>
+        select id, 1 as blog_id
+        from post
+        where blog_id is not null
+    </select>
 
     <select id="selectPostLite2NestedWithoutSelect" resultMap="postLiteMap2NestedWithoutSelect">
-      select id, 1 as blog_id from post where blog_id is not null
-  </select>
+        select id, 1 as blog_id
+        from post
+        where blog_id is not null
+    </select>
 
     <select id="selectPostLiteId" resultMap="postLiteIdMap">
-      select ${id} as id from (values(0)) as t
-  </select>
+        select ${id} as id
+        from (values(0)) as t
+    </select>
 
     <select id="selectMutablePostLite" resultMap="mutablePostLiteMap">
-      select id, blog_id from post where blog_id is not null
-  </select>
+        select id, blog_id
+        from post
+        where blog_id is not null
+    </select>
 
     <sql id="byBlogId">
         <if test="blog_id != null">${prefix}_id = #{blog_id}</if>

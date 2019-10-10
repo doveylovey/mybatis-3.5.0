@@ -31,8 +31,10 @@
                      resultMap="org.apache.ibatis.submitted.xml_external_ref.PersonMapper.personResult"/>
     </resultMap>
     <sql id="petColumnList">
-		pet_id, owner_id, pet_name
-	</sql>
+            pet_id,
+            owner_id,
+            pet_name
+    </sql>
     <select id="select" parameterType="java.lang.Integer" resultMap="resultWithOwner">
         SELECT
         <include refid="petColumnList"/>

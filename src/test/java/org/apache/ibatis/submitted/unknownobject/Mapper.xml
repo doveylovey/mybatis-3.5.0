@@ -23,8 +23,9 @@
 <mapper namespace="org.apache.ibatis.submitted.unknownobject.Mapper">
 
     <select id="getUser" resultMap="map">
-		select * from users
-	</select>
+        select *
+        from users
+    </select>
 
     <resultMap type="org.apache.ibatis.submitted.unknownobject.User" id="map" autoMapping="false">
         <result column="id" property="id"/>

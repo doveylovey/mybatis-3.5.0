@@ -44,7 +44,7 @@ public class FlushTest {
     public static void setup() throws Exception {
         DataSource dataSource1 = BaseDataTest.createBlogDataSource();
 
-        String resource = "org/apache/ibatis/databases/blog/blog-mysql.properties";
+        String resource = "org/apache/ibatis/databases/mysql/mysql-jdbc.properties";
         Properties props = Resources.getResourceAsProperties(resource);
         UnpooledDataSource dataSource = new UnpooledDataSource();
         dataSource.setDriver(props.getProperty("driver"));

@@ -65,67 +65,81 @@
     </resultMap>
 
     <select id="selectAllAuthors" resultType="org.apache.ibatis.domain.blog.Author">
-		select * from author
-	</select>
+        select *
+        from author
+    </select>
 
     <select id="selectAllAuthorsSet" resultType="org.apache.ibatis.domain.blog.Author">
-		select * from author
-	</select>
+        select *
+        from author
+    </select>
 
     <select id="selectAllAuthorsVector" resultType="org.apache.ibatis.domain.blog.Author">
-		select * from author
-	</select>
+        select *
+        from author
+    </select>
 
     <select id="selectAllAuthorsLinkedList" resultType="org.apache.ibatis.domain.blog.Author">
-		select * from author
-	</select>
+        select *
+        from author
+    </select>
 
     <select id="selectAllAuthorsArray" resultType="org.apache.ibatis.domain.blog.Author">
-		select * from author
-	</select>
+        select *
+        from author
+    </select>
 
     <select id="selectComplexAuthors" resultMap="selectComplexImmutableAuthor">
-		select * from author
-	</select>
+        select *
+        from author
+    </select>
 
     <select id="selectAuthorLinkedHashMap" resultType="java.util.LinkedHashMap">
-		select id, username from author where id = #{value}
-	</select>
+        select id, username
+        from author
+        where id = #{value}
+    </select>
 
     <select id="selectAuthor" parameterMap="selectAuthor" resultMap="selectAuthor">
-		select id, username, password, email, bio, favourite_section
-		from author where id = ?
-	</select>
+        select id, username, password, email, bio, favourite_section
+        from author
+        where id = ?
+    </select>
 
     <select id="selectImmutableAuthor" parameterMap="selectAuthor"
             resultMap="selectImmutableAuthor">
-		select id, username, password, email, bio, favourite_section
-		from author where id = ?
-	</select>
+        select id, username, password, email, bio, favourite_section
+        from author
+        where id = ?
+    </select>
 
     <select id="selectAuthorWithInlineParams" parameterType="int"
             resultType="org.apache.ibatis.domain.blog.Author">
-		select * from author where id = #{id}
-	</select>
+        select *
+        from author
+        where id = #{id}
+    </select>
 
     <insert id="insertAuthor" parameterType="org.apache.ibatis.domain.blog.Author">
-		insert into Author (id,username,password,email,bio)
-		values (#{id},#{username},#{password},#{email},#{bio})
-	</insert>
+        insert into Author (id, username, password, email, bio)
+        values (#{id}, #{username}, #{password}, #{email}, #{bio})
+    </insert>
 
     <update id="updateAuthor" parameterType="org.apache.ibatis.domain.blog.Author">
-		update Author
-		set username=#{username,
+        update Author
+        set username=#{username,
 		javaType=String},
-		password=#{password},
-		email=#{email},
-		bio=#{bio}
-		where id=#{id}
-	</update>
+            password=#{password},
+            email=#{email},
+            bio=#{bio}
+        where id = #{id}
+    </update>
 
     <delete id="deleteAuthor" parameterType="int">
-		delete from Author where id = #{id}
-	</delete>
+        delete
+        from Author
+        where id = #{id}
+    </delete>
 
 
     <update id="updateAuthorIfNecessary" parameterType="org.apache.ibatis.domain.blog.Author">
@@ -142,7 +156,8 @@
     <select id="selectWithOptions" resultType="org.apache.ibatis.domain.blog.Author"
             fetchSize="200" timeout="10" statementType="PREPARED" resultSetType="SCROLL_SENSITIVE" flushCache="false"
             useCache="false">
-		select * from author
-	</select>
+        select *
+        from author
+    </select>
 
 </mapper>

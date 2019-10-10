@@ -32,11 +32,13 @@
     </resultMap>
 
     <select id="getUser" resultMap="sampleHashResult">
-        SELECT id as f1, name as f2 from users
+        SELECT id as f1, name as f2
+        from users
     </select>
 
     <select id="associationTest" resultType="java.lang.String">
-        select id from users
+        select id
+        from users
     </select>
 
 </mapper>

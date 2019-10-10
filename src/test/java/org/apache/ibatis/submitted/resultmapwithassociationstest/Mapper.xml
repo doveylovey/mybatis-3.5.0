@@ -29,10 +29,10 @@
     </resultMap>
 
     <select id="findAll" parameterType="map" resultMap="personRM">
-    SELECT p.id, id_address, a.id as address_id
-    FROM person p
-    JOIN address a
-    on a.id = p.id_address
-  </select>
+        SELECT p.id, id_address, a.id as address_id
+        FROM person p
+                 JOIN address a
+                      on a.id = p.id_address
+    </select>
 
 </mapper>

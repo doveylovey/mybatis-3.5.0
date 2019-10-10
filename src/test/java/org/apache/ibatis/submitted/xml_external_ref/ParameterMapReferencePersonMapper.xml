@@ -28,8 +28,8 @@
     <select id="select"
             parameterMap="org.apache.ibatis.submitted.xml_external_ref.ParameterMapReferencePetMapper.personParameter"
             resultMap="personResult">
-		SELECT person_id, person_name
-		FROM person
-		WHERE person_id = ?
-	</select>
+        SELECT person_id, person_name
+        FROM person
+        WHERE person_id = ?
+    </select>
 </mapper>

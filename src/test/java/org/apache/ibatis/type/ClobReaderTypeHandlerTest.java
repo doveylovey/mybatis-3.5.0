@@ -42,8 +42,8 @@ import static org.mockito.Mockito.when;
 /**
  * Tests for {@link ClobReaderTypeHandler}.
  *
- * @since 3.4.0
  * @author Kazuki Shimizu
+ * @since 3.4.0
  */
 public class ClobReaderTypeHandlerTest extends BaseTypeHandlerTest {
 

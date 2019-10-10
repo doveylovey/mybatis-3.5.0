@@ -43,7 +43,7 @@ public class MapperMethodParamTest {
 //        DataSource dataSource1 = BaseDataTest.createUnpooledDataSource(BaseDataTest.BLOG_PROPERTIES);
 //        BaseDataTest.runScript(dataSource1, "org/apache/ibatis/binding/paramtest-schema.sql");
 
-        String resource = "org/apache/ibatis/databases/blog/blog-mysql.properties";
+        String resource = "org/apache/ibatis/databases/mysql/mysql-jdbc.properties";
         Properties props = Resources.getResourceAsProperties(resource);
         UnpooledDataSource dataSource = new UnpooledDataSource();
         dataSource.setDriver(props.getProperty("driver"));

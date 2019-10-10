@@ -25,8 +25,8 @@
         <result property="name" column="person_name"/>
     </resultMap>
     <sql id="personIdColumnList">
-		person_id
-	</sql>
+            person_id
+    </sql>
     <!-- fragment includes another fragment form the same file -->
     <sql id="personColumnList">
         <include refid="personIdColumnList"/>,

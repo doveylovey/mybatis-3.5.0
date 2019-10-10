@@ -23,11 +23,16 @@
 <mapper namespace="org.apache.ibatis.submitted.hashmaptypehandler.Mapper">
 
     <select id="getUserXml" resultType="org.apache.ibatis.submitted.hashmaptypehandler.User">
-		select * from users where id = #{id} and name = #{name}
-	</select>
+        select *
+        from users
+        where id = #{id}
+          and name = #{name}
+    </select>
 
     <select id="getUserWithTypeHandlerXml" resultType="org.apache.ibatis.submitted.hashmaptypehandler.User">
-		select * from users where name = #{name}
-	</select>
+        select *
+        from users
+        where name = #{name}
+    </select>
 
 </mapper>

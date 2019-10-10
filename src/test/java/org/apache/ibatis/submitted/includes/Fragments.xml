@@ -22,12 +22,13 @@
 
 <mapper namespace="org.apache.ibatis.submitted.includes.fragments">
     <sql id="select">
-    select
-  </sql>
+        select
+    </sql>
     <sql id="update">
-    update
-  </sql>
+        update
+    </sql>
     <sql id="values">
-    VALUES (1);
-  </sql>
+            VALUES
+                (1);
+    </sql>
 </mapper>

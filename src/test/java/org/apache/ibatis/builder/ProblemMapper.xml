@@ -23,6 +23,7 @@
 
     <select id="findProblemTest">
         SELECT *
-        FROM table_test WHERE id = #{}
+        FROM table_test
+        WHERE id = #{}
     </select>
 </mapper>

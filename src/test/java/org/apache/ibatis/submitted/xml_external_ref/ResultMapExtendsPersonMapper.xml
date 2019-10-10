@@ -28,8 +28,8 @@
     <!-- Referencing a result map in another file -->
     <select id="selectPet" parameterType="java.lang.Integer"
             resultMap="dogResult">
-		SELECT pet_id, owner_id, pet_name
-		FROM pet
-		WHERE pet_id = #{id}
-	</select>
+        SELECT pet_id, owner_id, pet_name
+        FROM pet
+        WHERE pet_id = #{id}
+    </select>
 </mapper>

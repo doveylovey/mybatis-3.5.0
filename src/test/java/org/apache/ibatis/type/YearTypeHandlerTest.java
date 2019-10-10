@@ -23,7 +23,6 @@ import java.time.Year;
 import org.junit.jupiter.api.Test;
 
 /**
- *
  * @author Eduardo Macarron
  */
 public class YearTypeHandlerTest extends BaseTypeHandlerTest {

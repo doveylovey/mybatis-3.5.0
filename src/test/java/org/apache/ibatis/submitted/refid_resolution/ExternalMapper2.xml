@@ -22,6 +22,7 @@
 
 <mapper namespace="org.apache.ibatis.submitted.refid_resolution.ExternalMapper2">
     <sql id="externalColumnList">
-		field1, field2
-	</sql>
+            field1,
+            field2
+    </sql>
 </mapper>

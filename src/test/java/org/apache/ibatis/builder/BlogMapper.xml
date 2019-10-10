@@ -43,16 +43,21 @@
     </resultMap>
 
     <select id="selectBlogWithPostsUsingSubSelect" parameterType="int" resultMap="blogWithPosts">
-    select * from Blog where id = #{id}
-  </select>
+        select *
+        from Blog
+        where id = #{id}
+    </select>
 
     <select id="selectPostsForBlog" parameterType="int" resultType="Post">
-    select * from Post where blog_id = #{blog_id}
-  </select>
+        select *
+        from Post
+        where blog_id = #{blog_id}
+    </select>
 
     <select id="selectCountOfPosts" resultType="int">
-    select count(1) from post
-  </select>
+        select count(1)
+        from post
+    </select>
 
     <resultMap id="blogWithPostsLazy" type="Blog">
         <id property="id" column="id"/>
@@ -64,8 +69,10 @@
     </resultMap>
 
     <select id="selectBlogWithPostsUsingSubSelectLazily" parameterType="int" resultMap="blogWithPostsLazy">
-    select * from Blog where id = #{id}
-  </select>
+        select *
+        from Blog
+        where id = #{id}
+    </select>
 
     <resultMap id="joinedAuthor" type="org.apache.ibatis.domain.blog.Author">
         <id property="id" column="author_id"/>
@@ -118,41 +125,42 @@
     </resultMap>
 
     <select id="selectBlogJoinedWithPostsAndAuthor" parameterType="int" resultMap="blogJoinedWithPostsAndAuthor">
-    select
-    B.id as blog_id,
-    B.title as blog_title,
-    B.author_id as blog_author_id,
-    A.id as author_id,
-    A.username as author_username,
-    A.password as author_password,
-    A.email as author_email,
-    A.bio as author_bio,
-    A.favourite_section as author_favourite_section,
-    P.id as post_id,
-    P.blog_id as post_blog_id,
-    P.author_id as post_author_id,
-    P.created_on as post_created_on,
-    P.section as post_section,
-    P.subject as post_subject,
-    P.draft as draft,
-    P.body as post_body,
-    C.id as comment_id,
-    C.post_id as comment_post_id,
-    C.name as comment_name,
-    C.comment as comment_text,
-    T.id as tag_id,
-    T.name as tag_name
-    from Blog B
-    left outer join Author A on B.author_id = A.id
-    left outer join Post P on B.id = P.blog_id
-    left outer join Comment C on P.id = C.post_id
-    left outer join Post_Tag PT on PT.post_id = P.id
-    left outer join Tag T on PT.tag_id = T.id
-    where B.id = #{id}
-  </select>
+        select B.id                as blog_id,
+               B.title             as blog_title,
+               B.author_id         as blog_author_id,
+               A.id                as author_id,
+               A.username          as author_username,
+               A.password          as author_password,
+               A.email             as author_email,
+               A.bio               as author_bio,
+               A.favourite_section as author_favourite_section,
+               P.id                as post_id,
+               P.blog_id           as post_blog_id,
+               P.author_id         as post_author_id,
+               P.created_on        as post_created_on,
+               P.section           as post_section,
+               P.subject           as post_subject,
+               P.draft             as draft,
+               P.body              as post_body,
+               C.id                as comment_id,
+               C.post_id           as comment_post_id,
+               C.name              as comment_name,
+               C.comment           as comment_text,
+               T.id                as tag_id,
+               T.name              as tag_name
+        from Blog B
+                 left outer join Author A on B.author_id = A.id
+                 left outer join Post P on B.id = P.blog_id
+                 left outer join Comment C on P.id = C.post_id
+                 left outer join Post_Tag PT on PT.post_id = P.id
+                 left outer join Tag T on PT.tag_id = T.id
+        where B.id = #{id}
+    </select>
 
     <select id="selectAllPosts" resultType="hashmap">
-    select * from post order by id
-  </select>
+        select *
+        from post
+        order by id
+    </select>
 
 </mapper>

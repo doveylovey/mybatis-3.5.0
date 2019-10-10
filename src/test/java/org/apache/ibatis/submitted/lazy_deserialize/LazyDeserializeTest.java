@@ -34,9 +34,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- *
- * @since 2011-04-06T10:58:55+0200
  * @author Franta Mejta
+ * @since 2011-04-06T10:58:55+0200
  */
 public final class LazyDeserializeTest {
 

@@ -37,10 +37,10 @@
     </resultMap>
 
     <select id="selectByIdNoFid" resultMap="FatherMapNoFid" parameterType="int">
-    	SELECT id, name, Child.id AS child_id, Child.name AS child_name
-    	FROM Father
-    	LEFT JOIN Child ON Father.id = Child.father_id
-    	WHERE id = #{id}
+        SELECT id, name, Child.id AS child_id, Child.name AS child_name
+        FROM Father
+                 LEFT JOIN Child ON Father.id = Child.father_id
+        WHERE id = #{id}
     </select>
 
     <resultMap id="FatherMapFid" type="Father">
@@ -54,10 +54,10 @@
     </resultMap>
 
     <select id="selectByIdFid" resultMap="FatherMapFid" parameterType="int">
-    	SELECT id, name, Child.id AS child_id, Child.name AS child_name
-    	FROM Father
-    	LEFT JOIN Child ON Father.id = Child.father_id
-    	WHERE id = #{id}
+        SELECT id, name, Child.id AS child_id, Child.name AS child_name
+        FROM Father
+                 LEFT JOIN Child ON Father.id = Child.father_id
+        WHERE id = #{id}
     </select>
 
     <resultMap id="FatherMapWithInternalResultMap" type="Father">
@@ -72,10 +72,10 @@
     </resultMap>
 
     <select id="selectByIdWithInternalResultMap" resultMap="FatherMapWithInternalResultMap" parameterType="int">
-    	SELECT id, name, sysdate as current, Child.id AS child_id, Child.name AS child_name
-    	FROM Father
-    	LEFT JOIN Child ON Father.id = Child.father_id
-    	WHERE id = #{id}
+        SELECT id, name, sysdate as current, Child.id AS child_id, Child.name AS child_name
+        FROM Father
+                 LEFT JOIN Child ON Father.id = Child.father_id
+        WHERE id = #{id}
     </select>
 
     <resultMap id="ChildMapWithRefResultMap" type="Child">
@@ -91,10 +91,10 @@
     </resultMap>
 
     <select id="selectByIdWithRefResultMap" resultMap="FatherMapWithRefResultMap" parameterType="int">
-    	SELECT id, name, sysdate as current, Child.id AS child_id, Child.name AS child_name
-    	FROM Father
-    	LEFT JOIN Child ON Father.id = Child.father_id
-    	WHERE id = #{id}
+        SELECT id, name, sysdate as current, Child.id AS child_id, Child.name AS child_name
+        FROM Father
+                 LEFT JOIN Child ON Father.id = Child.father_id
+        WHERE id = #{id}
     </select>
 
     <resultMap id="FatherMapFidMultipleNullColumns" type="Father">
@@ -108,10 +108,10 @@
     </resultMap>
 
     <select id="selectByIdFidMultipleNullColumns" resultMap="FatherMapFidMultipleNullColumns" parameterType="int">
-    	SELECT id, name, Child.id AS child_id, Child.name AS child_name
-    	FROM Father
-    	LEFT JOIN Child ON Father.id = Child.father_id
-    	WHERE id = #{id}
+        SELECT id, name, Child.id AS child_id, Child.name AS child_name
+        FROM Father
+                 LEFT JOIN Child ON Father.id = Child.father_id
+        WHERE id = #{id}
     </select>
 
     <resultMap id="FatherMapFidMultipleNullColumnsAndBrackets" type="Father">
@@ -126,10 +126,10 @@
 
     <select id="selectByIdFidMultipleNullColumnsAndBrackets" resultMap="FatherMapFidMultipleNullColumnsAndBrackets"
             parameterType="int">
-    	SELECT id, name, Child.id AS child_id, Child.name AS child_name
-    	FROM Father
-    	LEFT JOIN Child ON Father.id = Child.father_id
-    	WHERE id = #{id}
+        SELECT id, name, Child.id AS child_id, Child.name AS child_name
+        FROM Father
+                 LEFT JOIN Child ON Father.id = Child.father_id
+        WHERE id = #{id}
     </select>
 
     <resultMap id="FatherMapFidWorkaround" type="Father">
@@ -143,10 +143,10 @@
     </resultMap>
 
     <select id="selectByIdFidWorkaround" resultMap="FatherMapFidWorkaround" parameterType="int">
-    	SELECT id, name, Child.id AS child_id, Child.name AS child_name, Child.father_id AS child_father_id
-    	FROM Father
-    	LEFT JOIN Child ON Father.id = Child.father_id
-    	WHERE id = #{id}
+        SELECT id, name, Child.id AS child_id, Child.name AS child_name, Child.father_id AS child_father_id
+        FROM Father
+                 LEFT JOIN Child ON Father.id = Child.father_id
+        WHERE id = #{id}
     </select>
 
 </mapper>

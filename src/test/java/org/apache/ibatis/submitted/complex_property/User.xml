@@ -30,40 +30,42 @@
     </resultMap>
 
     <select id="find" parameterType="long" resultMap="UserResult">
-    SELECT * FROM user WHERE id = #{id:INTEGER}
-  </select>
+        SELECT *
+        FROM user
+        WHERE id = #{id:INTEGER}
+    </select>
 
     <select id="version" parameterType="long" resultType="int">
-    SELECT version FROM user WHERE id = #{id,jdbcType=INTEGER}
-  </select>
+        SELECT version
+        FROM user
+        WHERE id = #{id,jdbcType=INTEGER}
+    </select>
 
     <delete id="delete" parameterType="UserAlias">
-    DELETE FROM user WHERE id = #{id:INTEGER}
-  </delete>
+        DELETE
+        FROM user
+        WHERE id = #{id:INTEGER}
+    </delete>
 
     <insert id="insert" parameterType="UserAlias" useGeneratedKeys="false">
-    INSERT INTO user
-    ( id,
-    username,
-    password,
-    administrator
-    )
-    VALUES
-    ( #{id},
-    #{username,jdbcType=VARCHAR},
-    #{password.encrypted:VARCHAR},
-    #{administrator,jdbcType=BOOLEAN}
-    )
-  </insert>
+        INSERT INTO user
+        (id,
+         username,
+         password,
+         administrator)
+        VALUES (#{id},
+                #{username,jdbcType=VARCHAR},
+                #{password.encrypted:VARCHAR},
+                #{administrator,jdbcType=BOOLEAN})
+    </insert>
 
     <update id="update" parameterType="UserAlias">
-    UPDATE user SET
-    username = #{username,jdbcType=VARCHAR},
-    password = #{password.encrypted,jdbcType=VARCHAR},
-    administrator = #{administrator,jdbcType=BOOLEAN}
-    WHERE
-    id = #{id,jdbcType=INTEGER}
-  </update>
+        UPDATE user
+        SET username      = #{username,jdbcType=VARCHAR},
+            password      = #{password.encrypted,jdbcType=VARCHAR},
+            administrator = #{administrator,jdbcType=BOOLEAN}
+        WHERE id = #{id,jdbcType=INTEGER}
+    </update>
 
     <!--   Unique constraint check -->
     <select id="isUniqueUsername" parameterType="map" resultType="boolean">
