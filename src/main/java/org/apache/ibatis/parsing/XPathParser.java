@@ -39,7 +39,6 @@ import java.util.Properties;
  * @author Kazuki Shimizu
  */
 public class XPathParser {
-
     private final Document document;
     private boolean validation;
     private EntityResolver entityResolver;
@@ -263,5 +262,4 @@ public class XPathParser {
         XPathFactory factory = XPathFactory.newInstance();
         this.xpath = factory.newXPath();
     }
-
 }

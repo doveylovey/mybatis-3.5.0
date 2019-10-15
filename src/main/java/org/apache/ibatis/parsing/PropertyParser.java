@@ -22,7 +22,6 @@ import java.util.Properties;
  * @author Kazuki Shimizu
  */
 public class PropertyParser {
-
     private static final String KEY_PREFIX = "org.apache.ibatis.parsing.PropertyParser.";
     /**
      * The special property key that indicate whether enable a default value on placeholder.
@@ -95,5 +94,4 @@ public class PropertyParser {
             return "${" + content + "}";
         }
     }
-
 }

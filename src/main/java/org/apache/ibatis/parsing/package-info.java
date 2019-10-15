@@ -16,7 +16,8 @@
 /**
  * Parsing utils
  * 配置解析：
- * 在 MyBatis 初始化过程中，会加载 mybatis-config.xml 配置文件、映射配置文件以及 Mapper 接口中的注解信息，解析后的配置信息会形成相应的对象并保存到 Configuration 对象中。
- * 如＜resultMap＞节点（即 ResultSet 的映射规则） 会被解析成 ResultMap 对象；＜result>节点（即属性映射）会被解析成 ResultMapping 对象。 之后利用该 Configuration 对象创建 SqlSessionFactory 对象。 待 MyBatis 初始化之后，开发人员可以通过初始化得到 SqlSessionFactory 创建 SqlSession 对象并完成数据库操作。
+ * 在MyBatis初始化过程中，会加载mybatis-config.xml配置文件、映射配置文件以及Mapper接口中的注解信息，解析后的配置信息会形成相应的对象并保存到Configuration对象中。
+ * 如＜resultMap＞节点(即ResultSet的映射规则)会被解析成ResultMap对象；＜result>节点(即属性映射)会被解析成ResultMapping对象。
+ * 之后利用该Configuration对象创建SqlSessionFactory对象。待MyBatis初始化之后，开发人员可以通过初始化得到SqlSessionFactory创建SqlSession对象并完成数据库操作。
  */
 package org.apache.ibatis.parsing;
