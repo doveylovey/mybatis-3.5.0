@@ -12,10 +12,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- * <p>
- * logger using JDK logging feature.
- * <p>
- * logger using JDK logging feature.
  */
 /**
  * logger using JDK logging feature.
