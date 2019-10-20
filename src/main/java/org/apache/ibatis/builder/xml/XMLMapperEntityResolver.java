@@ -31,12 +31,16 @@ import java.util.Locale;
  * @author Eduardo Macarron
  */
 public class XMLMapperEntityResolver implements EntityResolver {
-
+    /**
+     * 指定mybatis-config.xml文件和映射文件对应DTD的SystemId
+     */
     private static final String IBATIS_CONFIG_SYSTEM = "ibatis-3-config.dtd";
     private static final String IBATIS_MAPPER_SYSTEM = "ibatis-3-mapper.dtd";
     private static final String MYBATIS_CONFIG_SYSTEM = "mybatis-3-config.dtd";
     private static final String MYBATIS_MAPPER_SYSTEM = "mybatis-3-mapper.dtd";
-
+    /**
+     * 指定mybatis-config.xml文件和映射文件对应DTD文件的具体位置
+     */
     private static final String MYBATIS_CONFIG_DTD = "org/apache/ibatis/builder/xml/mybatis-3-config.dtd";
     private static final String MYBATIS_MAPPER_DTD = "org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd";
 

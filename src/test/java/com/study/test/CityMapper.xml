@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.test.CityMapper">
+    <resultMap id="BaseResultMap" type="com.study.test.City">
+        <id column="city_code" jdbcType="VARCHAR" property="cityCode"/>
+        <result column="province_code" jdbcType="VARCHAR" property="provinceCode"/>
+        <result column="city_name" jdbcType="VARCHAR" property="cityName"/>
+    </resultMap>
+
+    <resultMap id="extendsResultMap" type="com.study.test.CityExtends" extends="BaseResultMap">
+        <collection property="areaList" column="city_code"
+                    ofType="com.study.test.Area"
+                    select="com.study.test.AreaMapper.selectByCityCode" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        city_code, province_code, city_name
+    </sql>
+
+    <select id="selectByCityCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from t_city
+        where city_code = #{cityCode,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByProvinceCode1" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from t_city
+        where province_code = #{provinceCode,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByProvinceCode2" parameterType="java.lang.String" resultMap="extendsResultMap">
+        select <include refid="Base_Column_List"/>
+        from t_city
+        where province_code = #{provinceCode,jdbcType=VARCHAR}
+    </select>
+</mapper>

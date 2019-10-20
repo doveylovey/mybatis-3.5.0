@@ -35,14 +35,35 @@ import java.util.List;
 import java.util.Properties;
 
 /**
+ * XML解析常见的方式有3种，分别是：
+ * DOM(Document Object Model)解析方式；
+ * SAX(Simple API for XML)解析方式；
+ * 从JDK6.0版本开始支持的StAX(Streaming API for XML)解析方式。
+ * MyBatis在初始化过程中处理mybatis-config.xml配置文件以及映射文件时，使用的是DOM并结合XPath解析XML配置文件的方式。
+ *
  * @author Clinton Begin
  * @author Kazuki Shimizu
  */
 public class XPathParser {
+    /**
+     * Document对象
+     */
     private final Document document;
+    /**
+     * 是否开启验证
+     */
     private boolean validation;
+    /**
+     * 用于加载本地DTD文件
+     */
     private EntityResolver entityResolver;
+    /**
+     * mybatis-config.xml中<properties>标签定义的键值对集合
+     */
     private Properties variables;
+    /**
+     * XPath对象
+     */
     private XPath xpath;
 
     public XPathParser(String xml) {
