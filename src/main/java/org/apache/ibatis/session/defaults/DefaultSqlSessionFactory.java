@@ -31,7 +31,6 @@ import java.sql.SQLException;
  * @author Clinton Begin
  */
 public class DefaultSqlSessionFactory implements SqlSessionFactory {
-
     private final Configuration configuration;
 
     public DefaultSqlSessionFactory(Configuration configuration) {
@@ -86,9 +85,11 @@ public class DefaultSqlSessionFactory implements SqlSessionFactory {
     private SqlSession openSessionFromDataSource(ExecutorType execType, TransactionIsolationLevel level, boolean autoCommit) {
         Transaction tx = null;
         try {
+            // 通过 Configuration 对象获取 Mybatis 相关配置信息，其中 Environment 对象包含了数据源和事务的配置
             final Environment environment = configuration.getEnvironment();
             final TransactionFactory transactionFactory = getTransactionFactoryFromEnvironment(environment);
             tx = transactionFactory.newTransaction(environment.getDataSource(), level, autoCommit);
+            // 根据 execType 创建 Executor 对象
             final Executor executor = configuration.newExecutor(tx, execType);
             return new DefaultSqlSession(configuration, executor, autoCommit);
         } catch (Exception e) {
@@ -105,8 +106,7 @@ public class DefaultSqlSessionFactory implements SqlSessionFactory {
             try {
                 autoCommit = connection.getAutoCommit();
             } catch (SQLException e) {
-                // Failover to true, as most poor drivers
-                // or databases won't support transactions
+                // Failover to true, as most poor drivers or databases won't support transactions
                 autoCommit = true;
             }
             final Environment environment = configuration.getEnvironment();
@@ -137,5 +137,4 @@ public class DefaultSqlSessionFactory implements SqlSessionFactory {
             }
         }
     }
-
 }

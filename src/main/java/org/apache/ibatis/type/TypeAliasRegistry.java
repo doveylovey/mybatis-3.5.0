@@ -28,7 +28,9 @@ import java.util.*;
  * @author Clinton Begin
  */
 public class TypeAliasRegistry {
-    // // 核心：别名仅仅通过一个HashMap来实现，key为别名，value是别名对应的类型(class对象)
+    /**
+     * 核心：别名仅仅通过一个HashMap来实现，key为别名，value是别名对应的类型(class对象)
+     */
     private final Map<String, Class<?>> TYPE_ALIASES = new HashMap<>();
 
     /**

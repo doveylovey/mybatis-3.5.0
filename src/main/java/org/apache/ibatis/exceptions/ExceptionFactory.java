@@ -18,10 +18,14 @@ package org.apache.ibatis.exceptions;
 import org.apache.ibatis.executor.ErrorContext;
 
 /**
+ * 异常工厂类
+ *
  * @author Clinton Begin
  */
 public class ExceptionFactory {
-
+    /**
+     * 构造函数私有化，阻止使用new关键字创建对象
+     */
     private ExceptionFactory() {
         // Prevent Instantiation
     }
@@ -29,5 +33,4 @@ public class ExceptionFactory {
     public static RuntimeException wrapException(String message, Exception e) {
         return new PersistenceException(ErrorContext.instance().message(message).cause(e).toString(), e);
     }
-
 }

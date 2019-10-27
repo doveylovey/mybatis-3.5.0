@@ -57,7 +57,7 @@ import java.util.Set;
  * @author Tim Fennell
  */
 public class ResolverUtil<T> {
-    /*
+    /**
      * An instance of Log to use for logging in this class.
      */
     private static final Log log = LogFactory.getLog(ResolverUtil.class);
@@ -224,8 +224,8 @@ public class ResolverUtil<T> {
      *                    classes, e.g. {@code net.sourceforge.stripes}
      */
     public ResolverUtil<T> find(Test test, String packageName) {
+        // 将包名中的.替换成/，如将 org.mybatis.builder 替换成 org/mybatis/builder
         String path = getPackagePath(packageName);
-
         try {
             List<String> children = VFS.getInstance().list(path);
             for (String child : children) {
@@ -236,7 +236,6 @@ public class ResolverUtil<T> {
         } catch (IOException ioe) {
             log.error("Could not read package: " + packageName, ioe);
         }
-
         return this;
     }
 
@@ -265,14 +264,12 @@ public class ResolverUtil<T> {
             if (log.isDebugEnabled()) {
                 log.debug("Checking to see if class " + externalName + " matches criteria [" + test + "]");
             }
-
             Class<?> type = loader.loadClass(externalName);
             if (test.matches(type)) {
                 matches.add((Class<T>) type);
             }
         } catch (Throwable t) {
-            log.warn("Could not examine class '" + fqn + "'" + " due to a " +
-                    t.getClass().getName() + " with message: " + t.getMessage());
+            log.warn("Could not examine class '" + fqn + "'" + " due to a " + t.getClass().getName() + " with message: " + t.getMessage());
         }
     }
 }

@@ -143,7 +143,7 @@ public class Configuration {
     protected final Collection<ResultMapResolver> incompleteResultMaps = new LinkedList<>();
     protected final Collection<MethodResolver> incompleteMethods = new LinkedList<>();
 
-    /*
+    /**
      * A map holds cache-ref relationship. The key is the namespace that
      * references a cache bound to another namespace and the value is the
      * namespace which the actual cache is bound to.
@@ -565,6 +565,7 @@ public class Configuration {
             executor = new SimpleExecutor(this, transaction);
         }
         if (cacheEnabled) {
+            // 如果开启了二级缓存，executor 会被 CachingExecutor 包装一次
             executor = new CachingExecutor(executor);
         }
         executor = (Executor) interceptorChain.pluginAll(executor);
@@ -753,7 +754,7 @@ public class Configuration {
         cacheRefMap.put(namespace, referencedNamespace);
     }
 
-    /*
+    /**
      * Parses all the unprocessed statement nodes in the cache. It is recommended
      * to call this method once all the mappers are added as it provides fail-fast
      * statement validation.

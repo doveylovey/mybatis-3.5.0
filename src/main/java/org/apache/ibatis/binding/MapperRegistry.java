@@ -104,5 +104,4 @@ public class MapperRegistry {
     public void addMappers(String packageName) {
         addMappers(packageName, Object.class);
     }
-
 }

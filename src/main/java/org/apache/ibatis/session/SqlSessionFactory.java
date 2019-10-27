@@ -23,7 +23,6 @@ import java.sql.Connection;
  * @author Clinton Begin
  */
 public interface SqlSessionFactory {
-
     SqlSession openSession();
 
     SqlSession openSession(boolean autoCommit);
@@ -41,5 +40,4 @@ public interface SqlSessionFactory {
     SqlSession openSession(ExecutorType execType, Connection connection);
 
     Configuration getConfiguration();
-
 }

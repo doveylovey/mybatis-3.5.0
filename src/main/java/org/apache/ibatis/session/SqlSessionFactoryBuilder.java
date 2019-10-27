@@ -32,7 +32,6 @@ import java.util.Properties;
  * @author Clinton Begin
  */
 public class SqlSessionFactoryBuilder {
-
     public SqlSessionFactory build(Reader reader) {
         // 根据 mybatis-config.xml 配置文件创建 sqlSessionFactory 对象
         return build(reader, null, null);
@@ -46,12 +45,19 @@ public class SqlSessionFactoryBuilder {
         return build(reader, null, properties);
     }
 
-    // 根据 mybatis-config.xml 配置文件创建 sqlSessionFactory 对象
+    /**
+     * 根据 mybatis-config.xml 配置文件创建 sqlSessionFactory 对象
+     *
+     * @param reader
+     * @param environment
+     * @param properties
+     * @return
+     */
     public SqlSessionFactory build(Reader reader, String environment, Properties properties) {
         try {
             // 通过 mybatis 配置文件创建 XMLConfigBuilder 对象
             XMLConfigBuilder xmlConfig = new XMLConfigBuilder(reader, environment, properties);
-            // 解析 mybatis 配置文件中的各个节点，并将节点信息封装成 Configuration 对象
+            // 通过 XMLConfigBuilder 解析 mybatis 配置文件中的各个节点，并将节点信息封装成 Configuration 对象
             Configuration configuration = xmlConfig.parse();
             // 通过 Configuration 创建一个 DefaultSqlSessionFactory 对象
             return build(configuration);
@@ -95,6 +101,12 @@ public class SqlSessionFactoryBuilder {
         }
     }
 
+    /**
+     * 通过 Configuration 创建一个 DefaultSqlSessionFactory 对象
+     *
+     * @param config
+     * @return
+     */
     public SqlSessionFactory build(Configuration config) {
         return new DefaultSqlSessionFactory(config);
     }

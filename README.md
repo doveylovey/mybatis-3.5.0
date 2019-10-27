@@ -9,5 +9,6 @@
 
 ### **参考资料**
 * 徐郡明编著.MyBatis技术内幕[M].电子工业出版社:2017-06-01
+* ErrorContext类分析参考：https://www.jianshu.com/p/901e37d05853
 
 

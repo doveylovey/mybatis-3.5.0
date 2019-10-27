@@ -202,10 +202,23 @@ public class XNode {
         }
     }
 
+    /**
+     * 根据节点属性名称获取值
+     *
+     * @param name 属性名称
+     * @return
+     */
     public String getStringAttribute(String name) {
         return getStringAttribute(name, null);
     }
 
+    /**
+     * 根据节点属性名称获取值
+     *
+     * @param name 属性名称
+     * @param def  默认值
+     * @return
+     */
     public String getStringAttribute(String name, String def) {
         String value = attributes.getProperty(name);
         if (value == null) {

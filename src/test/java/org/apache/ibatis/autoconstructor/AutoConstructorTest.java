@@ -42,7 +42,7 @@ public class AutoConstructorTest {
         String resource = "org/apache/ibatis/autoconstructor/mybatis-config.xml";
         // 以Reader对象形式返回类路径上的资源。使用 try-with-resource 语法可以优雅的关闭资源，jdk7开始新增的语法
         try (Reader reader = Resources.getResourceAsReader(resource)) {
-            // 根据 mybatis-config.xml 配置文件创建 sqlSessionFactory 对象
+            // 根据 mybatis-config.xml 配置文件创建 sqlSessionFactory 对象。注：SqlSessionFactory 创建时实际上返回的是一个 DefaultSqlSessionFactory 对象
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
         }
         // 以下操作主要是为了创建表及添加数据
@@ -57,6 +57,7 @@ public class AutoConstructorTest {
 
     @Test
     public void fullyPopulatedSubject() {
+        // 通过 SqlSessionFactory 获取 SqlSession 对象
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             final AutoConstructorMapper mapper = sqlSession.getMapper(AutoConstructorMapper.class);
             final Object subject = mapper.getSubject(1);

@@ -15,13 +15,10 @@
  */
 package org.apache.ibatis.io;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
+import org.apache.ibatis.logging.Log;
+import org.apache.ibatis.logging.LogFactory;
+
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -30,9 +27,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
-
-import org.apache.ibatis.logging.Log;
-import org.apache.ibatis.logging.LogFactory;
 
 /**
  * A default implementation of {@link VFS} that works for most application servers.
@@ -57,9 +51,8 @@ public class DefaultVFS extends VFS {
         InputStream is = null;
         try {
             List<String> resources = new ArrayList<>();
-
-            // First, try to find the URL of a JAR file containing the requested resource. If a JAR
-            // file is found, then we'll list child resources by reading the JAR.
+            // First, try to find the URL of a JAR file containing the requested resource.
+            // If a JAR file is found, then we'll list child resources by reading the JAR.
             URL jarUrl = findJarForResource(url);
             if (jarUrl != null) {
                 is = jarUrl.openStream();
@@ -107,7 +100,6 @@ public class DefaultVFS extends VFS {
                                 break;
                             }
                         }
-
                         if (!lines.isEmpty()) {
                             if (log.isDebugEnabled()) {
                                 log.debug("Listing " + url);
@@ -137,13 +129,11 @@ public class DefaultVFS extends VFS {
                         throw e;
                     }
                 }
-
                 // The URL prefix to use when recursively listing child resources
                 String prefix = url.toExternalForm();
                 if (!prefix.endsWith("/")) {
                     prefix = prefix + "/";
                 }
-
                 // Iterate over immediate children, adding files and recursing into directories
                 for (String child : children) {
                     String resourcePath = path + "/" + child;
@@ -152,7 +142,6 @@ public class DefaultVFS extends VFS {
                     resources.addAll(list(childUrl, resourcePath));
                 }
             }
-
             return resources;
         } finally {
             if (is != null) {
