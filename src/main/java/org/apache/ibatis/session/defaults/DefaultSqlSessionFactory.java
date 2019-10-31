@@ -93,7 +93,8 @@ public class DefaultSqlSessionFactory implements SqlSessionFactory {
             final Executor executor = configuration.newExecutor(tx, execType);
             return new DefaultSqlSession(configuration, executor, autoCommit);
         } catch (Exception e) {
-            closeTransaction(tx); // may have fetched a connection so lets call close()
+            // may have fetched a connection so lets call close()
+            closeTransaction(tx);
             throw ExceptionFactory.wrapException("Error opening session.  Cause: " + e, e);
         } finally {
             ErrorContext.instance().reset();

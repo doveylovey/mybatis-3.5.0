@@ -136,6 +136,7 @@ public class XMLConfigBuilder extends BaseBuilder {
             objectFactoryElement(root.evalNode("objectFactory"));
             objectWrapperFactoryElement(root.evalNode("objectWrapperFactory"));
             reflectorFactoryElement(root.evalNode("reflectorFactory"));
+            // 处理　mybatis 配置文件中 <settings> 下的每一个 <setting>　子节点，如果没有显示设置值则赋默认值
             settingsElement(settings);
             // read it after objectFactory and objectWrapperFactory issue #631
             // 解析配置文件中的 environments(环境配置) 节点
@@ -164,6 +165,7 @@ public class XMLConfigBuilder extends BaseBuilder {
         // 获取子节点的 name 值和 value 值，并将其保存在 Properties 对象中
         Properties props = context.getChildrenAsProperties();
         // Check that all settings are known to the configuration class
+        // 检查所有 <settings> 是否已经存在于配置类中
         MetaClass metaConfig = MetaClass.forClass(Configuration.class, localReflectorFactory);
         for (Object key : props.keySet()) {
             if (!metaConfig.hasSetter(String.valueOf(key))) {
@@ -174,7 +176,9 @@ public class XMLConfigBuilder extends BaseBuilder {
     }
 
     /**
-     * 解析配置文件中 settings(设置) 节点指定的 MyBatis 所用日志的具体实现，未指定时将自动查找
+     * 解析配置文件中 settings(设置) 节点指定的 VFS 实现。注：VFS 是单例模式的。
+     * VFS 指的是虚拟文件系统，主要是通过程序能够方便读取本地文件系统、FTP文件系统等系统中的文件资源。
+     * Mybatis 中提供了 VFS 这个配置，目的是通过该配置来加载自定义的虚拟文件系统应用程序。
      *
      * @param props
      * @throws ClassNotFoundException
@@ -194,7 +198,7 @@ public class XMLConfigBuilder extends BaseBuilder {
     }
 
     /**
-     * 解析配置文件中 settings(设置) 节点指定的 VFS 实现
+     * 解析配置文件中 settings(设置) 节点指定的 MyBatis 所用日志的具体实现，未指定时将自动查找
      *
      * @param props
      */
@@ -204,9 +208,9 @@ public class XMLConfigBuilder extends BaseBuilder {
     }
 
     /**
-     * 解析 <typeAliases> 标签：可以配置多个 package 和多个 typeAlias 一起，也可以单个配置。
-     * 如果有注解(@Alias)定义则取注解名称，否则取类名小写作为Key，自定义的Key也是取类小写，否则异常。
-     * 注意：如果配置了相同的Key(alias)，但存储的类型不一样也会抛异常。
+     * 类型别名解析，解析 <typeAliases> 标签：可以配置多个 package 和多个 typeAlias 一起，也可以单个配置。
+     * 如果有注解(@Alias)定义则取注解名称，否则(即：未显示配置别名，也没有注解标示别名)取类名小写作为 Key，自定义的 Key 也是取类小写，否则异常。
+     * 注意：如果配置了相同的 Key(alias)，但存储的类型不一样也会抛异常。
      *
      * @param parent
      */
@@ -219,7 +223,8 @@ public class XMLConfigBuilder extends BaseBuilder {
                     // 解析 <package> 标签
                     String typeAliasPackage = child.getStringAttribute("name");
                     configuration.getTypeAliasRegistry().registerAliases(typeAliasPackage);
-                } else {// 解析 <typeAlias> 标签
+                } else {
+                    // 解析 <typeAlias> 标签
                     // 先解析 <typeAlias> 中的 alias 属性
                     String alias = child.getStringAttribute("alias");
                     // 再解析 <typeAlias> 中的 type 属性。注意：alias 属性也可以不定义
@@ -289,33 +294,51 @@ public class XMLConfigBuilder extends BaseBuilder {
     }
 
     /**
-     * 解析配置文件中的 properties 节点，并将节点信息保存在 Configuration 对象中
+     * 解析配置文件中的 properties 节点，并将节点信息保存在 Configuration 对象中。
+     * 【注】如果属性在不只一个地方进行了配置，那么 MyBatis 将按照下面的顺序来加载：
+     * 1、首先读取在 properties 元素体内指定的属性(即 <properties> 的子节点 <property>)。
+     * 2、然后根据 properties 元素中的 resource 属性读取类路径下属性文件或根据 url 属性指定的路径读取属性文件，并覆盖已读取的同名属性。
+     * 3、最后读取作为方法参数传递的属性，并覆盖已读取的同名属性。
+     * 即：通过方法参数传递的属性具有最高优先级，resource/url 属性中指定的配置文件次之，最低优先级的是 properties 属性中指定的属性。
      *
      * @param context
      * @throws Exception
      */
     private void propertiesElement(XNode context) throws Exception {
         if (context != null) {
+            // 获取 <properties> 节点的所有子节点 <property>，并用所有子节点的 name 和 value 保存到 Properties 对象中
             Properties defaults = context.getChildrenAsProperties();
+            // 分别获取 mybatis 配置文件中 <properties> 节点的 resource 属性和 url 属性
             String resource = context.getStringAttribute("resource");
             String url = context.getStringAttribute("url");
+            // resource 属性和 url 属性不能同时存在，否则将抛出无法解析的异常
             if (resource != null && url != null) {
                 throw new BuilderException("The properties element cannot specify both a URL and a resource based property file reference.  Please specify one or the other.");
             }
             if (resource != null) {
+                // 用从 resource 指定的资源中读取的属性值去覆盖旧值。因：Properties 继承自 Hashtable，故"键相同则值覆盖"
                 defaults.putAll(Resources.getResourceAsProperties(resource));
             } else if (url != null) {
+                // 用从 url 指定的资源中读取的属性值去覆盖旧值。因：Properties 继承自 Hashtable，故"键相同则值覆盖"
                 defaults.putAll(Resources.getUrlAsProperties(url));
             }
+            // 获取方法参数中指定的所有属性值
             Properties vars = configuration.getVariables();
             if (vars != null) {
+                // 用从方法参数中指定的所有属性值去覆盖旧值。因：Properties 继承自 Hashtable，故"键相同则值覆盖"
                 defaults.putAll(vars);
             }
             parser.setVariables(defaults);
+            // 将最终的属性值放回 Configuration 对象的 variables 中
             configuration.setVariables(defaults);
         }
     }
 
+    /**
+     * 处理　mybatis 配置文件中 <settings> 下的每一个 <setting>　子节点，如果没有显示设置值则赋默认值
+     *
+     * @param props
+     */
     private void settingsElement(Properties props) {
         configuration.setAutoMappingBehavior(AutoMappingBehavior.valueOf(props.getProperty("autoMappingBehavior", "PARTIAL")));
         configuration.setAutoMappingUnknownColumnBehavior(AutoMappingUnknownColumnBehavior.valueOf(props.getProperty("autoMappingUnknownColumnBehavior", "NONE")));
@@ -406,19 +429,33 @@ public class XMLConfigBuilder extends BaseBuilder {
         throw new BuilderException("Environment declaration requires a DataSourceFactory.");
     }
 
+    /**
+     * 解析配置文件中的 typeHandlers(类型处理器) 节点
+     *
+     * @param parent
+     */
     private void typeHandlerElement(XNode parent) {
         if (parent != null) {
             for (XNode child : parent.getChildren()) {
                 if ("package".equals(child.getName())) {
+                    // 若 <typeHandlers> 的子节点为 <package>，则获取其 name 属性值，然后自动扫描指定包下的自定义 TypeHandler
                     String typeHandlerPackage = child.getStringAttribute("name");
                     typeHandlerRegistry.register(typeHandlerPackage);
                 } else {
+                    // 若 <typeHandlers> 的子节点为 <typeHandler>， 则可以指定 javaType 属性和jdbcType 属性中的一个或两个同时指定
+                    // javaType 是指定 java 类型(Java数据类型：如String)
                     String javaTypeName = child.getStringAttribute("javaType");
+                    // jdbcType 是指定 jdbc 类型(数据库类型：如varchar)
                     String jdbcTypeName = child.getStringAttribute("jdbcType");
+                    // handler 就是我们自定义的 TypeHandler 的全限定名
                     String handlerTypeName = child.getStringAttribute("handler");
+                    // resolveClass() 就是 BaseBuilder 类里面处理别名的方法
                     Class<?> javaTypeClass = resolveClass(javaTypeName);
+                    // JdbcType 是一个枚举类型，resolveJdbcType() 用于获取枚举类型的值
                     JdbcType jdbcType = resolveJdbcType(jdbcTypeName);
+                    // resolveClass() 就是 BaseBuilder 类里面处理别名的方法
                     Class<?> typeHandlerClass = resolveClass(handlerTypeName);
+                    // 注册 typeHandler，typeHandler 通过 TypeHandlerRegistry 这个类管理
                     if (javaTypeClass != null) {
                         if (jdbcType == null) {
                             typeHandlerRegistry.register(javaTypeClass, typeHandlerClass);

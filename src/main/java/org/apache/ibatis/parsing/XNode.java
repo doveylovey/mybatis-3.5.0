@@ -319,9 +319,11 @@ public class XNode {
         Properties properties = new Properties();
         // getChildren()：获取当前节点的所有子节点信息，返回 List<XNode> 对象
         for (XNode child : getChildren()) {
+            // 分别读取当前节点的 name 值和 value 值
             String name = child.getStringAttribute("name");
             String value = child.getStringAttribute("value");
             if (name != null && value != null) {
+                // 将读取到的 name 和 value 添加到 Properties 集合中
                 properties.setProperty(name, value);
             }
         }

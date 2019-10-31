@@ -15,6 +15,10 @@
  */
 package org.apache.ibatis.type;
 
+import org.apache.ibatis.binding.MapperMethod.ParamMap;
+import org.apache.ibatis.io.ResolverUtil;
+import org.apache.ibatis.io.Resources;
+
 import java.io.InputStream;
 import java.io.Reader;
 import java.lang.reflect.Constructor;
@@ -22,37 +26,19 @@ import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.Month;
-import java.time.OffsetDateTime;
-import java.time.OffsetTime;
-import java.time.Year;
-import java.time.YearMonth;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.time.chrono.JapaneseDate;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.apache.ibatis.binding.MapperMethod.ParamMap;
-import org.apache.ibatis.io.ResolverUtil;
-import org.apache.ibatis.io.Resources;
-
 /**
+ * 类型处理器注册器
+ *
  * @author Clinton Begin
  * @author Kazuki Shimizu
  */
 public final class TypeHandlerRegistry {
-
     private final Map<JdbcType, TypeHandler<?>> JDBC_TYPE_HANDLER_MAP = new EnumMap<>(JdbcType.class);
     private final Map<Type, Map<JdbcType, TypeHandler<?>>> TYPE_HANDLER_MAP = new ConcurrentHashMap<>();
     private final TypeHandler<Object> UNKNOWN_TYPE_HANDLER = new UnknownTypeHandler(this);
@@ -62,6 +48,9 @@ public final class TypeHandlerRegistry {
 
     private Class<? extends TypeHandler> defaultEnumTypeHandler = EnumTypeHandler.class;
 
+    /**
+     * 在构造方法中注册 mybatis 提供的默认 TypeHandler
+     */
     public TypeHandlerRegistry() {
         register(Boolean.class, new BooleanTypeHandler());
         register(boolean.class, new BooleanTypeHandler());
@@ -315,9 +304,16 @@ public final class TypeHandlerRegistry {
 
     // Only handler
 
+    /**
+     * 注册只配置了 typeHandler，没有配置 jdbcType 属性和 javaType 属性的类型处理器
+     *
+     * @param typeHandler
+     * @param <T>
+     */
     @SuppressWarnings("unchecked")
     public <T> void register(TypeHandler<T> typeHandler) {
         boolean mappedTypeFound = false;
+        //自定义的 TypeHandler 可以加上 @MappedTypes 注解去指定关联的 javaType，故此处需要扫描 MappedTypes 注解
         MappedTypes mappedTypes = typeHandler.getClass().getAnnotation(MappedTypes.class);
         if (mappedTypes != null) {
             for (Class<?> handledType : mappedTypes.value()) {
@@ -342,11 +338,26 @@ public final class TypeHandlerRegistry {
 
     // java type + handler
 
+    /**
+     * 注册配置了 typeHandler 和 javaType 属性的类型处理器
+     *
+     * @param javaType
+     * @param typeHandler
+     * @param <T>
+     */
     public <T> void register(Class<T> javaType, TypeHandler<? extends T> typeHandler) {
         register((Type) javaType, typeHandler);
     }
 
+    /**
+     * 注册配置了 typeHandler 和 javaType 属性的类型处理器
+     *
+     * @param javaType
+     * @param typeHandler
+     * @param <T>
+     */
     private <T> void register(Type javaType, TypeHandler<? extends T> typeHandler) {
+        //自定义的 TypeHandler 可以加上 @MappedJdbcTypes 注解去指定关联的 javaType，故此处需要扫描 MappedJdbcTypes 注解
         MappedJdbcTypes mappedJdbcTypes = typeHandler.getClass().getAnnotation(MappedJdbcTypes.class);
         if (mappedJdbcTypes != null) {
             for (JdbcType handledJdbcType : mappedJdbcTypes.value()) {
@@ -366,10 +377,26 @@ public final class TypeHandlerRegistry {
 
     // java type + jdbc type + handler
 
+    /**
+     * 注册配置了 typeHandler、javaType 属性和 jdbcType 属性的类型处理器
+     *
+     * @param type
+     * @param jdbcType
+     * @param handler
+     * @param <T>
+     */
     public <T> void register(Class<T> type, JdbcType jdbcType, TypeHandler<? extends T> handler) {
         register((Type) type, jdbcType, handler);
     }
 
+    /**
+     * 注册 TypeHandler 的核心方法，所有 register() 最终都会调用该方法：向 Map 新增数据。
+     * 注册配置了 typeHandler、javaType 属性和 jdbcType 属性的类型处理器
+     *
+     * @param javaType
+     * @param jdbcType
+     * @param handler
+     */
     private void register(Type javaType, JdbcType jdbcType, TypeHandler<?> handler) {
         if (javaType != null) {
             Map<JdbcType, TypeHandler<?>> map = TYPE_HANDLER_MAP.get(javaType);
@@ -442,6 +469,11 @@ public final class TypeHandlerRegistry {
 
     // scan
 
+    /**
+     * 根据指定的 package 去扫描自定义的 TypeHandler，然后注册
+     *
+     * @param packageName
+     */
     public void register(String packageName) {
         ResolverUtil<Class<?>> resolverUtil = new ResolverUtil<>();
         resolverUtil.find(new ResolverUtil.IsA(TypeHandler.class), packageName);
@@ -457,10 +489,11 @@ public final class TypeHandlerRegistry {
     // get information
 
     /**
+     * 通过 Configuration 对象获取已注册的所有 TypeHandler
+     *
      * @since 3.2.2
      */
     public Collection<TypeHandler<?>> getTypeHandlers() {
         return Collections.unmodifiableCollection(ALL_TYPE_HANDLERS_MAP.values());
     }
-
 }

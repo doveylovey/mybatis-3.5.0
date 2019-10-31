@@ -23,9 +23,8 @@ import java.util.Map;
  * @author Clinton Begin
  */
 public enum JdbcType {
-    /*
-     * This is added to enable basic support for the
-     * ARRAY data type - but a custom type handler is still required
+    /**
+     * This is added to enable basic support for the ARRAY data type - but a custom type handler is still required
      */
     ARRAY(Types.ARRAY),
     BIT(Types.BIT),
@@ -85,5 +84,4 @@ public enum JdbcType {
     public static JdbcType forCode(int code) {
         return codeLookup.get(code);
     }
-
 }

@@ -17,7 +17,6 @@ package org.apache.ibatis.type;
 
 import org.apache.ibatis.io.ResolverUtil;
 import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.Configuration;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -25,6 +24,8 @@ import java.sql.ResultSet;
 import java.util.*;
 
 /**
+ * 类型别名注册器
+ *
  * @author Clinton Begin
  */
 public class TypeAliasRegistry {
@@ -34,7 +35,7 @@ public class TypeAliasRegistry {
     private final Map<String, Class<?>> TYPE_ALIASES = new HashMap<>();
 
     /**
-     * 初始化的时候默认注册的类型别名。{@link Configuration}
+     * 初始化的时候默认注册的类型别名
      */
     public TypeAliasRegistry() {
         registerAlias("string", String.class);
@@ -98,7 +99,11 @@ public class TypeAliasRegistry {
     }
 
     /**
-     * 处理别名：直接从保存有别名的 HashMap 中取出即可
+     * 处理别名：直接从保存有别名的 HashMap 中取出即可。
+     * <p>
+     * 该方法首先根据别名去已注册的别名集合 TYPE_ALIASES 中查找对应的类，如果不存在则使用 Resources.classForName(string) 获取对应的类。
+     * <p>
+     * 注：Resources.classForName() 的效果和 Class.forName() 效果一样，都用于根据类路径返回类对象
      *
      * @param string
      * @param <T>
@@ -165,7 +170,8 @@ public class TypeAliasRegistry {
         if (aliasAnnotation != null) {
             alias = aliasAnnotation.value();
         }
-        registerAlias(alias, type);// 注册别名
+        // 注册别名
+        registerAlias(alias, type);
     }
 
     /**

@@ -21,10 +21,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
+ * MyBatis 无论是在预处理语句(PreparedStatement)中设置参数(将 Java 类型转换为 Jdbc 类型)时，还是从结果集中取出值(将 Jdbc 类型转换为 Java 类型)时，都会使用类型处理器来完成 Java 类型和 Jdbc 类型的相互转换。
+ * Mybatis 默认为我们实现了许多 TypeHandler，当我们没有配置指定 TypeHandler 时，Mybatis 就会根据参数或返回结果集的不同来自动选择合适的 TypeHandler 进行处理。
+ *
  * @author Clinton Begin
  */
 public interface TypeHandler<T> {
-
     void setParameter(PreparedStatement ps, int i, T parameter, JdbcType jdbcType) throws SQLException;
 
     T getResult(ResultSet rs, String columnName) throws SQLException;
@@ -32,5 +34,4 @@ public interface TypeHandler<T> {
     T getResult(ResultSet rs, int columnIndex) throws SQLException;
 
     T getResult(CallableStatement cs, int columnIndex) throws SQLException;
-
 }

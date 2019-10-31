@@ -100,6 +100,7 @@ public class Resources {
     }
 
     /**
+     * 以 Properties 对象的形式返回类路径下的指定资源
      * Returns a resource on the classpath as a Properties object
      *
      * @param resource The resource to find
