@@ -113,14 +113,17 @@
         <developerConnection>scm:git:ssh://git@github.com/mybatis/mybatis-3.git</developerConnection>
         <tag>mybatis-3.5.0</tag>
     </scm>
+
     <issueManagement>
         <system>GitHub Issue Management</system>
         <url>https://github.com/mybatis/mybatis-3/issues</url>
     </issueManagement>
+
     <ciManagement>
         <system>Travis CI</system>
         <url>https://travis-ci.org/mybatis/mybatis-3/</url>
     </ciManagement>
+
     <distributionManagement>
         <site>
             <id>gh-pages</id>
@@ -130,14 +133,14 @@
     </distributionManagement>
 
     <properties>
-        <maven.compiler.testCompilerArgument>-parameters</maven.compiler.testCompilerArgument>
+        <module.name>org.mybatis</module.name>
+        <osgi.dynamicImport>*</osgi.dynamicImport>
+        <osgi.import>*;resolution:=optional</osgi.import>
+        <excludedGroups>EmbeddedPostgresqlTests</excludedGroups>
         <clirr.comparisonVersion>3.3.1</clirr.comparisonVersion>
         <spotbugs.onlyAnalyze>org.apache.ibatis.*</spotbugs.onlyAnalyze>
+        <maven.compiler.testCompilerArgument>-parameters</maven.compiler.testCompilerArgument>
         <osgi.export>org.apache.ibatis.*;version=${project.version};-noimport:=true</osgi.export>
-        <osgi.import>*;resolution:=optional</osgi.import>
-        <osgi.dynamicImport>*</osgi.dynamicImport>
-        <excludedGroups>EmbeddedPostgresqlTests</excludedGroups>
-        <module.name>org.mybatis</module.name>
     </properties>
 
     <dependencies>
