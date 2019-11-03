@@ -5,7 +5,8 @@
 * 此项目仅供我个人学习研究使用，其他人请务必参考原作者代码，以免误人子弟。原作者代码地址已在下方给出。
 
 ### **源码地址**
-* [GitHub源码](https://github.com/mybatis/mybatis-3/tree/mybatis-3.5.0)：https://github.com/mybatis/mybatis-3/tree/mybatis-3.5.0
+* [原作者源码](https://github.com/mybatis/mybatis-3/tree/mybatis-3.5.0)：https://github.com/mybatis/mybatis-3/tree/mybatis-3.5.0
+* [本项目源码](https://github.com/doveylovey/mybatis-3.5.0/tree/master)：https://github.com/doveylovey/mybatis-3.5.0/tree/master
 
 ### **调试环境及工具**
 * JDK版本：1.8
