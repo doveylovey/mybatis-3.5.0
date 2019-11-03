@@ -7,11 +7,16 @@
 ### **源码地址**
 * [GitHub源码](https://github.com/mybatis/mybatis-3/tree/mybatis-3.5.0)：https://github.com/mybatis/mybatis-3/tree/mybatis-3.5.0
 
+### **调试环境及工具**
+* JDK版本：1.8
+* Maven版本：Apache Maven 3.6.1
+* IDE工具：IntelliJ IDEA 2019.1.2
+* 数据库：MySQL-5.7.22
+* 版本管理工具：Git
+* 文本编辑器：Sublime Text、Typora等
+
 ### **部分参考资料(列表不分先后)**
 * 徐郡明编著.MyBatis技术内幕[M].电子工业出版社:2017-06-01
 * ErrorContext类分析参考：https://www.jianshu.com/p/901e37d05853
 * BaseBuilder类分析参考：https://www.cnblogs.com/zhengzuozhanglina/p/11291553.html
 * mapper.xml映射文件解析参考：https://www.lagou.com/lgeduarticle/53182.html
-
-
-
