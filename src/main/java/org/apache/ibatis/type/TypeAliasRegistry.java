@@ -110,22 +110,25 @@ public class TypeAliasRegistry {
      * @return
      */
     @SuppressWarnings("unchecked")
-    // throws class cast exception as well if types cannot be assigned
     public <T> Class<T> resolveAlias(String string) {
         try {
             if (string == null) {
                 return null;
             }
             // issue #748
+            // 将别名转换成小写
             String key = string.toLowerCase(Locale.ENGLISH);
             Class<T> value;
             if (TYPE_ALIASES.containsKey(key)) {
+                // 从别名缓存中获取别名对应的 Class 对象
                 value = (Class<T>) TYPE_ALIASES.get(key);
             } else {
+                // 若从别名缓存中获取不到 Class 对象，则通过类加载去获取 Class 对象
                 value = (Class<T>) Resources.classForName(string);
             }
             return value;
         } catch (ClassNotFoundException e) {
+            // throws class cast exception as well if types cannot be assigned
             throw new TypeException("Could not resolve type alias '" + string + "'.  Cause: " + e, e);
         }
     }

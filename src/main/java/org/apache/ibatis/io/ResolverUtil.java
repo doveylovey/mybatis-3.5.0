@@ -25,11 +25,14 @@ import java.util.List;
 import java.util.Set;
 
 /**
+ * ResolverUtil 用于查找类路径中可用并满足任意条件的类。最常见的两个条件是，一个类实现/扩展了另一个类，或者用特定的注解对其进行了注解。但通过使用 {@link Test} 类可以使用任意条件进行搜索。
+ *
  * <p>ResolverUtil is used to locate classes that are available in the/a class path and meet
  * arbitrary conditions. The two most common conditions are that a class implements/extends
  * another class, or that is it annotated with a specific annotation. However, through the use
  * of the {@link Test} class it is possible to search using arbitrary conditions.</p>
  *
+ * <p>ClassLoader 用于在类路径中查找包含某些程序包中的类的所有位置(目录和 jar 文件)，然后加载并检查这些类。默认情况下，使用 {@code Thread.currentThread().getContextClassLoader()} 返回 ClassLoader，但可以通过在调用任何 {@code find()} 之前，调用 {@link #setClassLoader(ClassLoader)} 来覆盖方法。</p>
  * <p>A ClassLoader is used to locate all locations (directories and jar files) in the class
  * path that contain classes within certain packages, and then to load those classes and
  * check them. By default the ClassLoader returned by
@@ -37,6 +40,7 @@ import java.util.Set;
  * by calling {@link #setClassLoader(ClassLoader)} prior to invoking any of the {@code find()}
  * methods.</p>
  *
+ * <p>通过调用 {@link #find(org.apache.ibatis.io.ResolverUtil.Test, String)} 方法并提供程序包名称和 Test 实例来启动常规搜索。这将导致扫描命名包和所有子包，以查找符合测试要求的类。对于常见的用例，还有一些实用方法，即扫描多个软件包以查找特定类的扩展或带有特定注释的类。</p>
  * <p>General searches are initiated by calling the
  * {@link #find(org.apache.ibatis.io.ResolverUtil.Test, String)} ()} method and supplying
  * a package name and a Test instance. This will cause the named package <b>and all sub-packages</b>

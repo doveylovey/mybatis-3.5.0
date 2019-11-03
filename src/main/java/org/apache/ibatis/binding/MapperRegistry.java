@@ -64,11 +64,13 @@ public class MapperRegistry {
             }
             boolean loadCompleted = false;
             try {
+                // 将 type 和 MapperProxyFactory 进行绑定，MapperProxyFactory 可为 mapper 接口生成代理类
                 knownMappers.put(type, new MapperProxyFactory<>(type));
                 // It's important that the type is added before the parser is run
                 // otherwise the binding may automatically be attempted by the
                 // mapper parser. If the type is already known, it won't try.
                 MapperAnnotationBuilder parser = new MapperAnnotationBuilder(config, type);
+                // 解析注解中的信息
                 parser.parse();
                 loadCompleted = true;
             } finally {
@@ -91,17 +93,24 @@ public class MapperRegistry {
      */
     public void addMappers(String packageName, Class<?> superType) {
         ResolverUtil<Class<?>> resolverUtil = new ResolverUtil<>();
+        // 查找指定包下父类为 Object.class 的所有类。查找完成后，查找结果将会被缓存到 resolverUtil 的内部集合中。
         resolverUtil.find(new ResolverUtil.IsA(superType), packageName);
+        // 获取查找结果
         Set<Class<? extends Class<?>>> mapperSet = resolverUtil.getClasses();
         for (Class<?> mapperClass : mapperSet) {
+            // 具体请看这个方法：其实就是通过 VFS (虚拟文件系统)获取指定包下的所有文件的 Class，也就是所有的 Mapper 接口，然后遍历每个 Mapper 接口进行解析
             addMapper(mapperClass);
         }
     }
 
     /**
+     * 根据 mapper 文件所在的包名添加 mapper
+     *
+     * @param packageName
      * @since 3.2.2
      */
     public void addMappers(String packageName) {
+        // 传入 mapper 文件所在的包名和 Object.class 类型
         addMappers(packageName, Object.class);
     }
 }

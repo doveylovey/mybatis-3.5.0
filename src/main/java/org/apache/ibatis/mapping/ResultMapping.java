@@ -15,21 +15,20 @@
  */
 package org.apache.ibatis.mapping;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+
 /**
  * @author Clinton Begin
  */
 public class ResultMapping {
-
     private Configuration configuration;
     private String property;
     private String column;
@@ -259,13 +258,10 @@ public class ResultMapping {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         ResultMapping that = (ResultMapping) o;
-
         if (property == null || !property.equals(that.property)) {
             return false;
         }
-
         return true;
     }
 
@@ -301,5 +297,4 @@ public class ResultMapping {
         sb.append('}');
         return sb.toString();
     }
-
 }

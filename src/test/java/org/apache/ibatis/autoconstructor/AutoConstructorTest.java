@@ -81,7 +81,10 @@ public class AutoConstructorTest {
     public void annotatedSubject() {
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             final AutoConstructorMapper mapper = sqlSession.getMapper(AutoConstructorMapper.class);
-            verifySubjects(mapper.getAnnotatedSubjects());
+            List<AnnotatedSubject> annotatedSubjects = mapper.getAnnotatedSubjects();
+            System.out.println("查询结果：");
+            annotatedSubjects.forEach(System.out::println);
+            verifySubjects(annotatedSubjects);
         }
     }
 

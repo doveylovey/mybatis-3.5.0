@@ -471,37 +471,59 @@ public class XMLConfigBuilder extends BaseBuilder {
     }
 
     /**
-     * 解析 mapper 映射文件
+     * 解析 mapper 映射文件。在 MyBatis 中，共有四种加载映射文件或信息的方式：
+     * 第一种：从文件系统中加载映射文件。
+     * 第二种：通过 URL 的方式加载和解析映射文件。
+     * 第三种：通过 mapper 接口加载映射信息，映射信息可以配置在注解中，也可以配置在映射文件中。
+     * 第四种：通过包扫描的方式获取到某个包下的所有类，并使用第三种方式为每个类解析映射信息。
+     * <p>
+     * 解析 mapper 映射文件过程一共对应4种情况：
+     * 1)、若子节点为 <package>，则扫描这个包下所有 mapper 接口和对应注解，最后调用 MapperRegistry 的 addMapper() 方法添加。
+     * 2)、若子节点为 <mapper>，则分三种情况：
+     * 2-1)、若 resource 属性不为空，则从 classpath 加载。
+     * 2-2)、若 url 属性不为空，则从 URL 加载。
+     * 2-3)、若 class 属性不为空，则调用 Configuration 的 addMapper()，但最后还是会调用 MapperRegistry 的 addMapper()，扫描接口和接口上的注解。
+     * 这四种情况可归结为2种方式：使用 mapper.xml 生成代理类；使用接口和注解生成代理类。
      *
      * @param parent
      * @throws Exception
      */
     private void mapperElement(XNode parent) throws Exception {
         if (parent != null) {
+            // 开始遍历 mybatis 配置文件中 <mappers> 节点的所有子节点
             for (XNode child : parent.getChildren()) {
                 if ("package".equals(child.getName())) {
                     // 如果子节点是配置的 package，那么进行包自动扫描处理
+                    // 获取 <package> 节点中的 name 属性
                     String mapperPackage = child.getStringAttribute("name");
+                    // 从指定包中查找所有的 mapper 接口，并根据 mapper 接口解析映射配置
                     configuration.addMappers(mapperPackage);
                 } else {
-                    // 如果子节点配置的是mapper(包含三种属性 resource、url、class，但最多只能配置一种)
+                    // 注：这里永远先执行 else，因为 mybatis 配置文件中 <mappers> 节点的 <mapper> 子节点必须在 <package> 子节点之前。
+                    // 如果子节点配置的是mapper(包含三种属性 resource、url、class，但最多只能配置一种)，则分别处理。
+                    // 获取 resource/url/class 等属性
                     String resource = child.getStringAttribute("resource");
                     String url = child.getStringAttribute("url");
                     String mapperClass = child.getStringAttribute("class");
                     if (resource != null && url == null && mapperClass == null) {
-                        // 处理 mapper 的 resource 属性
+                        // 处理 mapper 的 resource 属性：resource 不为空，且其他两者为空，则从指定路径中加载配置
+                        // 将文件路径保存到 ErrorContext 上下文中
                         ErrorContext.instance().resource(resource);
                         InputStream inputStream = Resources.getResourceAsStream(resource);
+                        // 创建 XMLMapperBuilder 对象
                         XMLMapperBuilder mapperParser = new XMLMapperBuilder(inputStream, configuration, resource, configuration.getSqlFragments());
+                        // 解析映射文件
                         mapperParser.parse();
                     } else if (resource == null && url != null && mapperClass == null) {
-                        // 处理 mapper 的 url 属性
+                        // 处理 mapper 的 url 属性：url 不为空，且其他两者为空，则通过 url 加载配置
+                        // 将文件路径保存到 ErrorContext 上下文中
                         ErrorContext.instance().resource(url);
                         InputStream inputStream = Resources.getUrlAsStream(url);
                         XMLMapperBuilder mapperParser = new XMLMapperBuilder(inputStream, configuration, url, configuration.getSqlFragments());
+                        // 解析映射文件
                         mapperParser.parse();
                     } else if (resource == null && url == null && mapperClass != null) {
-                        // 处理 mapper 的 class 属性
+                        // 处理 mapper 的 class 属性：class 不为空，且其他两者为空，则通过 class 解析映射配置
                         Class<?> mapperInterface = Resources.classForName(mapperClass);
                         configuration.addMapper(mapperInterface);
                     } else {

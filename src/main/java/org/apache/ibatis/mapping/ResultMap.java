@@ -15,21 +15,16 @@
  */
 package org.apache.ibatis.mapping;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
-
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.builder.BuilderException;
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.reflection.ParamNameUtil;
 import org.apache.ibatis.session.Configuration;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
+import java.util.*;
 
 /**
  * @author Clinton Begin
@@ -40,9 +35,18 @@ public class ResultMap {
     private String id;
     private Class<?> type;
     private List<ResultMapping> resultMappings;
+    /**
+     * 用于存储 <id> 节点对应的 ResultMapping 对象
+     */
     private List<ResultMapping> idResultMappings;
     private List<ResultMapping> constructorResultMappings;
+    /**
+     * 用于存储 <id> 和 <result> 节点对应的 ResultMapping 对象
+     */
     private List<ResultMapping> propertyResultMappings;
+    /**
+     * 用于存储 所有<id>、<result> 节点 column 属性
+     */
     private Set<String> mappedColumns;
     private Set<String> mappedProperties;
     private Discriminator discriminator;
@@ -90,6 +94,7 @@ public class ResultMap {
             resultMap.propertyResultMappings = new ArrayList<>();
             final List<String> constructorArgNames = new ArrayList<>();
             for (ResultMapping resultMapping : resultMap.resultMappings) {
+                // 检测 <association> 或 <collection> 节点是否包含 select 属性和 resultMap 属性
                 resultMap.hasNestedQueries = resultMap.hasNestedQueries || resultMapping.getNestedQueryId() != null;
                 resultMap.hasNestedResultMaps = resultMap.hasNestedResultMaps || (resultMapping.getNestedResultMapId() != null && resultMapping.getResultSet() == null);
                 final String column = resultMapping.getColumn();
@@ -99,10 +104,12 @@ public class ResultMap {
                     for (ResultMapping compositeResultMapping : resultMapping.getComposites()) {
                         final String compositeColumn = compositeResultMapping.getColumn();
                         if (compositeColumn != null) {
+                            // 将 colum 转换成大写，并添加到 mappedColumns 集合中
                             resultMap.mappedColumns.add(compositeColumn.toUpperCase(Locale.ENGLISH));
                         }
                     }
                 }
+                // 添加属性 property 到 mappedProperties 集合中
                 final String property = resultMapping.getProperty();
                 if (property != null) {
                     resultMap.mappedProperties.add(property);
@@ -113,9 +120,11 @@ public class ResultMap {
                         constructorArgNames.add(resultMapping.getProperty());
                     }
                 } else {
+                    // 添加 resultMapping 到 propertyResultMappings 中
                     resultMap.propertyResultMappings.add(resultMapping);
                 }
                 if (resultMapping.getFlags().contains(ResultFlag.ID)) {
+                    // 添加 resultMapping 到 idResultMappings 中
                     resultMap.idResultMappings.add(resultMapping);
                 }
             }
@@ -137,6 +146,7 @@ public class ResultMap {
                 });
             }
             // lock down collections
+            // 将以下这些集合变为不可修改集合
             resultMap.resultMappings = Collections.unmodifiableList(resultMap.resultMappings);
             resultMap.idResultMappings = Collections.unmodifiableList(resultMap.idResultMappings);
             resultMap.constructorResultMappings = Collections.unmodifiableList(resultMap.constructorResultMappings);
@@ -151,8 +161,7 @@ public class ResultMap {
                 Class<?>[] paramTypes = constructor.getParameterTypes();
                 if (constructorArgNames.size() == paramTypes.length) {
                     List<String> paramNames = getArgNames(constructor);
-                    if (constructorArgNames.containsAll(paramNames)
-                            && argTypesMatch(constructorArgNames, paramTypes, paramNames)) {
+                    if (constructorArgNames.containsAll(paramNames) && argTypesMatch(constructorArgNames, paramTypes, paramNames)) {
                         return paramNames;
                     }
                 }
@@ -160,8 +169,7 @@ public class ResultMap {
             return null;
         }
 
-        private boolean argTypesMatch(final List<String> constructorArgNames,
-                                      Class<?>[] paramTypes, List<String> paramNames) {
+        private boolean argTypesMatch(final List<String> constructorArgNames, Class<?>[] paramTypes, List<String> paramNames) {
             for (int i = 0; i < constructorArgNames.size(); i++) {
                 Class<?> actualType = paramTypes[paramNames.indexOf(constructorArgNames.get(i))];
                 Class<?> specifiedType = resultMap.constructorResultMappings.get(i).getJavaType();
@@ -257,5 +265,4 @@ public class ResultMap {
     public Boolean getAutoMapping() {
         return autoMapping;
     }
-
 }

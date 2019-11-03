@@ -15,11 +15,6 @@
  */
 package org.apache.ibatis.scripting.xmltags;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.apache.ibatis.builder.BaseBuilder;
 import org.apache.ibatis.builder.BuilderException;
 import org.apache.ibatis.mapping.SqlSource;
@@ -28,6 +23,11 @@ import org.apache.ibatis.scripting.defaults.RawSqlSource;
 import org.apache.ibatis.session.Configuration;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Clinton Begin
@@ -50,7 +50,9 @@ public class XMLScriptBuilder extends BaseBuilder {
         initNodeHandlerMap();
     }
 
-
+    /**
+     * 该方法用于初始化 nodeHandlerMap 集合
+     */
     private void initNodeHandlerMap() {
         nodeHandlerMap.put("trim", new TrimHandler());
         nodeHandlerMap.put("where", new WhereHandler());
@@ -64,8 +66,10 @@ public class XMLScriptBuilder extends BaseBuilder {
     }
 
     public SqlSource parseScriptNode() {
+        // 解析 SQL 语句节点
         MixedSqlNode rootSqlNode = parseDynamicTags(context);
         SqlSource sqlSource = null;
+        // 根据 isDynamic 状态创建不同的 SqlSource
         if (isDynamic) {
             sqlSource = new DynamicSqlSource(configuration, rootSqlNode);
         } else {
@@ -77,31 +81,51 @@ public class XMLScriptBuilder extends BaseBuilder {
     protected MixedSqlNode parseDynamicTags(XNode node) {
         List<SqlNode> contents = new ArrayList<>();
         NodeList children = node.getNode().getChildNodes();
+        // 遍历所有子节点
         for (int i = 0; i < children.getLength(); i++) {
             XNode child = node.newXNode(children.item(i));
             if (child.getNode().getNodeType() == Node.CDATA_SECTION_NODE || child.getNode().getNodeType() == Node.TEXT_NODE) {
+                // 如果节点是TEXT_NODE类型
+                // 获取文本内容
                 String data = child.getStringBody("");
                 TextSqlNode textSqlNode = new TextSqlNode(data);
                 if (textSqlNode.isDynamic()) {
+                    // 若文本中包含 ${} 占位符，会被认为是动态节点
                     contents.add(textSqlNode);
+                    // 设置 isDynamic 为 true
                     isDynamic = true;
                 } else {
+                    // 创建 StaticTextSqlNode
                     contents.add(new StaticTextSqlNode(data));
                 }
             } else if (child.getNode().getNodeType() == Node.ELEMENT_NODE) { // issue #628
+                // child 节点是 ELEMENT_NODE 类型，如：<if>、<where> 等
+                // 获取节点名称，如：if、where、trim 等
                 String nodeName = child.getNode().getNodeName();
+                // 根据节点名称获取 NodeHandler，也就是上面注册的 nodeHandlerMap
                 NodeHandler handler = nodeHandlerMap.get(nodeName);
                 if (handler == null) {
                     throw new BuilderException("Unknown element <" + nodeName + "> in SQL statement.");
                 }
+                // 处理 child 节点，生成相应的 SqlNode
                 handler.handleNode(child, contents);
+                // 设置 isDynamic 为 true
                 isDynamic = true;
             }
         }
         return new MixedSqlNode(contents);
     }
 
+    /**
+     * 节点处理器接口
+     */
     private interface NodeHandler {
+        /**
+         * 对于 if、trim、where 等动态节点，是通过对应的 handleNode() 方法来解析的
+         *
+         * @param nodeToHandle
+         * @param targetContents
+         */
         void handleNode(XNode nodeToHandle, List<SqlNode> targetContents);
     }
 
@@ -143,8 +167,11 @@ public class XMLScriptBuilder extends BaseBuilder {
 
         @Override
         public void handleNode(XNode nodeToHandle, List<SqlNode> targetContents) {
+            // 调用 parseDynamicTags 解析 <where> 节点
             MixedSqlNode mixedSqlNode = parseDynamicTags(nodeToHandle);
+            // 创建 WhereSqlNode
             WhereSqlNode where = new WhereSqlNode(configuration, mixedSqlNode);
+            // 添加到 targetContents
             targetContents.add(where);
         }
     }

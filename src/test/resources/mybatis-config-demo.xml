@@ -168,13 +168,14 @@
 
     <!-- 9、mappers(映射器)：告诉MyBatis到哪里去找映射文件。你可以使用相对于类路径的资源引用、完全限定资源定位符(包括file:///的URL)、类名、包名等。 -->
     <mappers>
-        <!-- 方式一：使用相对于类路径的资源引用 -->
+        <!-- 每一个 mapper 标签中配置的都是一个独立的映射配置文件的路径，但所有的配置都要保证 xml 中 namespace 属性值和对应的接口名相同。配置方式有以下几种 -->
+        <!-- 方式一：相对路径进行配置，使用相对于类路径的资源引用。注：这种方式不用保证 xml 文件和接口文件同包同名，但要保证 xml 中 namespace 属性值和对应的接口名相同。 -->
         <mapper resource="org/mybatis/builder/AuthorMapper.xml"/>
-        <!-- 方式二：使用完全限定资源定位符(URL) -->
+        <!-- 方式二：绝对路径进行配置，使用完全限定资源定位符。 -->
         <mapper url="file:///var/mappers/AuthorMapper.xml"/>
-        <!-- 方式三：使用映射器接口实现类的完全限定类名 -->
+        <!-- 方式三：接口信息进行配置，使用映射器接口实现类的完全限定类名。注：这种方式必须保证 xml 文件和接口文件同包同名，因为是通过获取 mapper 中的 class 属性拼接上 .xml 来读取 xml 文件的，如果 xml 文件和对应接口文件不同或者不在同一个包中是无法读取到 xml 的。 -->
         <mapper class="org.mybatis.builder.AuthorMapper"/>
-        <!-- 方式四：将包内的映射器接口实现全部注册为映射器 -->
+        <!-- 方式四：接口所在包进行配置，将包内的映射器接口实现全部注册为映射器。注：这种方式也必须保证 xml 文件和接口文件同包同名 -->
         <package name="org.mybatis.builder"/>
     </mappers>
 </configuration>

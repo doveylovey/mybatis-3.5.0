@@ -723,11 +723,23 @@ public class Configuration {
         mapperRegistry.addMappers(packageName, superType);
     }
 
+    /**
+     * 根据 mapper 文件所在的包名添加 mapper
+     *
+     * @param packageName
+     */
     public void addMappers(String packageName) {
         mapperRegistry.addMappers(packageName);
     }
 
+    /**
+     * 通过 MapperRegistry 绑定 mapper 接口。参考 {@link MapperRegistry#addMapper(Class<T>)}
+     *
+     * @param type
+     * @param <T>
+     */
     public <T> void addMapper(Class<T> type) {
+        // 通过 MapperRegistry 绑定 mapper 接口
         mapperRegistry.addMapper(type);
     }
 
@@ -811,7 +823,7 @@ public class Configuration {
         }
     }
 
-    /*
+    /**
      * Extracts namespace from fully qualified statement id.
      *
      * @param statementId
