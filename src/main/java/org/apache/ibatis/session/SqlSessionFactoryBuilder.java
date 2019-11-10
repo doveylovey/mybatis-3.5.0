@@ -27,7 +27,8 @@ import java.util.Properties;
 
 /**
  * Builds {@link SqlSession} instances.
- * 该类的主要作用就是通过 XML 或 配置文件 创建SqlSessionFactory对象
+ * 该类的主要作用就是通过 XML 或 配置文件 创建SqlSessionFactory对象。
+ * 该类是 SqlSessionFactory 的构造器，用于创建 SqlSessionFactory，采用了 Builder 设计模式。
  *
  * @author Clinton Begin
  */

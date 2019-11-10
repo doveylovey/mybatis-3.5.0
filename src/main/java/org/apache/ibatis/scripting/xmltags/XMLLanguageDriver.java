@@ -32,7 +32,6 @@ import org.apache.ibatis.session.Configuration;
  * @author Eduardo Macarron
  */
 public class XMLLanguageDriver implements LanguageDriver {
-
     @Override
     public ParameterHandler createParameterHandler(MappedStatement mappedStatement, Object parameterObject, BoundSql boundSql) {
         return new DefaultParameterHandler(mappedStatement, parameterObject, boundSql);
@@ -69,5 +68,4 @@ public class XMLLanguageDriver implements LanguageDriver {
             }
         }
     }
-
 }

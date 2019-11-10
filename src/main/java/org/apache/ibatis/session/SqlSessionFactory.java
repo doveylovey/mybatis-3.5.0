@@ -19,6 +19,7 @@ import java.sql.Connection;
 
 /**
  * Creates an {@link SqlSession} out of a connection or a DataSource
+ * 该类是 SqlSession 的工厂类，以工厂形式创建 SqlSession 对象，采用了工厂设计模式。
  *
  * @author Clinton Begin
  */

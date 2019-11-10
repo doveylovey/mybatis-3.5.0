@@ -77,9 +77,17 @@ import java.util.*;
 import java.util.function.BiFunction;
 
 /**
+ * mybatis 在启动时会取读取所有配置文件，然后加载到内存中，该类就是承载整个配置的类。
+ * 可以说 mybatis 初始化的过程就是创建 Configuration 对象的过程。mybatis 的初始化可以有两种方式：
+ * 1、基于 XML 配置文件：这种方式是将 mybatis 的所有配置信息放在 XML 文件中，mybatis 通过加载并 XML 配置文件，将配置文信息组装成内部的 Configuration 对象。
+ * 2、基于 Java API：这种方式不使用 XML 配置文件，而需要 mybatis 使用者在 Java 代码中手动创建 Configuration 对象，然后将配置参数 set 进入 Configuration 对象中。
+ *
  * @author Clinton Begin
  */
 public class Configuration {
+    /**
+     * mybatis 可以配置成适应多种环境，这种机制有助于将 SQL 映射应用于多种数据库中。比如设置不同的开发、测试、生产配置，在每个配置中都可以配置事务管理器和数据源对象
+     */
     protected Environment environment;
 
     protected boolean safeRowBoundsEnabled;
@@ -116,8 +124,7 @@ public class Configuration {
 
     protected String databaseId;
     /**
-     * Configuration factory class.
-     * Used to create Configuration for loading deserialized unread properties.
+     * Configuration factory class. Used to create Configuration for loading deserialized unread properties.
      *
      * @see <a href='https://code.google.com/p/mybatis/issues/detail?id=300'>Issue 300 (google code)</a>
      */
@@ -159,24 +166,30 @@ public class Configuration {
      * 创建 Configuration 对象的时候默认也注册了一些类型别名。{@link TypeAliasRegistry}
      */
     public Configuration() {
+        // 事务
         typeAliasRegistry.registerAlias("JDBC", JdbcTransactionFactory.class);
         typeAliasRegistry.registerAlias("MANAGED", ManagedTransactionFactory.class);
 
+        // 数据源工厂
         typeAliasRegistry.registerAlias("JNDI", JndiDataSourceFactory.class);
         typeAliasRegistry.registerAlias("POOLED", PooledDataSourceFactory.class);
         typeAliasRegistry.registerAlias("UNPOOLED", UnpooledDataSourceFactory.class);
 
+        // 缓存
         typeAliasRegistry.registerAlias("PERPETUAL", PerpetualCache.class);
         typeAliasRegistry.registerAlias("FIFO", FifoCache.class);
         typeAliasRegistry.registerAlias("LRU", LruCache.class);
         typeAliasRegistry.registerAlias("SOFT", SoftCache.class);
         typeAliasRegistry.registerAlias("WEAK", WeakCache.class);
 
+        // 供应商的 DatabaseId 提供者
         typeAliasRegistry.registerAlias("DB_VENDOR", VendorDatabaseIdProvider.class);
 
+        // mybatis 默认的 XML 驱动为 XMLLanguageDriver，用来解析动态 SQL
         typeAliasRegistry.registerAlias("XML", XMLLanguageDriver.class);
         typeAliasRegistry.registerAlias("RAW", RawLanguageDriver.class);
 
+        // 日志
         typeAliasRegistry.registerAlias("SLF4J", Slf4jImpl.class);
         typeAliasRegistry.registerAlias("COMMONS_LOGGING", JakartaCommonsLoggingImpl.class);
         typeAliasRegistry.registerAlias("LOG4J", Log4jImpl.class);
@@ -185,6 +198,7 @@ public class Configuration {
         typeAliasRegistry.registerAlias("STDOUT_LOGGING", StdOutImpl.class);
         typeAliasRegistry.registerAlias("NO_LOGGING", NoLoggingImpl.class);
 
+        // 代理
         typeAliasRegistry.registerAlias("CGLIB", CglibProxyFactory.class);
         typeAliasRegistry.registerAlias("JAVASSIST", JavassistProxyFactory.class);
 
