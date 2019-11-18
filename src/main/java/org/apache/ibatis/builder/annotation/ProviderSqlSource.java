@@ -15,11 +15,6 @@
  */
 package org.apache.ibatis.builder.annotation;
 
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.ibatis.builder.BuilderException;
 import org.apache.ibatis.builder.SqlSourceBuilder;
 import org.apache.ibatis.mapping.BoundSql;
@@ -28,12 +23,16 @@ import org.apache.ibatis.parsing.PropertyParser;
 import org.apache.ibatis.reflection.ParamNameResolver;
 import org.apache.ibatis.session.Configuration;
 
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author Clinton Begin
  * @author Kazuki Shimizu
  */
 public class ProviderSqlSource implements SqlSource {
-
     private final Configuration configuration;
     private final SqlSourceBuilder sqlSourceParser;
     private final Class<?> providerType;
@@ -80,8 +79,7 @@ public class ProviderSqlSource implements SqlSource {
             throw new BuilderException("Error creating SqlSource for SqlProvider.  Cause: " + e, e);
         }
         if (this.providerMethod == null) {
-            throw new BuilderException("Error creating SqlSource for SqlProvider. Method '"
-                    + providerMethodName + "' not found in SqlProvider '" + this.providerType.getName() + "'.");
+            throw new BuilderException("Error creating SqlSource for SqlProvider. Method '" + providerMethodName + "' not found in SqlProvider '" + this.providerType.getName() + "'.");
         }
         for (int i = 0; i < this.providerMethodParameterTypes.length; i++) {
             Class<?> parameterType = this.providerMethodParameterTypes[i];
@@ -111,8 +109,7 @@ public class ProviderSqlSource implements SqlSource {
                 sql = invokeProviderMethod();
             } else if (bindParameterCount == 0) {
                 sql = invokeProviderMethod(providerContext);
-            } else if (bindParameterCount == 1 &&
-                    (parameterObject == null || providerMethodParameterTypes[providerContextIndex == null || providerContextIndex == 1 ? 0 : 1].isAssignableFrom(parameterObject.getClass()))) {
+            } else if (bindParameterCount == 1 && (parameterObject == null || providerMethodParameterTypes[providerContextIndex == null || providerContextIndex == 1 ? 0 : 1].isAssignableFrom(parameterObject.getClass()))) {
                 sql = invokeProviderMethod(extractProviderMethodArguments(parameterObject));
             } else if (parameterObject instanceof Map) {
                 @SuppressWarnings("unchecked")
@@ -130,9 +127,7 @@ public class ProviderSqlSource implements SqlSource {
         } catch (BuilderException e) {
             throw e;
         } catch (Exception e) {
-            throw new BuilderException("Error invoking SqlProvider method ("
-                    + providerType.getName() + "." + providerMethod.getName()
-                    + ").  Cause: " + e, e);
+            throw new BuilderException("Error invoking SqlProvider method (" + providerType.getName() + "." + providerMethod.getName() + ").  Cause: " + e, e);
         }
     }
 
@@ -171,5 +166,4 @@ public class ProviderSqlSource implements SqlSource {
     private String replacePlaceholder(String sql) {
         return PropertyParser.parse(sql, configuration.getVariables());
     }
-
 }

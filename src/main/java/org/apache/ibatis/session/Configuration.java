@@ -761,6 +761,12 @@ public class Configuration {
         return mapperRegistry.getMapper(type, sqlSession);
     }
 
+    /**
+     * 检测当前 mapper 的 namespace 属性指定的接口是否被绑定过
+     *
+     * @param type
+     * @return
+     */
     public boolean hasMapper(Class<?> type) {
         return mapperRegistry.hasMapper(type);
     }

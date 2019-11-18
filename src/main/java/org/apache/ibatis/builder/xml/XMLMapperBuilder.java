@@ -524,7 +524,7 @@ public class XMLMapperBuilder extends BaseBuilder {
         if (namespace != null) {
             Class<?> boundType = null;
             try {
-                // 根据命名空间解析 mapper 类型
+                // 根据命名空间解析 mapper 类型，即通过类名加载类
                 boundType = Resources.classForName(namespace);
             } catch (ClassNotFoundException e) {
                 //ignore, bound type is not required

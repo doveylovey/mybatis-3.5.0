@@ -53,6 +53,13 @@ public class MapperRegistry {
         }
     }
 
+    /**
+     * 检测指定类是否在 knownMappers 中
+     *
+     * @param type
+     * @param <T>
+     * @return
+     */
     public <T> boolean hasMapper(Class<T> type) {
         return knownMappers.containsKey(type);
     }

@@ -15,14 +15,10 @@
  */
 package org.apache.ibatis.annotations;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
 import org.apache.ibatis.cache.decorators.LruCache;
 import org.apache.ibatis.cache.impl.PerpetualCache;
+
+import java.lang.annotation.*;
 
 /**
  * @author Clinton Begin
@@ -50,5 +46,4 @@ public @interface CacheNamespace {
      * @since 3.4.2
      */
     Property[] properties() default {};
-
 }

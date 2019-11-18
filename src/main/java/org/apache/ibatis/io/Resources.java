@@ -89,6 +89,7 @@ public class Resources {
     }
 
     /**
+     * 以 InputStream 对象形式返回类路径下指定的资源
      * Returns a resource on the classpath as a Stream object
      *
      * @param resource The resource to find
@@ -116,6 +117,7 @@ public class Resources {
     }
 
     /**
+     * 以 InputStream 对象形式返回类路径下指定的资源
      * Returns a resource on the classpath as a Stream object
      *
      * @param loader   The classloader used to fetch the resource
@@ -210,6 +212,7 @@ public class Resources {
     }
 
     /**
+     * 以 InputStream 对象形式返回 url 指定的资源
      * Gets a URL as an input stream
      *
      * @param urlString - the URL to get
@@ -240,6 +243,7 @@ public class Resources {
     }
 
     /**
+     * 以 Properties 对象的形式返回网络路径或者磁盘路径下的指定资源
      * Gets a URL as a Properties object
      *
      * @param urlString - the URL to get
@@ -255,6 +259,7 @@ public class Resources {
     }
 
     /**
+     * 通过类名加载类
      * Loads a class
      *
      * @param className - the class to fetch

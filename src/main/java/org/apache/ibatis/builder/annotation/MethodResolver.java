@@ -32,5 +32,4 @@ public class MethodResolver {
     public void resolve() {
         annotationBuilder.parseStatement(method);
     }
-
 }

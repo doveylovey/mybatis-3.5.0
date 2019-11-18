@@ -24,7 +24,6 @@ import java.lang.reflect.Method;
  * @since 3.4.5
  */
 public final class ProviderContext {
-
     private final Class<?> mapperType;
     private final Method mapperMethod;
 
@@ -56,5 +55,4 @@ public final class ProviderContext {
     public Method getMapperMethod() {
         return mapperMethod;
     }
-
 }

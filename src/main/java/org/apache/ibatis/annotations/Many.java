@@ -15,12 +15,12 @@
  */
 package org.apache.ibatis.annotations;
 
+import org.apache.ibatis.mapping.FetchType;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
-import org.apache.ibatis.mapping.FetchType;
 
 /**
  * @author Clinton Begin
@@ -32,5 +32,4 @@ public @interface Many {
     String select() default "";
 
     FetchType fetchType() default FetchType.DEFAULT;
-
 }
