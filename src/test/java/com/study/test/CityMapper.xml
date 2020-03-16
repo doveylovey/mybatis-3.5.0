@@ -7,7 +7,7 @@
         <result column="city_name" jdbcType="VARCHAR" property="cityName"/>
     </resultMap>
 
-    <resultMap id="extendsResultMap" type="com.study.test.CityExtends" extends="BaseResultMap">
+    <resultMap id="ExtendsResultMap" type="com.study.test.CityExtends" extends="BaseResultMap">
         <collection property="areaList" column="city_code"
                     ofType="com.study.test.Area"
                     select="com.study.test.AreaMapper.selectByCityCode" />
@@ -29,7 +29,7 @@
         where province_code = #{provinceCode,jdbcType=VARCHAR}
     </select>
 
-    <select id="selectByProvinceCode2" parameterType="java.lang.String" resultMap="extendsResultMap">
+    <select id="selectByProvinceCode2" parameterType="java.lang.String" resultMap="ExtendsResultMap">
         select <include refid="Base_Column_List"/>
         from t_city
         where province_code = #{provinceCode,jdbcType=VARCHAR}
