@@ -16,13 +16,13 @@
 package org.apache.ibatis.mapping;
 
 /**
+ * 负责根据用户传递的 parameterObject 动态地生成 SQL 语句，将信息封装到 BoundSql 对象中并返回
+ * <p>
  * Represents the content of a mapped statement read from an XML file or an annotation.
  * It creates the SQL that will be passed to the database out of the input parameter received from the user.
  *
  * @author Clinton Begin
  */
 public interface SqlSource {
-
     BoundSql getBoundSql(Object parameterObject);
-
 }

@@ -14,6 +14,8 @@ import java.io.Serializable;
  */
 @Data
 public class City implements Serializable {
+    private static final long serialVersionUID = -387448585589425700L;
+
     /**
      * 城市代码
      */

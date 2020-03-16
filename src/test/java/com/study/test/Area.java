@@ -14,6 +14,8 @@ import java.io.Serializable;
  */
 @Data
 public class Area implements Serializable {
+    private static final long serialVersionUID = 6715596678009811683L;
+
     /**
      * 区域代码
      */

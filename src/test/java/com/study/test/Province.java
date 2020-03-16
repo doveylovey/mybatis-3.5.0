@@ -14,6 +14,8 @@ import java.io.Serializable;
  */
 @Data
 public class Province implements Serializable {
+    private static final long serialVersionUID = -5783634600754275360L;
+
     /**
      * 省份代码
      */

@@ -29,6 +29,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * 该类维护了一个 <select|update|delete|insert> 节点的封装
+ *
  * @author Clinton Begin
  */
 public final class MappedStatement {
