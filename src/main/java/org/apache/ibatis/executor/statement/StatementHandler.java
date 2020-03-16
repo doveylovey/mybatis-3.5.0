@@ -26,30 +26,24 @@ import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.session.ResultHandler;
 
 /**
+ * 封装了 JDBC Statement 操作，负责对 JDBC statement 的操作，如设置参数、将 Statement 结果集转换成 List 集合等
+ *
  * @author Clinton Begin
  */
 public interface StatementHandler {
+    Statement prepare(Connection connection, Integer transactionTimeout) throws SQLException;
 
-    Statement prepare(Connection connection, Integer transactionTimeout)
-            throws SQLException;
+    void parameterize(Statement statement) throws SQLException;
 
-    void parameterize(Statement statement)
-            throws SQLException;
+    void batch(Statement statement) throws SQLException;
 
-    void batch(Statement statement)
-            throws SQLException;
+    int update(Statement statement) throws SQLException;
 
-    int update(Statement statement)
-            throws SQLException;
+    <E> List<E> query(Statement statement, ResultHandler resultHandler) throws SQLException;
 
-    <E> List<E> query(Statement statement, ResultHandler resultHandler)
-            throws SQLException;
-
-    <E> Cursor<E> queryCursor(Statement statement)
-            throws SQLException;
+    <E> Cursor<E> queryCursor(Statement statement) throws SQLException;
 
     BoundSql getBoundSql();
 
     ParameterHandler getParameterHandler();
-
 }

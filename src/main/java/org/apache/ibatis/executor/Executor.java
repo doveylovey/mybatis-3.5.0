@@ -28,10 +28,11 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.transaction.Transaction;
 
 /**
+ * MyBatis 执行器：是 MyBatis 调度的核心，负责 SQL 语句的生成和查询缓存的维护
+ *
  * @author Clinton Begin
  */
 public interface Executor {
-
     ResultHandler NO_RESULT_HANDLER = null;
 
     int update(MappedStatement ms, Object parameter) throws SQLException;
@@ -63,5 +64,4 @@ public interface Executor {
     boolean isClosed();
 
     void setExecutorWrapper(Executor executor);
-
 }

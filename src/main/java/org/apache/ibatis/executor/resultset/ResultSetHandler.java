@@ -23,14 +23,14 @@ import java.sql.Statement;
 import java.util.List;
 
 /**
+ * 负责将 JDBC 返回的 ResultSet 结果集对象转换成 List 类型的集合对象
+ *
  * @author Clinton Begin
  */
 public interface ResultSetHandler {
-
     <E> List<E> handleResultSets(Statement stmt) throws SQLException;
 
     <E> Cursor<E> handleCursorResultSets(Statement stmt) throws SQLException;
 
     void handleOutputParameters(CallableStatement cs) throws SQLException;
-
 }

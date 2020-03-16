@@ -15,22 +15,23 @@
  */
 package org.apache.ibatis.session;
 
+import org.apache.ibatis.cursor.Cursor;
+import org.apache.ibatis.executor.BatchResult;
+
 import java.io.Closeable;
 import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.cursor.Cursor;
-import org.apache.ibatis.executor.BatchResult;
-
 /**
+ * 作为 MyBatis 工作的主要顶层 API，表示和数据库交互的会话，完成数据库必要的增删改查功能
+ * <p>
  * The primary Java interface for working with MyBatis.
  * Through this interface you can execute commands, get mappers and manage transactions.
  *
  * @author Clinton Begin
  */
 public interface SqlSession extends Closeable {
-
     /**
      * Retrieve a single row mapped from the statement key
      *
@@ -70,8 +71,7 @@ public interface SqlSession extends Closeable {
     <E> List<E> selectList(String statement, Object parameter);
 
     /**
-     * Retrieve a list of mapped objects from the statement key and parameter,
-     * within the specified row bounds.
+     * Retrieve a list of mapped objects from the statement key and parameter, within the specified row bounds.
      *
      * @param <E>       the returned list element type
      * @param statement Unique identifier matching the statement to use.
@@ -83,8 +83,7 @@ public interface SqlSession extends Closeable {
 
     /**
      * The selectMap is a special case in that it is designed to convert a list
-     * of results into a Map based on one of the properties in the resulting
-     * objects.
+     * of results into a Map based on one of the properties in the resulting objects.
      * Eg. Return a of Map[Integer,Author] for selectMap("selectAuthors","id")
      *
      * @param <K>       the returned Map keys type
@@ -97,8 +96,7 @@ public interface SqlSession extends Closeable {
 
     /**
      * The selectMap is a special case in that it is designed to convert a list
-     * of results into a Map based on one of the properties in the resulting
-     * objects.
+     * of results into a Map based on one of the properties in the resulting objects.
      *
      * @param <K>       the returned Map keys type
      * @param <V>       the returned Map values type
@@ -111,8 +109,7 @@ public interface SqlSession extends Closeable {
 
     /**
      * The selectMap is a special case in that it is designed to convert a list
-     * of results into a Map based on one of the properties in the resulting
-     * objects.
+     * of results into a Map based on one of the properties in the resulting objects.
      *
      * @param <K>       the returned Map keys type
      * @param <V>       the returned Map values type
@@ -155,8 +152,7 @@ public interface SqlSession extends Closeable {
     <T> Cursor<T> selectCursor(String statement, Object parameter, RowBounds rowBounds);
 
     /**
-     * Retrieve a single row mapped from the statement key and parameter
-     * using a {@code ResultHandler}.
+     * Retrieve a single row mapped from the statement key and parameter using a {@code ResultHandler}.
      *
      * @param statement Unique identifier matching the statement to use.
      * @param parameter A parameter object to pass to the statement.
@@ -165,8 +161,7 @@ public interface SqlSession extends Closeable {
     void select(String statement, Object parameter, ResultHandler handler);
 
     /**
-     * Retrieve a single row mapped from the statement
-     * using a {@code ResultHandler}.
+     * Retrieve a single row mapped from the statement using a {@code ResultHandler}.
      *
      * @param statement Unique identifier matching the statement to use.
      * @param handler   ResultHandler that will handle each retrieved row
@@ -174,8 +169,7 @@ public interface SqlSession extends Closeable {
     void select(String statement, ResultHandler handler);
 
     /**
-     * Retrieve a single row mapped from the statement key and parameter
-     * using a {@code ResultHandler} and {@code RowBounds}
+     * Retrieve a single row mapped from the statement key and parameter using a {@code ResultHandler} and {@code RowBounds}
      *
      * @param statement Unique identifier matching the statement to use.
      * @param rowBounds RowBound instance to limit the query results
@@ -192,9 +186,9 @@ public interface SqlSession extends Closeable {
     int insert(String statement);
 
     /**
-     * Execute an insert statement with the given parameter object. Any generated
-     * autoincrement values or selectKey entries will modify the given parameter
-     * object properties. Only the number of rows affected will be returned.
+     * Execute an insert statement with the given parameter object.
+     * Any generated autoincrement values or selectKey entries will modify the given parameter object properties.
+     * Only the number of rows affected will be returned.
      *
      * @param statement Unique identifier matching the statement to execute.
      * @param parameter A parameter object to pass to the statement.
