@@ -32,7 +32,6 @@ import java.util.Set;
  * @author Lasse Voss
  */
 public class MapperRegistry {
-
     private final Configuration config;
     private final Map<Class<?>, MapperProxyFactory<?>> knownMappers = new HashMap<>();
 

@@ -30,7 +30,6 @@ import org.apache.ibatis.reflection.property.PropertyTokenizer;
  * @author Clinton Begin
  */
 public class BeanWrapper extends BaseWrapper {
-
     private final Object object;
     private final MetaClass metaClass;
 
@@ -200,5 +199,4 @@ public class BeanWrapper extends BaseWrapper {
     public <E> void addAll(List<E> list) {
         throw new UnsupportedOperationException();
     }
-
 }

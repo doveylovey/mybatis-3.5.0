@@ -43,7 +43,6 @@ import org.apache.ibatis.session.Configuration;
  * @author Eduardo Macarron
  */
 public class JavassistProxyFactory implements org.apache.ibatis.executor.loader.ProxyFactory {
-
     private static final String FINALIZE_METHOD = "finalize";
     private static final String WRITE_REPLACE_METHOD = "writeReplace";
 
@@ -70,10 +69,8 @@ public class JavassistProxyFactory implements org.apache.ibatis.executor.loader.
     }
 
     static Object crateProxy(Class<?> type, MethodHandler callback, List<Class<?>> constructorArgTypes, List<Object> constructorArgs) {
-
         ProxyFactory enhancer = new ProxyFactory();
         enhancer.setSuperclass(type);
-
         try {
             type.getDeclaredMethod(WRITE_REPLACE_METHOD);
             // ObjectOutputStream will call writeReplace of objects returned by writeReplace
@@ -85,7 +82,6 @@ public class JavassistProxyFactory implements org.apache.ibatis.executor.loader.
         } catch (SecurityException e) {
             // nothing to do here
         }
-
         Object enhanced;
         Class<?>[] typesArray = constructorArgTypes.toArray(new Class[constructorArgTypes.size()]);
         Object[] valuesArray = constructorArgs.toArray(new Object[constructorArgs.size()]);
@@ -99,7 +95,6 @@ public class JavassistProxyFactory implements org.apache.ibatis.executor.loader.
     }
 
     private static class EnhancedResultObjectProxyImpl implements MethodHandler {
-
         private final Class<?> type;
         private final ResultLoaderMap lazyLoader;
         private final boolean aggressive;
@@ -168,14 +163,10 @@ public class JavassistProxyFactory implements org.apache.ibatis.executor.loader.
     }
 
     private static class EnhancedDeserializationProxyImpl extends AbstractEnhancedDeserializationProxy implements MethodHandler {
-
-        private EnhancedDeserializationProxyImpl(Class<?> type, Map<String, ResultLoaderMap.LoadPair> unloadedProperties, ObjectFactory objectFactory,
-                                                 List<Class<?>> constructorArgTypes, List<Object> constructorArgs) {
+        private EnhancedDeserializationProxyImpl(Class<?> type, Map<String, ResultLoaderMap.LoadPair> unloadedProperties, ObjectFactory objectFactory, List<Class<?>> constructorArgTypes, List<Object> constructorArgs) {
             super(type, unloadedProperties, objectFactory, constructorArgTypes, constructorArgs);
         }
-
-        public static Object createProxy(Object target, Map<String, ResultLoaderMap.LoadPair> unloadedProperties, ObjectFactory objectFactory,
-                                         List<Class<?>> constructorArgTypes, List<Object> constructorArgs) {
+        public static Object createProxy(Object target, Map<String, ResultLoaderMap.LoadPair> unloadedProperties, ObjectFactory objectFactory, List<Class<?>> constructorArgTypes, List<Object> constructorArgs) {
             final Class<?> type = target.getClass();
             EnhancedDeserializationProxyImpl callback = new EnhancedDeserializationProxyImpl(type, unloadedProperties, objectFactory, constructorArgTypes, constructorArgs);
             Object enhanced = crateProxy(type, callback, constructorArgTypes, constructorArgs);
@@ -190,8 +181,7 @@ public class JavassistProxyFactory implements org.apache.ibatis.executor.loader.
         }
 
         @Override
-        protected AbstractSerialStateHolder newSerialStateHolder(Object userBean, Map<String, ResultLoaderMap.LoadPair> unloadedProperties, ObjectFactory objectFactory,
-                                                                 List<Class<?>> constructorArgTypes, List<Object> constructorArgs) {
+        protected AbstractSerialStateHolder newSerialStateHolder(Object userBean, Map<String, ResultLoaderMap.LoadPair> unloadedProperties, ObjectFactory objectFactory, List<Class<?>> constructorArgTypes, List<Object> constructorArgs) {
             return new JavassistSerialStateHolder(userBean, unloadedProperties, objectFactory, constructorArgTypes, constructorArgs);
         }
     }
@@ -199,5 +189,4 @@ public class JavassistProxyFactory implements org.apache.ibatis.executor.loader.
     private static class LogHolder {
         private static final Log log = LogFactory.getLog(JavassistProxyFactory.class);
     }
-
 }

@@ -23,7 +23,6 @@ import org.apache.ibatis.reflection.Reflector;
  * @author Clinton Begin
  */
 public final class PropertyCopier {
-
     private PropertyCopier() {
         // Prevent Instantiation of Static Class
     }
@@ -51,5 +50,4 @@ public final class PropertyCopier {
             parent = parent.getSuperclass();
         }
     }
-
 }

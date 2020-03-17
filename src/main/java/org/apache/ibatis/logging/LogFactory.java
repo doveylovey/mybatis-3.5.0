@@ -22,7 +22,6 @@ import java.lang.reflect.Constructor;
  * @author Eduardo Macarron
  */
 public final class LogFactory {
-
     /**
      * Marker to be used by logging implementations that support markers
      */
@@ -109,5 +108,4 @@ public final class LogFactory {
             throw new LogException("Error setting Log implementation.  Cause: " + t, t);
         }
     }
-
 }

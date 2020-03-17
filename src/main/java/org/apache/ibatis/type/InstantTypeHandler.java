@@ -27,7 +27,6 @@ import java.time.Instant;
  * @since 3.4.5
  */
 public class InstantTypeHandler extends BaseTypeHandler<Instant> {
-
     @Override
     public void setNonNullParameter(PreparedStatement ps, int i, Instant parameter, JdbcType jdbcType) throws SQLException {
         ps.setTimestamp(i, Timestamp.from(parameter));

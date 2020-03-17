@@ -37,5 +37,4 @@ public class IfSqlNode implements SqlNode {
         }
         return false;
     }
-
 }

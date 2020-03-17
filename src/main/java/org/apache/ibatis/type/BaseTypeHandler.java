@@ -36,7 +36,6 @@ import org.apache.ibatis.session.Configuration;
  * @author Kzuki Shimizu
  */
 public abstract class BaseTypeHandler<T> extends TypeReference<T> implements TypeHandler<T> {
-
     /**
      * @deprecated Since 3.5.0 - See https://github.com/mybatis/mybatis-3/issues/1203. This field will remove future.
      */
@@ -60,17 +59,13 @@ public abstract class BaseTypeHandler<T> extends TypeReference<T> implements Typ
             try {
                 ps.setNull(i, jdbcType.TYPE_CODE);
             } catch (SQLException e) {
-                throw new TypeException("Error setting null for parameter #" + i + " with JdbcType " + jdbcType + " . " +
-                        "Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. " +
-                        "Cause: " + e, e);
+                throw new TypeException("Error setting null for parameter #" + i + " with JdbcType " + jdbcType + " . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: " + e, e);
             }
         } else {
             try {
                 setNonNullParameter(ps, i, parameter, jdbcType);
             } catch (Exception e) {
-                throw new TypeException("Error setting non null for parameter #" + i + " with JdbcType " + jdbcType + " . " +
-                        "Try setting a different JdbcType for this parameter or a different configuration property. " +
-                        "Cause: " + e, e);
+                throw new TypeException("Error setting non null for parameter #" + i + " with JdbcType " + jdbcType + " . Try setting a different JdbcType for this parameter or a different configuration property. Cause: " + e, e);
             }
         }
     }
@@ -109,5 +104,4 @@ public abstract class BaseTypeHandler<T> extends TypeReference<T> implements Typ
     public abstract T getNullableResult(ResultSet rs, int columnIndex) throws SQLException;
 
     public abstract T getNullableResult(CallableStatement cs, int columnIndex) throws SQLException;
-
 }

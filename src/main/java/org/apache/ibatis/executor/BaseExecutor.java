@@ -48,17 +48,14 @@ import org.apache.ibatis.type.TypeHandlerRegistry;
  * @author Clinton Begin
  */
 public abstract class BaseExecutor implements Executor {
-
     private static final Log log = LogFactory.getLog(BaseExecutor.class);
 
     protected Transaction transaction;
     protected Executor wrapper;
-
     protected ConcurrentLinkedQueue<DeferredLoad> deferredLoads;
     protected PerpetualCache localCache;
     protected PerpetualCache localOutputParameterCache;
     protected Configuration configuration;
-
     protected int queryStack;
     private boolean closed;
 
@@ -267,17 +264,13 @@ public abstract class BaseExecutor implements Executor {
         }
     }
 
-    protected abstract int doUpdate(MappedStatement ms, Object parameter)
-            throws SQLException;
+    protected abstract int doUpdate(MappedStatement ms, Object parameter) throws SQLException;
 
-    protected abstract List<BatchResult> doFlushStatements(boolean isRollback)
-            throws SQLException;
+    protected abstract List<BatchResult> doFlushStatements(boolean isRollback) throws SQLException;
 
-    protected abstract <E> List<E> doQuery(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql)
-            throws SQLException;
+    protected abstract <E> List<E> doQuery(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql) throws SQLException;
 
-    protected abstract <E> Cursor<E> doQueryCursor(MappedStatement ms, Object parameter, RowBounds rowBounds, BoundSql boundSql)
-            throws SQLException;
+    protected abstract <E> Cursor<E> doQueryCursor(MappedStatement ms, Object parameter, RowBounds rowBounds, BoundSql boundSql) throws SQLException;
 
     protected void closeStatement(Statement statement) {
         if (statement != null) {
@@ -348,7 +341,6 @@ public abstract class BaseExecutor implements Executor {
     }
 
     private static class DeferredLoad {
-
         private final MetaObject resultObject;
         private final String property;
         private final Class<?> targetType;
@@ -358,12 +350,7 @@ public abstract class BaseExecutor implements Executor {
         private final ResultExtractor resultExtractor;
 
         // issue #781
-        public DeferredLoad(MetaObject resultObject,
-                            String property,
-                            CacheKey key,
-                            PerpetualCache localCache,
-                            Configuration configuration,
-                            Class<?> targetType) {
+        public DeferredLoad(MetaObject resultObject, String property, CacheKey key, PerpetualCache localCache, Configuration configuration, Class<?> targetType) {
             this.resultObject = resultObject;
             this.property = property;
             this.key = key;
@@ -384,7 +371,5 @@ public abstract class BaseExecutor implements Executor {
             Object value = resultExtractor.extractObjectFromList(list, targetType);
             resultObject.setValue(property, value);
         }
-
     }
-
 }

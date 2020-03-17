@@ -36,7 +36,6 @@ import org.apache.ibatis.io.Resources;
  * @author Eduardo Macarron
  */
 public class UnpooledDataSource implements DataSource {
-
     private ClassLoader driverClassLoader;
     private Properties driverProperties;
     private static Map<String, Driver> registeredDrivers = new ConcurrentHashMap<>();
@@ -290,5 +289,4 @@ public class UnpooledDataSource implements DataSource {
         // requires JDK version 1.6
         return Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     }
-
 }

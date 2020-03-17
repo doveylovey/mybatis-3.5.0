@@ -46,7 +46,6 @@ import org.apache.ibatis.session.SqlSession;
  * @author Clinton Begin
  */
 public class DefaultSqlSession implements SqlSession {
-
     private final Configuration configuration;
     private final Executor executor;
 
@@ -96,8 +95,7 @@ public class DefaultSqlSession implements SqlSession {
     @Override
     public <K, V> Map<K, V> selectMap(String statement, Object parameter, String mapKey, RowBounds rowBounds) {
         final List<? extends V> list = selectList(statement, parameter, rowBounds);
-        final DefaultMapResultHandler<K, V> mapResultHandler = new DefaultMapResultHandler<>(mapKey,
-                configuration.getObjectFactory(), configuration.getObjectWrapperFactory(), configuration.getReflectorFactory());
+        final DefaultMapResultHandler<K, V> mapResultHandler = new DefaultMapResultHandler<>(mapKey, configuration.getObjectFactory(), configuration.getObjectWrapperFactory(), configuration.getReflectorFactory());
         final DefaultResultContext<V> context = new DefaultResultContext<>();
         for (V o : list) {
             context.nextResultObject(o);
@@ -333,7 +331,6 @@ public class DefaultSqlSession implements SqlSession {
     }
 
     public static class StrictMap<V> extends HashMap<String, V> {
-
         private static final long serialVersionUID = -5741767162221585340L;
 
         @Override
@@ -345,5 +342,4 @@ public class DefaultSqlSession implements SqlSession {
         }
 
     }
-
 }

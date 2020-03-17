@@ -33,7 +33,6 @@ import org.apache.ibatis.io.Resources;
  * @author Clinton Begin
  */
 public class SerializedCache implements Cache {
-
     private final Cache delegate;
 
     public SerializedCache(Cache delegate) {
@@ -91,8 +90,7 @@ public class SerializedCache implements Cache {
     }
 
     private byte[] serialize(Serializable value) {
-        try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
-             ObjectOutputStream oos = new ObjectOutputStream(bos)) {
+        try (ByteArrayOutputStream bos = new ByteArrayOutputStream(); ObjectOutputStream oos = new ObjectOutputStream(bos)) {
             oos.writeObject(value);
             oos.flush();
             return bos.toByteArray();
@@ -103,8 +101,7 @@ public class SerializedCache implements Cache {
 
     private Serializable deserialize(byte[] value) {
         Serializable result;
-        try (ByteArrayInputStream bis = new ByteArrayInputStream(value);
-             ObjectInputStream ois = new CustomObjectInputStream(bis)) {
+        try (ByteArrayInputStream bis = new ByteArrayInputStream(value); ObjectInputStream ois = new CustomObjectInputStream(bis)) {
             result = (Serializable) ois.readObject();
         } catch (Exception e) {
             throw new CacheException("Error deserializing object.  Cause: " + e, e);
@@ -113,7 +110,6 @@ public class SerializedCache implements Cache {
     }
 
     public static class CustomObjectInputStream extends ObjectInputStream {
-
         public CustomObjectInputStream(InputStream in) throws IOException {
             super(in);
         }
@@ -122,7 +118,5 @@ public class SerializedCache implements Cache {
         protected Class<?> resolveClass(ObjectStreamClass desc) throws ClassNotFoundException {
             return Resources.classForName(desc.getName());
         }
-
     }
-
 }

@@ -40,7 +40,6 @@ import org.apache.ibatis.type.TypeHandlerRegistry;
  * @author Kazuki Shimizu
  */
 public class Jdbc3KeyGenerator implements KeyGenerator {
-
     /**
      * A shared instance.
      *
@@ -78,26 +77,18 @@ public class Jdbc3KeyGenerator implements KeyGenerator {
         }
     }
 
-    protected void assignKeysToOneOfParams(final Configuration configuration, ResultSet rs, final String[] keyProperties,
-                                           Map<?, ?> paramMap) throws SQLException {
+    protected void assignKeysToOneOfParams(final Configuration configuration, ResultSet rs, final String[] keyProperties, Map<?, ?> paramMap) throws SQLException {
         // Assuming 'keyProperty' includes the parameter name. e.g. 'param.id'.
         int firstDot = keyProperties[0].indexOf('.');
         if (firstDot == -1) {
-            throw new ExecutorException(
-                    "Could not determine which parameter to assign generated keys to. "
-                            + "Note that when there are multiple parameters, 'keyProperty' must include the parameter name (e.g. 'param.id'). "
-                            + "Specified key properties are " + ArrayUtil.toString(keyProperties) + " and available parameters are "
-                            + paramMap.keySet());
+            throw new ExecutorException("Could not determine which parameter to assign generated keys to. Note that when there are multiple parameters, 'keyProperty' must include the parameter name (e.g. 'param.id'). Specified key properties are " + ArrayUtil.toString(keyProperties) + " and available parameters are " + paramMap.keySet());
         }
         String paramName = keyProperties[0].substring(0, firstDot);
         Object param;
         if (paramMap.containsKey(paramName)) {
             param = paramMap.get(paramName);
         } else {
-            throw new ExecutorException("Could not find parameter '" + paramName + "'. "
-                    + "Note that when there are multiple parameters, 'keyProperty' must include the parameter name (e.g. 'param.id'). "
-                    + "Specified key properties are " + ArrayUtil.toString(keyProperties) + " and available parameters are "
-                    + paramMap.keySet());
+            throw new ExecutorException("Could not find parameter '" + paramName + "'. Note that when there are multiple parameters, 'keyProperty' must include the parameter name (e.g. 'param.id'). Specified key properties are " + ArrayUtil.toString(keyProperties) + " and available parameters are " + paramMap.keySet());
         }
         // Remove param name from 'keyProperty' string. e.g. 'param.id' -> 'id'
         String[] modifiedKeyProperties = new String[keyProperties.length];
@@ -105,18 +96,13 @@ public class Jdbc3KeyGenerator implements KeyGenerator {
             if (keyProperties[i].charAt(firstDot) == '.' && keyProperties[i].startsWith(paramName)) {
                 modifiedKeyProperties[i] = keyProperties[i].substring(firstDot + 1);
             } else {
-                throw new ExecutorException("Assigning generated keys to multiple parameters is not supported. "
-                        + "Note that when there are multiple parameters, 'keyProperty' must include the parameter name (e.g. 'param.id'). "
-                        + "Specified key properties are " + ArrayUtil.toString(keyProperties) + " and available parameters are "
-                        + paramMap.keySet());
+                throw new ExecutorException("Assigning generated keys to multiple parameters is not supported. Note that when there are multiple parameters, 'keyProperty' must include the parameter name (e.g. 'param.id'). Specified key properties are " + ArrayUtil.toString(keyProperties) + " and available parameters are " + paramMap.keySet());
             }
         }
         assignKeysToParam(configuration, rs, modifiedKeyProperties, param);
     }
 
-    private void assignKeysToParam(final Configuration configuration, ResultSet rs, final String[] keyProperties,
-                                   Object param)
-            throws SQLException {
+    private void assignKeysToParam(final Configuration configuration, ResultSet rs, final String[] keyProperties, Object param) throws SQLException {
         final TypeHandlerRegistry typeHandlerRegistry = configuration.getTypeHandlerRegistry();
         final ResultSetMetaData rsmd = rs.getMetaData();
         // Wrap the parameter in Collection to normalize the logic.
@@ -164,8 +150,7 @@ public class Jdbc3KeyGenerator implements KeyGenerator {
                 Class<?> keyPropertyType = metaParam.getSetterType(keyProperties[i]);
                 typeHandlers[i] = typeHandlerRegistry.getTypeHandler(keyPropertyType, JdbcType.forCode(rsmd.getColumnType(i + 1)));
             } else {
-                throw new ExecutorException("No setter found for the keyProperty '" + keyProperties[i] + "' in '"
-                        + metaParam.getOriginalObject().getClass().getName() + "'.");
+                throw new ExecutorException("No setter found for the keyProperty '" + keyProperties[i] + "' in '" + metaParam.getOriginalObject().getClass().getName() + "'.");
             }
         }
         return typeHandlers;
@@ -181,5 +166,4 @@ public class Jdbc3KeyGenerator implements KeyGenerator {
             }
         }
     }
-
 }

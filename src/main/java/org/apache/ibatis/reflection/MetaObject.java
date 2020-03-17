@@ -31,7 +31,6 @@ import org.apache.ibatis.reflection.wrapper.ObjectWrapperFactory;
  * @author Clinton Begin
  */
 public class MetaObject {
-
     private final Object originalObject;
     private final ObjectWrapper objectWrapper;
     private final ObjectFactory objectFactory;
@@ -43,7 +42,6 @@ public class MetaObject {
         this.objectFactory = objectFactory;
         this.objectWrapperFactory = objectWrapperFactory;
         this.reflectorFactory = reflectorFactory;
-
         if (object instanceof ObjectWrapper) {
             this.objectWrapper = (ObjectWrapper) object;
         } else if (objectWrapperFactory.hasWrapperFor(object)) {
@@ -161,5 +159,4 @@ public class MetaObject {
     public <E> void addAll(List<E> list) {
         objectWrapper.addAll(list);
     }
-
 }

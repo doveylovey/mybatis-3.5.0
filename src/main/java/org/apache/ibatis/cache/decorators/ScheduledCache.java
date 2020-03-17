@@ -23,7 +23,6 @@ import org.apache.ibatis.cache.Cache;
  * @author Clinton Begin
  */
 public class ScheduledCache implements Cache {
-
     private final Cache delegate;
     protected long clearInterval;
     protected long lastClear;
@@ -94,5 +93,4 @@ public class ScheduledCache implements Cache {
         }
         return false;
     }
-
 }

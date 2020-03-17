@@ -29,12 +29,9 @@ import java.util.*;
  * @author Eduardo Macarron
  */
 public abstract class BaseJdbcLogger {
-
     protected static final Set<String> SET_METHODS = new HashSet<>();
     protected static final Set<String> EXECUTE_METHODS = new HashSet<>();
-
     private final Map<Object, Object> columnMap = new HashMap<>();
-
     private final List<Object> columnNames = new ArrayList<>();
     private final List<Object> columnValues = new ArrayList<>();
 
@@ -170,5 +167,4 @@ public abstract class BaseJdbcLogger {
         }
         return new String(buffer);
     }
-
 }

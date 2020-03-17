@@ -37,9 +37,7 @@ import org.apache.ibatis.type.TypeHandlerRegistry;
  * @author Eduardo Macarron
  */
 public class DefaultParameterHandler implements ParameterHandler {
-
     private final TypeHandlerRegistry typeHandlerRegistry;
-
     private final MappedStatement mappedStatement;
     private final Object parameterObject;
     private final BoundSql boundSql;
@@ -94,5 +92,4 @@ public class DefaultParameterHandler implements ParameterHandler {
             }
         }
     }
-
 }

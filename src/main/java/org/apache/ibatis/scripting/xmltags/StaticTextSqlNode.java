@@ -30,5 +30,4 @@ public class StaticTextSqlNode implements SqlNode {
         context.appendSql(text);
         return true;
     }
-
 }

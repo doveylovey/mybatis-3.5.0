@@ -40,7 +40,6 @@ import org.apache.ibatis.reflection.factory.ObjectFactory;
  * @author Franta Mejta
  */
 public abstract class AbstractSerialStateHolder implements Externalizable {
-
     private static final long serialVersionUID = 8940388717901644661L;
     private static final ThreadLocal<ObjectOutputStream> stream = new ThreadLocal<>();
     private byte[] userBeanBytes = new byte[0];
@@ -53,12 +52,7 @@ public abstract class AbstractSerialStateHolder implements Externalizable {
     public AbstractSerialStateHolder() {
     }
 
-    public AbstractSerialStateHolder(
-            final Object userBean,
-            final Map<String, ResultLoaderMap.LoadPair> unloadedProperties,
-            final ObjectFactory objectFactory,
-            List<Class<?>> constructorArgTypes,
-            List<Object> constructorArgs) {
+    public AbstractSerialStateHolder(final Object userBean, final Map<String, ResultLoaderMap.LoadPair> unloadedProperties, final ObjectFactory objectFactory, List<Class<?>> constructorArgTypes, List<Object> constructorArgs) {
         this.userBean = userBean;
         this.unloadedProperties = new HashMap<>(unloadedProperties);
         this.objectFactory = objectFactory;
@@ -76,16 +70,13 @@ public abstract class AbstractSerialStateHolder implements Externalizable {
             firstRound = true;
             stream.set(os);
         }
-
         os.writeObject(this.userBean);
         os.writeObject(this.unloadedProperties);
         os.writeObject(this.objectFactory);
         os.writeObject(this.constructorArgTypes);
         os.writeObject(this.constructorArgs);
-
         final byte[] bytes = baos.toByteArray();
         out.writeObject(bytes);
-
         if (firstRound) {
             stream.remove();
         }
@@ -128,8 +119,7 @@ public abstract class AbstractSerialStateHolder implements Externalizable {
         return this.createDeserializationProxy(userBean, arrayProps, objectFactory, arrayTypes, arrayValues);
     }
 
-    protected abstract Object createDeserializationProxy(Object target, Map<String, ResultLoaderMap.LoadPair> unloadedProperties, ObjectFactory objectFactory,
-                                                         List<Class<?>> constructorArgTypes, List<Object> constructorArgs);
+    protected abstract Object createDeserializationProxy(Object target, Map<String, ResultLoaderMap.LoadPair> unloadedProperties, ObjectFactory objectFactory, List<Class<?>> constructorArgTypes, List<Object> constructorArgs);
 
     private static class LookAheadObjectInputStream extends ObjectInputStream {
         private static final List<String> blacklist = Arrays.asList(
@@ -152,9 +142,7 @@ public abstract class AbstractSerialStateHolder implements Externalizable {
         protected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException {
             String className = desc.getName();
             if (blacklist.contains(className)) {
-                throw new InvalidClassException(className, "Deserialization is not allowed for security reasons. "
-                        + "It is strongly recommended to configure the deserialization filter provided by JDK. "
-                        + "See http://openjdk.java.net/jeps/290 for the details.");
+                throw new InvalidClassException(className, "Deserialization is not allowed for security reasons. It is strongly recommended to configure the deserialization filter provided by JDK. See http://openjdk.java.net/jeps/290 for the details.");
             }
             return super.resolveClass(desc);
         }

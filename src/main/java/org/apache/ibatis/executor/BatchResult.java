@@ -24,7 +24,6 @@ import org.apache.ibatis.mapping.MappedStatement;
  * @author Jeff Butler
  */
 public class BatchResult {
-
     private final MappedStatement mappedStatement;
     private final String sql;
     private final List<Object> parameterObjects;
@@ -71,5 +70,4 @@ public class BatchResult {
     public void addParameterObject(Object parameterObject) {
         this.parameterObjects.add(parameterObject);
     }
-
 }

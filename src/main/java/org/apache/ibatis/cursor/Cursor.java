@@ -26,7 +26,6 @@ import java.io.Closeable;
  * @author Guillaume Darmont / guillaume@dropinocean.com
  */
 public interface Cursor<T> extends Closeable, Iterable<T> {
-
     /**
      * @return true if the cursor has started to fetch items from database.
      */

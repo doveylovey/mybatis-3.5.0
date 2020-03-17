@@ -28,7 +28,6 @@ import org.apache.ibatis.session.ResultHandler;
  * @author Clinton Begin
  */
 public class DefaultMapResultHandler<K, V> implements ResultHandler<V> {
-
     private final Map<K, V> mappedResults;
     private final String mapKey;
     private final ObjectFactory objectFactory;

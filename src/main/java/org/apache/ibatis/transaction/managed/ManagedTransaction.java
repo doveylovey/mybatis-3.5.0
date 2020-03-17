@@ -34,7 +34,6 @@ import org.apache.ibatis.transaction.Transaction;
  * @see ManagedTransactionFactory
  */
 public class ManagedTransaction implements Transaction {
-
     private static final Log log = LogFactory.getLog(ManagedTransaction.class);
 
     private DataSource dataSource;
@@ -95,5 +94,4 @@ public class ManagedTransaction implements Transaction {
     public Integer getTimeout() throws SQLException {
         return null;
     }
-
 }

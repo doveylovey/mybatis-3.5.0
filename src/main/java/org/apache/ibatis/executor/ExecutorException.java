@@ -21,7 +21,6 @@ import org.apache.ibatis.exceptions.PersistenceException;
  * @author Clinton Begin
  */
 public class ExecutorException extends PersistenceException {
-
     private static final long serialVersionUID = 4060977051977364820L;
 
     public ExecutorException() {
@@ -39,5 +38,4 @@ public class ExecutorException extends PersistenceException {
     public ExecutorException(Throwable cause) {
         super(cause);
     }
-
 }

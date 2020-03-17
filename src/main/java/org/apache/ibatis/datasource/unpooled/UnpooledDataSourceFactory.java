@@ -28,7 +28,6 @@ import org.apache.ibatis.reflection.SystemMetaObject;
  * @author Clinton Begin
  */
 public class UnpooledDataSourceFactory implements DataSourceFactory {
-
     private static final String DRIVER_PROPERTY_PREFIX = "driver.";
     private static final int DRIVER_PROPERTY_PREFIX_LENGTH = DRIVER_PROPERTY_PREFIX.length();
 
@@ -77,5 +76,4 @@ public class UnpooledDataSourceFactory implements DataSourceFactory {
         }
         return convertedValue;
     }
-
 }

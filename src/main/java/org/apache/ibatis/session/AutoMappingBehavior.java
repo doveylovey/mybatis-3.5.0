@@ -21,7 +21,6 @@ package org.apache.ibatis.session;
  * @author Eduardo Macarron
  */
 public enum AutoMappingBehavior {
-
     /**
      * Disables auto-mapping.
      */

@@ -26,7 +26,6 @@ import org.apache.ibatis.mapping.MappedStatement;
  * @since 3.4.0
  */
 public enum AutoMappingUnknownColumnBehavior {
-
     /**
      * Do nothing (Default).
      */

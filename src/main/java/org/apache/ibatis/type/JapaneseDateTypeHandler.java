@@ -30,10 +30,8 @@ import java.time.chrono.JapaneseDate;
  * @since 3.4.5
  */
 public class JapaneseDateTypeHandler extends BaseTypeHandler<JapaneseDate> {
-
     @Override
-    public void setNonNullParameter(PreparedStatement ps, int i, JapaneseDate parameter, JdbcType jdbcType)
-            throws SQLException {
+    public void setNonNullParameter(PreparedStatement ps, int i, JapaneseDate parameter, JdbcType jdbcType) throws SQLException {
         ps.setDate(i, Date.valueOf(LocalDate.ofEpochDay(parameter.toEpochDay())));
     }
 
@@ -61,5 +59,4 @@ public class JapaneseDateTypeHandler extends BaseTypeHandler<JapaneseDate> {
         }
         return null;
     }
-
 }

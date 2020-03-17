@@ -32,7 +32,6 @@ import org.apache.ibatis.reflection.ExceptionUtil;
  * @author Eduardo Macarron
  */
 public final class PreparedStatementLogger extends BaseJdbcLogger implements InvocationHandler {
-
     private final PreparedStatement statement;
 
     private PreparedStatementLogger(PreparedStatement stmt, Log statementLog, int queryStack) {
@@ -103,5 +102,4 @@ public final class PreparedStatementLogger extends BaseJdbcLogger implements Inv
     public PreparedStatement getPreparedStatement() {
         return statement;
     }
-
 }

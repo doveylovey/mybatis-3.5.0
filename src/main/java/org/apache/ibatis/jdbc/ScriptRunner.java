@@ -31,11 +31,8 @@ import java.util.regex.Pattern;
  * @author Clinton Begin
  */
 public class ScriptRunner {
-
     private static final String LINE_SEPARATOR = System.getProperty("line.separator", "\n");
-
     private static final String DEFAULT_DELIMITER = ";";
-
     private static final Pattern DELIMITER_PATTERN = Pattern.compile("^\\s*((--)|(//))?\\s*(//)?\\s*@DELIMITER\\s+([^\\s]+)", Pattern.CASE_INSENSITIVE);
 
     private final Connection connection;
@@ -102,7 +99,6 @@ public class ScriptRunner {
 
     public void runScript(Reader reader) {
         setAutoCommit();
-
         try {
             if (sendFullScript) {
                 executeFullScript(reader);
@@ -315,5 +311,4 @@ public class ScriptRunner {
             errorLogWriter.flush();
         }
     }
-
 }

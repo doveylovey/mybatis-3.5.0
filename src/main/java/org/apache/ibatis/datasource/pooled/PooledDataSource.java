@@ -37,11 +37,9 @@ import org.apache.ibatis.logging.LogFactory;
  * @author Clinton Begin
  */
 public class PooledDataSource implements DataSource {
-
     private static final Log log = LogFactory.getLog(PooledDataSource.class);
 
     private final PoolState state = new PoolState(this);
-
     private final UnpooledDataSource dataSource;
 
     // OPTIONAL CONFIGURATION FIELDS
@@ -53,7 +51,6 @@ public class PooledDataSource implements DataSource {
     protected String poolPingQuery = "NO PING QUERY SET";
     protected boolean poolPingEnabled;
     protected int poolPingConnectionsNotUsedFor;
-
     private int expectedConnectionTypeCode;
 
     public PooledDataSource() {
@@ -176,8 +173,7 @@ public class PooledDataSource implements DataSource {
      * @param poolMaximumLocalBadConnectionTolerance max tolerance for bad connection happens in one thread
      * @since 3.4.5
      */
-    public void setPoolMaximumLocalBadConnectionTolerance(
-            int poolMaximumLocalBadConnectionTolerance) {
+    public void setPoolMaximumLocalBadConnectionTolerance(int poolMaximumLocalBadConnectionTolerance) {
         this.poolMaximumLocalBadConnectionTolerance = poolMaximumLocalBadConnectionTolerance;
     }
 
@@ -303,7 +299,6 @@ public class PooledDataSource implements DataSource {
                 try {
                     PooledConnection conn = state.activeConnections.remove(i - 1);
                     conn.invalidate();
-
                     Connection realConn = conn.getRealConnection();
                     if (!realConn.getAutoCommit()) {
                         realConn.rollback();
@@ -317,7 +312,6 @@ public class PooledDataSource implements DataSource {
                 try {
                     PooledConnection conn = state.idleConnections.remove(i - 1);
                     conn.invalidate();
-
                     Connection realConn = conn.getRealConnection();
                     if (!realConn.getAutoCommit()) {
                         realConn.rollback();
@@ -342,7 +336,6 @@ public class PooledDataSource implements DataSource {
     }
 
     protected void pushConnection(PooledConnection conn) throws SQLException {
-
         synchronized (state) {
             state.activeConnections.remove(conn);
             if (conn.isValid()) {
@@ -502,7 +495,6 @@ public class PooledDataSource implements DataSource {
      */
     protected boolean pingConnection(PooledConnection conn) {
         boolean result = true;
-
         try {
             result = !conn.getRealConnection().isClosed();
         } catch (SQLException e) {
@@ -511,7 +503,6 @@ public class PooledDataSource implements DataSource {
             }
             result = false;
         }
-
         if (result) {
             if (poolPingEnabled) {
                 if (poolPingConnectionsNotUsedFor >= 0 && conn.getTimeElapsedSinceLastUse() > poolPingConnectionsNotUsedFor) {
@@ -580,5 +571,4 @@ public class PooledDataSource implements DataSource {
     public Logger getParentLogger() {
         return Logger.getLogger(Logger.GLOBAL_LOGGER_NAME); // requires JDK version 1.6
     }
-
 }

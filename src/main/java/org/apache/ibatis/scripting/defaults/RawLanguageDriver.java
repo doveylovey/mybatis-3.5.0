@@ -30,7 +30,6 @@ import org.apache.ibatis.session.Configuration;
  * @since 3.2.0
  */
 public class RawLanguageDriver extends XMLLanguageDriver {
-
     @Override
     public SqlSource createSqlSource(Configuration configuration, XNode script, Class<?> parameterType) {
         SqlSource source = super.createSqlSource(configuration, script, parameterType);
@@ -50,5 +49,4 @@ public class RawLanguageDriver extends XMLLanguageDriver {
             throw new BuilderException("Dynamic content is not allowed when using RAW language");
         }
     }
-
 }

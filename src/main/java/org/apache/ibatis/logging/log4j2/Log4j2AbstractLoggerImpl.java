@@ -29,12 +29,9 @@ import org.apache.logging.log4j.spi.ExtendedLoggerWrapper;
  * @author Eduardo Macarron
  */
 public class Log4j2AbstractLoggerImpl implements Log {
-
-    private static final Marker MARKER = MarkerManager.getMarker(LogFactory.MARKER);
-
-    private static final String FQCN = Log4j2Impl.class.getName();
-
     private final ExtendedLoggerWrapper log;
+    private static final Marker MARKER = MarkerManager.getMarker(LogFactory.MARKER);
+    private static final String FQCN = Log4j2Impl.class.getName();
 
     public Log4j2AbstractLoggerImpl(AbstractLogger abstractLogger) {
         log = new ExtendedLoggerWrapper(abstractLogger, abstractLogger.getName(), abstractLogger.getMessageFactory());
@@ -74,5 +71,4 @@ public class Log4j2AbstractLoggerImpl implements Log {
     public void warn(String s) {
         log.logIfEnabled(FQCN, Level.WARN, MARKER, (Message) new SimpleMessage(s), null);
     }
-
 }

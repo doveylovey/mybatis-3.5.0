@@ -38,7 +38,6 @@ import org.apache.ibatis.transaction.TransactionFactory;
  * @author Clinton Begin
  */
 public class ResultLoader {
-
     protected final Configuration configuration;
     protected final Executor executor;
     protected final MappedStatement mappedStatement;
@@ -103,5 +102,4 @@ public class ResultLoader {
     public boolean wasNull() {
         return resultObject == null;
     }
-
 }

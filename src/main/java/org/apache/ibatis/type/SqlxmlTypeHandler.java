@@ -28,10 +28,8 @@ import java.sql.SQLXML;
  * @since 3.5.0
  */
 public class SqlxmlTypeHandler extends BaseTypeHandler<String> {
-
     @Override
-    public void setNonNullParameter(PreparedStatement ps, int i, String parameter, JdbcType jdbcType)
-            throws SQLException {
+    public void setNonNullParameter(PreparedStatement ps, int i, String parameter, JdbcType jdbcType) throws SQLException {
         SQLXML sqlxml = ps.getConnection().createSQLXML();
         try {
             sqlxml.setString(parameter);
@@ -66,5 +64,4 @@ public class SqlxmlTypeHandler extends BaseTypeHandler<String> {
             sqlxml.free();
         }
     }
-
 }

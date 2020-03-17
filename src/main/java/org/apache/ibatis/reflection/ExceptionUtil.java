@@ -22,7 +22,6 @@ import java.lang.reflect.UndeclaredThrowableException;
  * @author Clinton Begin
  */
 public class ExceptionUtil {
-
     private ExceptionUtil() {
         // Prevent Instantiation
     }
@@ -39,5 +38,4 @@ public class ExceptionUtil {
             }
         }
     }
-
 }

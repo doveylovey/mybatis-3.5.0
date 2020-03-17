@@ -29,7 +29,6 @@ import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 
 public class ParamNameResolver {
-
     private static final String GENERIC_NAME_PREFIX = "param";
 
     /**

@@ -22,7 +22,6 @@ import java.util.List;
  * @author Clinton Begin
  */
 public class PoolState {
-
     protected PooledDataSource dataSource;
 
     protected final List<PooledConnection> idleConnections = new ArrayList<>();
@@ -50,7 +49,6 @@ public class PoolState {
 
     public synchronized long getAverageWaitTime() {
         return hadToWaitCount == 0 ? 0 : accumulatedWaitTime / hadToWaitCount;
-
     }
 
     public synchronized long getHadToWaitCount() {
@@ -72,7 +70,6 @@ public class PoolState {
     public synchronized long getAverageCheckoutTime() {
         return requestCount == 0 ? 0 : accumulatedCheckoutTime / requestCount;
     }
-
 
     public synchronized int getIdleConnectionCount() {
         return idleConnections.size();
@@ -111,5 +108,4 @@ public class PoolState {
         builder.append("\n===============================================================");
         return builder.toString();
     }
-
 }

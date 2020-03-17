@@ -171,7 +171,6 @@ public class DefaultVFS extends VFS {
         if (!path.endsWith("/")) {
             path = path + "/";
         }
-
         // Iterate over the entries and collect those that begin with the requested path
         List<String> resources = new ArrayList<>();
         for (JarEntry entry; (entry = jar.getNextJarEntry()) != null; ) {
@@ -181,7 +180,6 @@ public class DefaultVFS extends VFS {
                 if (name.charAt(0) != '/') {
                     name.insert(0, '/');
                 }
-
                 // Check file name
                 if (name.indexOf(path) == 0) {
                     if (log.isDebugEnabled()) {
@@ -209,7 +207,6 @@ public class DefaultVFS extends VFS {
         if (log.isDebugEnabled()) {
             log.debug("Find JAR URL: " + url);
         }
-
         // If the file part of the URL is itself a URL, then that URL probably points to the JAR
         try {
             for (; ; ) {
@@ -221,7 +218,6 @@ public class DefaultVFS extends VFS {
         } catch (MalformedURLException e) {
             // This will happen at some point and serves as a break in the loop
         }
-
         // Look for the .jar extension and chop off everything after that
         StringBuilder jarUrl = new StringBuilder(url.toExternalForm());
         int index = jarUrl.lastIndexOf(".jar");
@@ -236,7 +232,6 @@ public class DefaultVFS extends VFS {
             }
             return null;
         }
-
         // Try to open and test it
         try {
             URL testUrl = new URL(jarUrl.toString());
@@ -249,7 +244,6 @@ public class DefaultVFS extends VFS {
                 }
                 jarUrl.replace(0, jarUrl.length(), testUrl.getFile());
                 File file = new File(jarUrl.toString());
-
                 // File name might be URL-encoded
                 if (!file.exists()) {
                     try {
@@ -258,7 +252,6 @@ public class DefaultVFS extends VFS {
                         throw new RuntimeException("Unsupported encoding?  UTF-8?  That's unpossible.");
                     }
                 }
-
                 if (file.exists()) {
                     if (log.isDebugEnabled()) {
                         log.debug("Trying real file: " + file.getAbsolutePath());
@@ -272,7 +265,6 @@ public class DefaultVFS extends VFS {
         } catch (MalformedURLException e) {
             log.warn("Invalid JAR URL: " + jarUrl);
         }
-
         if (log.isDebugEnabled()) {
             log.debug("Not a JAR: " + jarUrl);
         }
@@ -328,7 +320,6 @@ public class DefaultVFS extends VFS {
                 }
             }
         }
-
         return false;
     }
 }

@@ -21,7 +21,6 @@ import org.apache.ibatis.logging.Log;
  * @author Clinton Begin
  */
 public class StdOutImpl implements Log {
-
     public StdOutImpl(String clazz) {
         // Do Nothing
     }

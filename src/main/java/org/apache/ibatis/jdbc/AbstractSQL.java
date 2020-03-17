@@ -27,7 +27,6 @@ import java.util.List;
  * @author Kazuki Shimizu
  */
 public abstract class AbstractSQL<T> {
-
     private static final String AND = ") \nAND (";
     private static final String OR = ") \nOR (";
 
@@ -306,7 +305,6 @@ public abstract class AbstractSQL<T> {
     }
 
     private static class SQLStatement {
-
         public enum StatementType {
             DELETE, INSERT, SELECT, UPDATE
         }
@@ -333,8 +331,7 @@ public abstract class AbstractSQL<T> {
             // Prevent Synthetic Access
         }
 
-        private void sqlClause(SafeAppendable builder, String keyword, List<String> parts, String open, String close,
-                               String conjunction) {
+        private void sqlClause(SafeAppendable builder, String keyword, List<String> parts, String open, String close, String conjunction) {
             if (!parts.isEmpty()) {
                 if (!builder.isEmpty()) {
                     builder.append("\n");
@@ -361,7 +358,6 @@ public abstract class AbstractSQL<T> {
             } else {
                 sqlClause(builder, "SELECT", select, "", "", ", ");
             }
-
             sqlClause(builder, "FROM", tables, "", "", ", ");
             joins(builder);
             sqlClause(builder, "WHERE", where, "(", ")", " AND ");
@@ -405,30 +401,23 @@ public abstract class AbstractSQL<T> {
             if (statementType == null) {
                 return null;
             }
-
             String answer;
-
             switch (statementType) {
                 case DELETE:
                     answer = deleteSQL(builder);
                     break;
-
                 case INSERT:
                     answer = insertSQL(builder);
                     break;
-
                 case SELECT:
                     answer = selectSQL(builder);
                     break;
-
                 case UPDATE:
                     answer = updateSQL(builder);
                     break;
-
                 default:
                     answer = null;
             }
-
             return answer;
         }
     }

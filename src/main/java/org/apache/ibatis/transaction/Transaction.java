@@ -25,7 +25,6 @@ import java.sql.SQLException;
  * @author Clinton Begin
  */
 public interface Transaction {
-
     /**
      * Retrieve inner database connection
      *
@@ -61,5 +60,4 @@ public interface Transaction {
      * @throws SQLException
      */
     Integer getTimeout() throws SQLException;
-
 }

@@ -23,7 +23,6 @@ import org.apache.ibatis.reflection.ReflectionException;
  * @author Clinton Begin
  */
 public final class PropertyNamer {
-
     private PropertyNamer() {
         // Prevent Instantiation of Static Class
     }
@@ -55,5 +54,4 @@ public final class PropertyNamer {
     public static boolean isSetter(String name) {
         return name.startsWith("set");
     }
-
 }

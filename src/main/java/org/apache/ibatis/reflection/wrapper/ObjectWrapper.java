@@ -25,7 +25,6 @@ import org.apache.ibatis.reflection.property.PropertyTokenizer;
  * @author Clinton Begin
  */
 public interface ObjectWrapper {
-
     Object get(PropertyTokenizer prop);
 
     void set(PropertyTokenizer prop, Object value);
@@ -51,5 +50,4 @@ public interface ObjectWrapper {
     void add(Object element);
 
     <E> void addAll(List<E> element);
-
 }

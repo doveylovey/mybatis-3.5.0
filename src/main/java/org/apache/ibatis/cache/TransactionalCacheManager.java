@@ -24,7 +24,6 @@ import org.apache.ibatis.cache.decorators.TransactionalCache;
  * @author Clinton Begin
  */
 public class TransactionalCacheManager {
-
     private final Map<Cache, TransactionalCache> transactionalCaches = new HashMap<>();
 
     public void clear(Cache cache) {
@@ -54,5 +53,4 @@ public class TransactionalCacheManager {
     private TransactionalCache getTransactionalCache(Cache cache) {
         return transactionalCaches.computeIfAbsent(cache, TransactionalCache::new);
     }
-
 }

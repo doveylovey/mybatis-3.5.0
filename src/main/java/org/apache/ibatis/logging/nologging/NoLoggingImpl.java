@@ -21,7 +21,6 @@ import org.apache.ibatis.logging.Log;
  * @author Clinton Begin
  */
 public class NoLoggingImpl implements Log {
-
     public NoLoggingImpl(String clazz) {
         // Do Nothing
     }
@@ -60,5 +59,4 @@ public class NoLoggingImpl implements Log {
     public void warn(String s) {
         // Do Nothing
     }
-
 }

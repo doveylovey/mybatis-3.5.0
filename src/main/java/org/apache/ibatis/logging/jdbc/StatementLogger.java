@@ -31,7 +31,6 @@ import org.apache.ibatis.reflection.ExceptionUtil;
  * @author Eduardo Macarron
  */
 public final class StatementLogger extends BaseJdbcLogger implements InvocationHandler {
-
     private final Statement statement;
 
     private StatementLogger(Statement stmt, Log statementLog, int queryStack) {
@@ -86,5 +85,4 @@ public final class StatementLogger extends BaseJdbcLogger implements InvocationH
     public Statement getStatement() {
         return statement;
     }
-
 }

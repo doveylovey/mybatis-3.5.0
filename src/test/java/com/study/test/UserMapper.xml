@@ -21,8 +21,7 @@
 
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         <!--@mbg.generated-->
-        select
-        <include refid="Base_Column_List"/>
+        select <include refid="Base_Column_List"/>
         from t_user
         where id = #{id,jdbcType=BIGINT}
     </select>
@@ -35,12 +34,9 @@
 
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.study.test.User" useGeneratedKeys="true">
         <!--@mbg.generated-->
-        insert into t_user (`name`, `password`, birthday,
-        gender, email, hobby,
-        gmt_create, gmt_update)
-        values (#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE},
-        #{gender,jdbcType=BOOLEAN}, #{email,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR},
-        #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtUpdate,jdbcType=TIMESTAMP})
+        insert into t_user (`name`, `password`, birthday, gender, email, hobby, gmt_create, gmt_update)
+        values (#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{gender,jdbcType=BOOLEAN},
+        #{email,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtUpdate,jdbcType=TIMESTAMP})
     </insert>
 
     <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.study.test.User"

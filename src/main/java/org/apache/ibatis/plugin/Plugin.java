@@ -29,7 +29,6 @@ import org.apache.ibatis.reflection.ExceptionUtil;
  * @author Clinton Begin
  */
 public class Plugin implements InvocationHandler {
-
     private final Object target;
     private final Interceptor interceptor;
     private final Map<Class<?>, Set<Method>> signatureMap;
@@ -45,10 +44,7 @@ public class Plugin implements InvocationHandler {
         Class<?> type = target.getClass();
         Class<?>[] interfaces = getAllInterfaces(type, signatureMap);
         if (interfaces.length > 0) {
-            return Proxy.newProxyInstance(
-                    type.getClassLoader(),
-                    interfaces,
-                    new Plugin(target, interceptor, signatureMap));
+            return Proxy.newProxyInstance(type.getClassLoader(), interfaces, new Plugin(target, interceptor, signatureMap));
         }
         return target;
     }
@@ -98,5 +94,4 @@ public class Plugin implements InvocationHandler {
         }
         return interfaces.toArray(new Class<?>[interfaces.size()]);
     }
-
 }

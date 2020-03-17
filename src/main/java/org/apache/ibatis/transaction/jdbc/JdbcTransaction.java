@@ -35,7 +35,6 @@ import org.apache.ibatis.transaction.TransactionException;
  * @see JdbcTransactionFactory
  */
 public class JdbcTransaction implements Transaction {
-
     private static final Log log = LogFactory.getLog(JdbcTransaction.class);
 
     protected Connection connection;
@@ -103,9 +102,7 @@ public class JdbcTransaction implements Transaction {
         } catch (SQLException e) {
             // Only a very poorly implemented driver would fail here,
             // and there's not much we can do about that.
-            throw new TransactionException("Error configuring AutoCommit.  "
-                    + "Your driver may not support getAutoCommit() or setAutoCommit(). "
-                    + "Requested setting: " + desiredAutoCommit + ".  Cause: " + e, e);
+            throw new TransactionException("Error configuring AutoCommit. Your driver may not support getAutoCommit() or setAutoCommit(). Requested setting: " + desiredAutoCommit + ".  Cause: " + e, e);
         }
     }
 
@@ -124,8 +121,7 @@ public class JdbcTransaction implements Transaction {
             }
         } catch (SQLException e) {
             if (log.isDebugEnabled()) {
-                log.debug("Error resetting autocommit to true "
-                        + "before closing the connection.  Cause: " + e);
+                log.debug("Error resetting autocommit to true before closing the connection.  Cause: " + e);
             }
         }
     }
@@ -145,5 +141,4 @@ public class JdbcTransaction implements Transaction {
     public Integer getTimeout() throws SQLException {
         return null;
     }
-
 }

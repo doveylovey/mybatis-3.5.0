@@ -21,7 +21,6 @@ package org.apache.ibatis.jdbc;
  */
 @Deprecated
 public class SelectBuilder {
-
     private static final ThreadLocal<SQL> localSQL = new ThreadLocal<>();
 
     static {
@@ -107,5 +106,4 @@ public class SelectBuilder {
     private static SQL sql() {
         return localSQL.get();
     }
-
 }

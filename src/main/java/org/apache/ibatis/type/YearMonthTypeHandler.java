@@ -32,7 +32,6 @@ import java.time.YearMonth;
  * @since 3.4.5
  */
 public class YearMonthTypeHandler extends BaseTypeHandler<YearMonth> {
-
     @Override
     public void setNonNullParameter(PreparedStatement ps, int i, YearMonth yearMonth, JdbcType jt) throws SQLException {
         ps.setString(i, yearMonth.toString());
@@ -55,5 +54,4 @@ public class YearMonthTypeHandler extends BaseTypeHandler<YearMonth> {
         String value = cs.getString(columnIndex);
         return value == null ? null : YearMonth.parse(value);
     }
-
 }

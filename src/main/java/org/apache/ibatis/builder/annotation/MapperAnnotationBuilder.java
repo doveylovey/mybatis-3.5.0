@@ -156,8 +156,7 @@ public class MapperAnnotationBuilder {
         }
         Properties props = new Properties();
         for (Property property : properties) {
-            props.setProperty(property.name(),
-                    PropertyParser.parse(property.value(), configuration.getVariables()));
+            props.setProperty(property.name(), PropertyParser.parse(property.value(), configuration.getVariables()));
         }
         return props;
     }
@@ -605,9 +604,9 @@ public class MapperAnnotationBuilder {
         SqlSource sqlSource = buildSqlSourceFromStrings(selectKeyAnnotation.statement(), parameterTypeClass, languageDriver);
         SqlCommandType sqlCommandType = SqlCommandType.SELECT;
 
-        assistant.addMappedStatement(id, sqlSource, statementType, sqlCommandType, fetchSize, timeout, parameterMap, parameterTypeClass, resultMap, resultTypeClass, resultSetTypeEnum,
-                flushCache, useCache, false,
-                keyGenerator, keyProperty, keyColumn, null, languageDriver, null);
+        assistant.addMappedStatement(id, sqlSource, statementType, sqlCommandType, fetchSize, timeout, parameterMap, parameterTypeClass,
+                resultMap, resultTypeClass, resultSetTypeEnum, flushCache, useCache, false, keyGenerator, keyProperty,
+                keyColumn, null, languageDriver, null);
 
         id = assistant.applyCurrentNamespace(id, false);
 

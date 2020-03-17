@@ -33,7 +33,6 @@ import java.util.Map;
  * @author Clinton Begin
  */
 public class XMLScriptBuilder extends BaseBuilder {
-
     private final XNode context;
     private boolean isDynamic;
     private final Class<?> parameterType;
@@ -272,5 +271,4 @@ public class XMLScriptBuilder extends BaseBuilder {
             return defaultSqlNode;
         }
     }
-
 }

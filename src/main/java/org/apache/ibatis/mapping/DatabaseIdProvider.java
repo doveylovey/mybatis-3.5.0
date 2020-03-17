@@ -28,7 +28,6 @@ import javax.sql.DataSource;
  * @author Eduardo Macarron
  */
 public interface DatabaseIdProvider {
-
     void setProperties(Properties p);
 
     String getDatabaseId(DataSource dataSource) throws SQLException;

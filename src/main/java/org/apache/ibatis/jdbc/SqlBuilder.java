@@ -20,7 +20,6 @@ package org.apache.ibatis.jdbc;
  * @deprecated Use the {@link SQL} Class
  */
 public class SqlBuilder {
-
     private static final ThreadLocal<SQL> localSQL = new ThreadLocal<>();
 
     static {
@@ -126,5 +125,4 @@ public class SqlBuilder {
     private static SQL sql() {
         return localSQL.get();
     }
-
 }

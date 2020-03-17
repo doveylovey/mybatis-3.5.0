@@ -28,7 +28,6 @@ import org.apache.ibatis.session.TransactionIsolationLevel;
  * @author Clinton Begin
  */
 public interface TransactionFactory {
-
     /**
      * Sets transaction factory custom properties.
      *
@@ -55,5 +54,4 @@ public interface TransactionFactory {
      * @since 3.1.0
      */
     Transaction newTransaction(DataSource dataSource, TransactionIsolationLevel level, boolean autoCommit);
-
 }

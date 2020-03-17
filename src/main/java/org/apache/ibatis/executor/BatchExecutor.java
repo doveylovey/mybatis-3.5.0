@@ -39,7 +39,6 @@ import org.apache.ibatis.transaction.Transaction;
  * @author Jeff Butler
  */
 public class BatchExecutor extends BaseExecutor {
-
     public static final int BATCH_UPDATE_RETURN_VALUE = Integer.MIN_VALUE + 1002;
 
     private final List<Statement> statementList = new ArrayList<>();
@@ -79,8 +78,7 @@ public class BatchExecutor extends BaseExecutor {
     }
 
     @Override
-    public <E> List<E> doQuery(MappedStatement ms, Object parameterObject, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql)
-            throws SQLException {
+    public <E> List<E> doQuery(MappedStatement ms, Object parameterObject, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql) throws SQLException {
         Statement stmt = null;
         try {
             flushStatements();
@@ -135,15 +133,9 @@ public class BatchExecutor extends BaseExecutor {
                     closeStatement(stmt);
                 } catch (BatchUpdateException e) {
                     StringBuilder message = new StringBuilder();
-                    message.append(batchResult.getMappedStatement().getId())
-                            .append(" (batch index #")
-                            .append(i + 1)
-                            .append(")")
-                            .append(" failed.");
+                    message.append(batchResult.getMappedStatement().getId()).append(" (batch index #").append(i + 1).append(")").append(" failed.");
                     if (i > 0) {
-                        message.append(" ")
-                                .append(i)
-                                .append(" prior sub executor(s) completed successfully, but will be rolled back.");
+                        message.append(" ").append(i).append(" prior sub executor(s) completed successfully, but will be rolled back.");
                     }
                     throw new BatchExecutorException(message.toString(), e, results, batchResult);
                 }
@@ -159,5 +151,4 @@ public class BatchExecutor extends BaseExecutor {
             batchResultList.clear();
         }
     }
-
 }

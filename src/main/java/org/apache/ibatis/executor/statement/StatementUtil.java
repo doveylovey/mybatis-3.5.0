@@ -25,7 +25,6 @@ import java.sql.Statement;
  * @since 3.4.0
  */
 public class StatementUtil {
-
     private StatementUtil() {
         // NOP
     }
@@ -55,5 +54,4 @@ public class StatementUtil {
             statement.setQueryTimeout(timeToLiveOfQuery);
         }
     }
-
 }

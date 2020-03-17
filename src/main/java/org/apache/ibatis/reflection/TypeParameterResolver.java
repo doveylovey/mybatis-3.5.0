@@ -29,7 +29,6 @@ import java.util.Arrays;
  * @author Iwao AVE!
  */
 public class TypeParameterResolver {
-
     /**
      * @return The field type as {@link Type}. If it has type parameters in the declaration,<br>
      * they will be resolved to the actual runtime {@link Type}s.
@@ -220,9 +219,7 @@ public class TypeParameterResolver {
 
     static class ParameterizedTypeImpl implements ParameterizedType {
         private Class<?> rawType;
-
         private Type ownerType;
-
         private Type[] actualTypeArguments;
 
         public ParameterizedTypeImpl(Class<?> rawType, Type ownerType, Type[] actualTypeArguments) {
@@ -255,7 +252,6 @@ public class TypeParameterResolver {
 
     static class WildcardTypeImpl implements WildcardType {
         private Type[] lowerBounds;
-
         private Type[] upperBounds;
 
         WildcardTypeImpl(Type[] lowerBounds, Type[] upperBounds) {

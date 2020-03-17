@@ -32,7 +32,6 @@ import org.apache.ibatis.reflection.ExceptionUtil;
  * @author Eduardo Macarron
  */
 public final class ConnectionLogger extends BaseJdbcLogger implements InvocationHandler {
-
     private final Connection connection;
 
     private ConnectionLogger(Connection conn, Log statementLog, int queryStack) {
@@ -41,8 +40,7 @@ public final class ConnectionLogger extends BaseJdbcLogger implements Invocation
     }
 
     @Override
-    public Object invoke(Object proxy, Method method, Object[] params)
-            throws Throwable {
+    public Object invoke(Object proxy, Method method, Object[] params) throws Throwable {
         try {
             if (Object.class.equals(method.getDeclaringClass())) {
                 return method.invoke(this, params);
@@ -93,5 +91,4 @@ public final class ConnectionLogger extends BaseJdbcLogger implements Invocation
     public Connection getConnection() {
         return connection;
     }
-
 }

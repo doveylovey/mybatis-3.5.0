@@ -188,12 +188,10 @@ public class ResolverUtil<T> {
         if (packageNames == null) {
             return this;
         }
-
         Test test = new IsA(parent);
         for (String pkg : packageNames) {
             find(test, pkg);
         }
-
         return this;
     }
 
@@ -208,12 +206,10 @@ public class ResolverUtil<T> {
         if (packageNames == null) {
             return this;
         }
-
         Test test = new AnnotatedWith(annotation);
         for (String pkg : packageNames) {
             find(test, pkg);
         }
-
         return this;
     }
 

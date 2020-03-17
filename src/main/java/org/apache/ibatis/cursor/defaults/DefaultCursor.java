@@ -35,7 +35,6 @@ import java.util.NoSuchElementException;
  * @author Guillaume Darmont / guillaume@dropinocean.com
  */
 public class DefaultCursor<T> implements Cursor<T> {
-
     // ResultSetHandler stuff
     private final DefaultResultSetHandler resultSetHandler;
     private final ResultMap resultMap;
@@ -50,7 +49,6 @@ public class DefaultCursor<T> implements Cursor<T> {
     private int indexWithRowBound = -1;
 
     private enum CursorStatus {
-
         /**
          * A freshly created cursor, database ResultSet consuming has not started
          */
@@ -108,7 +106,6 @@ public class DefaultCursor<T> implements Cursor<T> {
         if (isClosed()) {
             return;
         }
-
         ResultSet rs = rsw.getResultSet();
         try {
             if (rs != null) {
@@ -133,7 +130,6 @@ public class DefaultCursor<T> implements Cursor<T> {
         if (isClosed()) {
             return null;
         }
-
         try {
             status = CursorStatus.OPEN;
             if (!rsw.getResultSet().isClosed()) {
@@ -142,7 +138,6 @@ public class DefaultCursor<T> implements Cursor<T> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
         T next = objectWrapperResultHandler.result;
         if (next != null) {
             indexWithRowBound++;
@@ -153,7 +148,6 @@ public class DefaultCursor<T> implements Cursor<T> {
             status = CursorStatus.CONSUMED;
         }
         objectWrapperResultHandler.result = null;
-
         return next;
     }
 
@@ -166,7 +160,6 @@ public class DefaultCursor<T> implements Cursor<T> {
     }
 
     private static class ObjectWrapperResultHandler<T> implements ResultHandler<T> {
-
         private T result;
 
         @Override
@@ -177,7 +170,6 @@ public class DefaultCursor<T> implements Cursor<T> {
     }
 
     private class CursorIterator implements Iterator<T> {
-
         /**
          * Holder for the next object to be returned
          */
@@ -200,11 +192,9 @@ public class DefaultCursor<T> implements Cursor<T> {
         public T next() {
             // Fill next with object fetched from hasNext()
             T next = object;
-
             if (next == null) {
                 next = fetchNextUsingRowBound();
             }
-
             if (next != null) {
                 object = null;
                 iteratorIndex++;
@@ -212,7 +202,6 @@ public class DefaultCursor<T> implements Cursor<T> {
             }
             throw new NoSuchElementException();
         }
-
         @Override
         public void remove() {
             throw new UnsupportedOperationException("Cannot remove element from Cursor");

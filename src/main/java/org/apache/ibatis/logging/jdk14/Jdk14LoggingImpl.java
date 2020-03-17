@@ -24,7 +24,6 @@ import org.apache.ibatis.logging.Log;
  * @author Clinton Begin
  */
 public class Jdk14LoggingImpl implements Log {
-
     private final Logger log;
 
     public Jdk14LoggingImpl(String clazz) {
@@ -65,5 +64,4 @@ public class Jdk14LoggingImpl implements Log {
     public void warn(String s) {
         log.log(Level.WARNING, s);
     }
-
 }

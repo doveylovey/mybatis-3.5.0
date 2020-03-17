@@ -2,7 +2,7 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeHandlers>
-        <typeHandler handler="com.study.test.HobbyTypeHandler" javaType="java.util.List"/>
+        <typeHandler handler="com.study.test.HobbyTypeHandler" javaType="java.util.List" jdbcType="VARCHAR"/>
     </typeHandlers>
 
     <environments default="dev">
@@ -10,8 +10,7 @@
             <transactionManager type="JDBC"/>
             <dataSource type="UNPOOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url"
-                          value="jdbc:mysql://127.0.0.1:3306/mybatis-source?serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false"/>
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/mybatis-source?serverTimezone=Asia/Shanghai&amp;useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false"/>
                 <property name="username" value="root"/>
                 <property name="password" value="root"/>
             </dataSource>

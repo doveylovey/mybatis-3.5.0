@@ -21,7 +21,6 @@ import org.apache.ibatis.exceptions.PersistenceException;
  * @author Clinton Begin
  */
 public class ReflectionException extends PersistenceException {
-
     private static final long serialVersionUID = 7642570221267566591L;
 
     public ReflectionException() {
@@ -39,5 +38,4 @@ public class ReflectionException extends PersistenceException {
     public ReflectionException(Throwable cause) {
         super(cause);
     }
-
 }

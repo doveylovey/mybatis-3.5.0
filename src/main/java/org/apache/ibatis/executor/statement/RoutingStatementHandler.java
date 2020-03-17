@@ -33,11 +33,9 @@ import org.apache.ibatis.session.RowBounds;
  * @author Clinton Begin
  */
 public class RoutingStatementHandler implements StatementHandler {
-
     private final StatementHandler delegate;
 
     public RoutingStatementHandler(Executor executor, MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql) {
-
         switch (ms.getStatementType()) {
             case STATEMENT:
                 delegate = new SimpleStatementHandler(executor, ms, parameter, rowBounds, resultHandler, boundSql);
@@ -51,7 +49,6 @@ public class RoutingStatementHandler implements StatementHandler {
             default:
                 throw new ExecutorException("Unknown statement type: " + ms.getStatementType());
         }
-
     }
 
     @Override

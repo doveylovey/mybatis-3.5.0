@@ -26,7 +26,6 @@ import org.apache.ibatis.cache.CacheException;
  * @author Clinton Begin
  */
 public class PerpetualCache implements Cache {
-
     private final String id;
 
     private Map<Object, Object> cache = new HashMap<>();
@@ -93,5 +92,4 @@ public class PerpetualCache implements Cache {
         }
         return getId().hashCode();
     }
-
 }

@@ -25,7 +25,6 @@ import org.apache.ibatis.mapping.MappedStatement;
  * @author Kazuki Shimizu
  */
 public class NoKeyGenerator implements KeyGenerator {
-
     /**
      * A shared instance.
      *
@@ -42,5 +41,4 @@ public class NoKeyGenerator implements KeyGenerator {
     public void processAfter(Executor executor, MappedStatement ms, Statement stmt, Object parameter) {
         // Do Nothing
     }
-
 }

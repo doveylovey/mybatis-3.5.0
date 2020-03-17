@@ -25,7 +25,6 @@ import org.apache.ibatis.session.Configuration;
  */
 public class ForEachSqlNode implements SqlNode {
     public static final String ITEM_PREFIX = "__frch_";
-
     private final ExpressionEvaluator evaluator;
     private final String collectionExpression;
     private final SqlNode contents;
@@ -165,9 +164,7 @@ public class ForEachSqlNode implements SqlNode {
         public int getUniqueNumber() {
             return delegate.getUniqueNumber();
         }
-
     }
-
 
     private class PrefixedContext extends DynamicContext {
         private final DynamicContext delegate;
@@ -214,5 +211,4 @@ public class ForEachSqlNode implements SqlNode {
             return delegate.getUniqueNumber();
         }
     }
-
 }

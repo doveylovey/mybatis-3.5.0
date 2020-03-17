@@ -30,7 +30,6 @@ import org.apache.ibatis.logging.LogFactory;
  */
 @Deprecated
 public class ExternalResources {
-
     private static final Log log = LogFactory.getLog(ExternalResources.class);
 
     private ExternalResources() {
@@ -41,18 +40,15 @@ public class ExternalResources {
         if (!destFile.exists()) {
             destFile.createNewFile();
         }
-
         try (FileInputStream source = new FileInputStream(sourceFile);
              FileOutputStream destination = new FileOutputStream(destFile)) {
             destination.getChannel().transferFrom(source.getChannel(), 0, source.getChannel().size());
         }
-
     }
 
     public static String getConfiguredTemplate(String templatePath, String templateProperty) throws FileNotFoundException {
         String templateName = "";
         Properties migrationProperties = new Properties();
-
         try {
             migrationProperties.load(new FileInputStream(templatePath));
             templateName = migrationProperties.getProperty(templateProperty);
@@ -61,8 +57,6 @@ public class ExternalResources {
         } catch (Exception e) {
             log.error("", e);
         }
-
         return templateName;
     }
-
 }

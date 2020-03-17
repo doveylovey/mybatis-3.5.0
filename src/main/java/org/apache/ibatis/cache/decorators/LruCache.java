@@ -27,7 +27,6 @@ import org.apache.ibatis.cache.Cache;
  * @author Clinton Begin
  */
 public class LruCache implements Cache {
-
     private final Cache delegate;
     private Map<Object, Object> keyMap;
     private Object eldestKey;
@@ -97,5 +96,4 @@ public class LruCache implements Cache {
             eldestKey = null;
         }
     }
-
 }

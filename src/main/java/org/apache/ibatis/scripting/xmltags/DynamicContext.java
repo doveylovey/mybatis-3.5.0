@@ -29,7 +29,6 @@ import org.apache.ibatis.session.Configuration;
  * @author Clinton Begin
  */
 public class DynamicContext {
-
     public static final String PARAMETER_OBJECT_KEY = "_parameter";
     public static final String DATABASE_ID_KEY = "_databaseId";
 
@@ -88,32 +87,26 @@ public class DynamicContext {
             if (super.containsKey(strKey)) {
                 return super.get(strKey);
             }
-
             if (parameterMetaObject != null) {
                 // issue #61 do not modify the context when reading
                 return parameterMetaObject.getValue(strKey);
             }
-
             return null;
         }
     }
 
     static class ContextAccessor implements PropertyAccessor {
-
         @Override
         public Object getProperty(Map context, Object target, Object name) {
             Map map = (Map) target;
-
             Object result = map.get(name);
             if (map.containsKey(name) || result != null) {
                 return result;
             }
-
             Object parameterObject = map.get(PARAMETER_OBJECT_KEY);
             if (parameterObject instanceof Map) {
                 return ((Map) parameterObject).get(name);
             }
-
             return null;
         }
 

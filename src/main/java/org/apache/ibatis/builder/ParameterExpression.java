@@ -32,7 +32,6 @@ import java.util.HashMap;
  * @author Frank D. Martinez [mnesarco]
  */
 public class ParameterExpression extends HashMap<String, String> {
-
     private static final long serialVersionUID = -2417552199605158680L;
 
     public ParameterExpression(String expression) {
@@ -136,5 +135,4 @@ public class ParameterExpression extends HashMap<String, String> {
         }
         return start >= end ? "" : str.substring(start, end);
     }
-
 }

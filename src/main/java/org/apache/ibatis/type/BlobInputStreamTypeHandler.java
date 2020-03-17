@@ -25,15 +25,13 @@ import java.sql.*;
  * @since 3.4.0
  */
 public class BlobInputStreamTypeHandler extends BaseTypeHandler<InputStream> {
-
     /**
      * Set an {@link InputStream} into {@link PreparedStatement}.
      *
      * @see PreparedStatement#setBlob(int, InputStream)
      */
     @Override
-    public void setNonNullParameter(PreparedStatement ps, int i, InputStream parameter, JdbcType jdbcType)
-            throws SQLException {
+    public void setNonNullParameter(PreparedStatement ps, int i, InputStream parameter, JdbcType jdbcType) throws SQLException {
         ps.setBlob(i, parameter);
     }
 
@@ -43,8 +41,7 @@ public class BlobInputStreamTypeHandler extends BaseTypeHandler<InputStream> {
      * @see ResultSet#getBlob(String)
      */
     @Override
-    public InputStream getNullableResult(ResultSet rs, String columnName)
-            throws SQLException {
+    public InputStream getNullableResult(ResultSet rs, String columnName) throws SQLException {
         return toInputStream(rs.getBlob(columnName));
     }
 
@@ -54,8 +51,7 @@ public class BlobInputStreamTypeHandler extends BaseTypeHandler<InputStream> {
      * @see ResultSet#getBlob(int)
      */
     @Override
-    public InputStream getNullableResult(ResultSet rs, int columnIndex)
-            throws SQLException {
+    public InputStream getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
         return toInputStream(rs.getBlob(columnIndex));
     }
 
@@ -65,8 +61,7 @@ public class BlobInputStreamTypeHandler extends BaseTypeHandler<InputStream> {
      * @see CallableStatement#getBlob(int)
      */
     @Override
-    public InputStream getNullableResult(CallableStatement cs, int columnIndex)
-            throws SQLException {
+    public InputStream getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
         return toInputStream(cs.getBlob(columnIndex));
     }
 
@@ -77,5 +72,4 @@ public class BlobInputStreamTypeHandler extends BaseTypeHandler<InputStream> {
             return blob.getBinaryStream();
         }
     }
-
 }

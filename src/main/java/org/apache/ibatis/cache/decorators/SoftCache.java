@@ -53,7 +53,6 @@ public class SoftCache implements Cache {
         return delegate.getSize();
     }
 
-
     public void setSize(int size) {
         this.numberOfHardLinks = size;
     }
@@ -121,5 +120,4 @@ public class SoftCache implements Cache {
             this.key = key;
         }
     }
-
 }

@@ -25,7 +25,6 @@ import org.apache.ibatis.reflection.ArrayUtil;
  * @author Clinton Begin
  */
 public class CacheKey implements Cloneable, Serializable {
-
     private static final long serialVersionUID = 1146682552656046210L;
 
     public static final CacheKey NULL_CACHE_KEY = new NullCacheKey();
@@ -58,13 +57,10 @@ public class CacheKey implements Cloneable, Serializable {
 
     public void update(Object object) {
         int baseHashCode = object == null ? 1 : ArrayUtil.hashCode(object);
-
         count++;
         checksum += baseHashCode;
         baseHashCode *= count;
-
         hashcode = multiplier * hashcode + baseHashCode;
-
         updateList.add(object);
     }
 
@@ -125,5 +121,4 @@ public class CacheKey implements Cloneable, Serializable {
         clonedCacheKey.updateList = new ArrayList<>(updateList);
         return clonedCacheKey;
     }
-
 }

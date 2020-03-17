@@ -30,7 +30,6 @@ import org.apache.ibatis.datasource.DataSourceFactory;
  * @author Clinton Begin
  */
 public class JndiDataSourceFactory implements DataSourceFactory {
-
     public static final String INITIAL_CONTEXT = "initial_context";
     public static final String DATA_SOURCE = "data_source";
     public static final String ENV_PREFIX = "env.";
@@ -47,7 +46,6 @@ public class JndiDataSourceFactory implements DataSourceFactory {
             } else {
                 initCtx = new InitialContext(env);
             }
-
             if (properties.containsKey(INITIAL_CONTEXT)
                     && properties.containsKey(DATA_SOURCE)) {
                 Context ctx = (Context) initCtx.lookup(properties.getProperty(INITIAL_CONTEXT));
@@ -55,7 +53,6 @@ public class JndiDataSourceFactory implements DataSourceFactory {
             } else if (properties.containsKey(DATA_SOURCE)) {
                 dataSource = (DataSource) initCtx.lookup(properties.getProperty(DATA_SOURCE));
             }
-
         } catch (NamingException e) {
             throw new DataSourceException("There was an error configuring JndiDataSourceTransactionPool. Cause: " + e, e);
         }
@@ -81,5 +78,4 @@ public class JndiDataSourceFactory implements DataSourceFactory {
         }
         return contextProperties;
     }
-
 }

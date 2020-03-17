@@ -29,9 +29,7 @@ import org.apache.ibatis.io.Resources;
  * @author Clinton Begin
  */
 public class UnknownTypeHandler extends BaseTypeHandler<Object> {
-
     private static final ObjectTypeHandler OBJECT_TYPE_HANDLER = new ObjectTypeHandler();
-
     private TypeHandlerRegistry typeHandlerRegistry;
 
     public UnknownTypeHandler(TypeHandlerRegistry typeHandlerRegistry) {
@@ -39,22 +37,19 @@ public class UnknownTypeHandler extends BaseTypeHandler<Object> {
     }
 
     @Override
-    public void setNonNullParameter(PreparedStatement ps, int i, Object parameter, JdbcType jdbcType)
-            throws SQLException {
+    public void setNonNullParameter(PreparedStatement ps, int i, Object parameter, JdbcType jdbcType) throws SQLException {
         TypeHandler handler = resolveTypeHandler(parameter, jdbcType);
         handler.setParameter(ps, i, parameter, jdbcType);
     }
 
     @Override
-    public Object getNullableResult(ResultSet rs, String columnName)
-            throws SQLException {
+    public Object getNullableResult(ResultSet rs, String columnName) throws SQLException {
         TypeHandler<?> handler = resolveTypeHandler(rs, columnName);
         return handler.getResult(rs, columnName);
     }
 
     @Override
-    public Object getNullableResult(ResultSet rs, int columnIndex)
-            throws SQLException {
+    public Object getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
         TypeHandler<?> handler = resolveTypeHandler(rs.getMetaData(), columnIndex);
         if (handler == null || handler instanceof UnknownTypeHandler) {
             handler = OBJECT_TYPE_HANDLER;
@@ -63,8 +58,7 @@ public class UnknownTypeHandler extends BaseTypeHandler<Object> {
     }
 
     @Override
-    public Object getNullableResult(CallableStatement cs, int columnIndex)
-            throws SQLException {
+    public Object getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
         return cs.getObject(columnIndex);
     }
 

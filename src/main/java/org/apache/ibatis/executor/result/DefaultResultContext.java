@@ -21,7 +21,6 @@ import org.apache.ibatis.session.ResultContext;
  * @author Clinton Begin
  */
 public class DefaultResultContext<T> implements ResultContext<T> {
-
     private T resultObject;
     private int resultCount;
     private boolean stopped;
@@ -56,5 +55,4 @@ public class DefaultResultContext<T> implements ResultContext<T> {
     public void stop() {
         this.stopped = true;
     }
-
 }

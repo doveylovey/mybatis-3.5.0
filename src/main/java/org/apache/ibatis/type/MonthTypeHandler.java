@@ -26,7 +26,6 @@ import java.time.Month;
  * @since 3.4.5
  */
 public class MonthTypeHandler extends BaseTypeHandler<Month> {
-
     @Override
     public void setNonNullParameter(PreparedStatement ps, int i, Month month, JdbcType type) throws SQLException {
         ps.setInt(i, month.getValue());
@@ -49,5 +48,4 @@ public class MonthTypeHandler extends BaseTypeHandler<Month> {
         int month = cs.getInt(columnIndex);
         return month == 0 && cs.wasNull() ? null : Month.of(month);
     }
-
 }

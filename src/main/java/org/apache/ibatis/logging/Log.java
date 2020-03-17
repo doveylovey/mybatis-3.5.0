@@ -19,7 +19,6 @@ package org.apache.ibatis.logging;
  * @author Clinton Begin
  */
 public interface Log {
-
     boolean isDebugEnabled();
 
     boolean isTraceEnabled();
@@ -33,5 +32,4 @@ public interface Log {
     void trace(String s);
 
     void warn(String s);
-
 }

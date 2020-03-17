@@ -24,30 +24,25 @@ import java.sql.SQLException;
  * @author Clinton Begin
  */
 public class ShortTypeHandler extends BaseTypeHandler<Short> {
-
     @Override
-    public void setNonNullParameter(PreparedStatement ps, int i, Short parameter, JdbcType jdbcType)
-            throws SQLException {
+    public void setNonNullParameter(PreparedStatement ps, int i, Short parameter, JdbcType jdbcType) throws SQLException {
         ps.setShort(i, parameter);
     }
 
     @Override
-    public Short getNullableResult(ResultSet rs, String columnName)
-            throws SQLException {
+    public Short getNullableResult(ResultSet rs, String columnName) throws SQLException {
         short result = rs.getShort(columnName);
         return result == 0 && rs.wasNull() ? null : result;
     }
 
     @Override
-    public Short getNullableResult(ResultSet rs, int columnIndex)
-            throws SQLException {
+    public Short getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
         short result = rs.getShort(columnIndex);
         return result == 0 && rs.wasNull() ? null : result;
     }
 
     @Override
-    public Short getNullableResult(CallableStatement cs, int columnIndex)
-            throws SQLException {
+    public Short getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
         short result = cs.getShort(columnIndex);
         return result == 0 && cs.wasNull() ? null : result;
     }

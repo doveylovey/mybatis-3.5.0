@@ -24,12 +24,10 @@ import org.apache.logging.log4j.spi.AbstractLogger;
  * @author Eduardo Macarron
  */
 public class Log4j2Impl implements Log {
-
     private final Log log;
 
     public Log4j2Impl(String clazz) {
         Logger logger = LogManager.getLogger(clazz);
-
         if (logger instanceof AbstractLogger) {
             log = new Log4j2AbstractLoggerImpl((AbstractLogger) logger);
         } else {
@@ -71,5 +69,4 @@ public class Log4j2Impl implements Log {
     public void warn(String s) {
         log.warn(s);
     }
-
 }

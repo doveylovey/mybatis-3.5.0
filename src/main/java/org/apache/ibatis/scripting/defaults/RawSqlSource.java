@@ -33,7 +33,6 @@ import org.apache.ibatis.session.Configuration;
  * @since 3.2.0
  */
 public class RawSqlSource implements SqlSource {
-
     private final SqlSource sqlSource;
 
     public RawSqlSource(Configuration configuration, SqlNode rootSqlNode, Class<?> parameterType) {
@@ -56,5 +55,4 @@ public class RawSqlSource implements SqlSource {
     public BoundSql getBoundSql(Object parameterObject) {
         return sqlSource.getBoundSql(parameterObject);
     }
-
 }

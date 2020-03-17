@@ -24,7 +24,6 @@ import org.apache.ibatis.session.Configuration;
  * @author Clinton Begin
  */
 public class Discriminator {
-
     private ResultMapping resultMapping;
     private Map<String, String> discriminatorMap;
 
@@ -60,5 +59,4 @@ public class Discriminator {
     public String getMapIdFor(String s) {
         return discriminatorMap.get(s);
     }
-
 }

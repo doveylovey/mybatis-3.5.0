@@ -31,7 +31,6 @@ import org.apache.ibatis.session.RowBounds;
  * @author Jeff Butler
  */
 public class SelectKeyGenerator implements KeyGenerator {
-
     public static final String SELECT_KEY_SUFFIX = "!selectKey";
     private final boolean executeBefore;
     private final MappedStatement keyStatement;
@@ -93,10 +92,8 @@ public class SelectKeyGenerator implements KeyGenerator {
         }
     }
 
-    private void handleMultipleProperties(String[] keyProperties,
-                                          MetaObject metaParam, MetaObject metaResult) {
+    private void handleMultipleProperties(String[] keyProperties, MetaObject metaParam, MetaObject metaResult) {
         String[] keyColumns = keyStatement.getKeyColumns();
-
         if (keyColumns == null || keyColumns.length == 0) {
             // no key columns specified, just use the property names
             for (String keyProperty : keyProperties) {

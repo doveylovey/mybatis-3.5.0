@@ -44,5 +44,4 @@ public class DefaultReflectorFactory implements ReflectorFactory {
             return new Reflector(type);
         }
     }
-
 }

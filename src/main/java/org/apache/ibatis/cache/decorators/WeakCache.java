@@ -115,5 +115,4 @@ public class WeakCache implements Cache {
             this.key = key;
         }
     }
-
 }

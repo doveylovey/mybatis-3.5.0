@@ -25,7 +25,6 @@ import org.apache.ibatis.logging.LogFactory;
  * @author Clinton Begin
  */
 public class LoggingCache implements Cache {
-
     private final Log log;
     private final Cache delegate;
     protected int requests = 0;
@@ -92,5 +91,4 @@ public class LoggingCache implements Cache {
     private double getHitRatio() {
         return (double) hits / (double) requests;
     }
-
 }

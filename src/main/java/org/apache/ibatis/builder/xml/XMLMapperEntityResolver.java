@@ -83,5 +83,4 @@ public class XMLMapperEntityResolver implements EntityResolver {
         }
         return source;
     }
-
 }

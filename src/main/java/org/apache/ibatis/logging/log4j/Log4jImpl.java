@@ -23,10 +23,8 @@ import org.apache.log4j.Logger;
  * @author Eduardo Macarron
  */
 public class Log4jImpl implements Log {
-
-    private static final String FQCN = Log4jImpl.class.getName();
-
     private final Logger log;
+    private static final String FQCN = Log4jImpl.class.getName();
 
     public Log4jImpl(String clazz) {
         log = Logger.getLogger(clazz);
@@ -66,5 +64,4 @@ public class Log4jImpl implements Log {
     public void warn(String s) {
         log.log(FQCN, Level.WARN, s, null);
     }
-
 }

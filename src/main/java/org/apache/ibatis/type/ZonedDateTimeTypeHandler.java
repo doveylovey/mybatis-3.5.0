@@ -26,10 +26,8 @@ import java.time.ZonedDateTime;
  * @since 3.4.5
  */
 public class ZonedDateTimeTypeHandler extends BaseTypeHandler<ZonedDateTime> {
-
     @Override
-    public void setNonNullParameter(PreparedStatement ps, int i, ZonedDateTime parameter, JdbcType jdbcType)
-            throws SQLException {
+    public void setNonNullParameter(PreparedStatement ps, int i, ZonedDateTime parameter, JdbcType jdbcType) throws SQLException {
         ps.setObject(i, parameter);
     }
 

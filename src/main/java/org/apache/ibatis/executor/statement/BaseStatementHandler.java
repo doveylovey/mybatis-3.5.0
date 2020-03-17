@@ -37,7 +37,6 @@ import org.apache.ibatis.type.TypeHandlerRegistry;
  * @author Clinton Begin
  */
 public abstract class BaseStatementHandler implements StatementHandler {
-
     protected final Configuration configuration;
     protected final ObjectFactory objectFactory;
     protected final TypeHandlerRegistry typeHandlerRegistry;
@@ -55,17 +54,13 @@ public abstract class BaseStatementHandler implements StatementHandler {
         this.executor = executor;
         this.mappedStatement = mappedStatement;
         this.rowBounds = rowBounds;
-
         this.typeHandlerRegistry = configuration.getTypeHandlerRegistry();
         this.objectFactory = configuration.getObjectFactory();
-
         if (boundSql == null) { // issue #435, get the key before calculating the statement
             generateKeys(parameterObject);
             boundSql = mappedStatement.getBoundSql(parameterObject);
         }
-
         this.boundSql = boundSql;
-
         this.parameterHandler = configuration.newParameterHandler(mappedStatement, parameterObject, boundSql);
         this.resultSetHandler = configuration.newResultSetHandler(executor, mappedStatement, rowBounds, parameterHandler, resultHandler, boundSql);
     }
@@ -141,5 +136,4 @@ public abstract class BaseStatementHandler implements StatementHandler {
         keyGenerator.processBefore(executor, mappedStatement, null, parameter);
         ErrorContext.instance().recall();
     }
-
 }

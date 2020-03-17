@@ -104,7 +104,7 @@
         <typeHandler handler="org.apache.ibatis.type.YearMonthTypeHandler"/>
         <typeHandler handler="org.apache.ibatis.type.JapaneseDateTypeHandler"/>
         <!-- 注：由于自定义的 TypeHandler 在定义时已经通过注解指定了 jdbcType，故此处不用再配置 jdbcType 属性了 -->
-        <typeHandler handler="com.study.test.MyExampleTypeHandler"/>
+        <typeHandler handler="com.study.test.HobbyTypeHandler"/>
         <!-- 方式二：使用 javaType 属性指定 java 类型，如String。如果指定了 javaType，那么指定的 typeHandler 就只能作用于指定的 Java 类型 -->
         <typeHandler javaType="" handler=""/>
         <!-- 方式三：使用 jdbcType 属性指定数据库基本数据类型，如varchar。如果指定了 jdbcType，那么指定的 typeHandler 就只作用于指定的 Jdbc 类型 -->

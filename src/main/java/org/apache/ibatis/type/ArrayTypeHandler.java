@@ -25,7 +25,6 @@ import java.sql.SQLException;
  * @author Clinton Begin
  */
 public class ArrayTypeHandler extends BaseTypeHandler<Object> {
-
     public ArrayTypeHandler() {
         super();
     }
@@ -58,5 +57,4 @@ public class ArrayTypeHandler extends BaseTypeHandler<Object> {
         array.free();
         return result;
     }
-
 }

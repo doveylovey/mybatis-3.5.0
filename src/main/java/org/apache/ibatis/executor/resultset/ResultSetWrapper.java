@@ -40,7 +40,6 @@ import org.apache.ibatis.type.UnknownTypeHandler;
  * @author Iwao AVE!
  */
 public class ResultSetWrapper {
-
     private final ResultSet resultSet;
     private final TypeHandlerRegistry typeHandlerRegistry;
     private final List<String> columnNames = new ArrayList<>();
@@ -191,5 +190,4 @@ public class ResultSetWrapper {
         }
         return prefixed;
     }
-
 }

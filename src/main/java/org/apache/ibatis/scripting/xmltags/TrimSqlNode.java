@@ -28,7 +28,6 @@ import org.apache.ibatis.session.Configuration;
  * @author Clinton Begin
  */
 public class TrimSqlNode implements SqlNode {
-
     private final SqlNode contents;
     private final String prefix;
     private final String suffix;
@@ -155,7 +154,5 @@ public class TrimSqlNode implements SqlNode {
                 }
             }
         }
-
     }
-
 }

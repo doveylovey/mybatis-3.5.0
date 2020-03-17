@@ -37,7 +37,6 @@ import org.apache.ibatis.transaction.Transaction;
  * @author Clinton Begin
  */
 public class ReuseExecutor extends BaseExecutor {
-
     private final Map<String, Statement> statementMap = new HashMap<>();
 
     public ReuseExecutor(Configuration configuration, Transaction transaction) {
@@ -108,5 +107,4 @@ public class ReuseExecutor extends BaseExecutor {
     private void putStatement(String sql, Statement stmt) {
         statementMap.put(sql, stmt);
     }
-
 }

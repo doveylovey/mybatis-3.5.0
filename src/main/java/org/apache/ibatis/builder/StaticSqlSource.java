@@ -26,7 +26,6 @@ import org.apache.ibatis.session.Configuration;
  * @author Clinton Begin
  */
 public class StaticSqlSource implements SqlSource {
-
     private final String sql;
     private final List<ParameterMapping> parameterMappings;
     private final Configuration configuration;
@@ -45,5 +44,4 @@ public class StaticSqlSource implements SqlSource {
     public BoundSql getBoundSql(Object parameterObject) {
         return new BoundSql(configuration, sql, parameterMappings, parameterObject);
     }
-
 }

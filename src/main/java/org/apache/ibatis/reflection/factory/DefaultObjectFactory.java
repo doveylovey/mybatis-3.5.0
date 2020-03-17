@@ -35,7 +35,6 @@ import org.apache.ibatis.reflection.Reflector;
  * @author Clinton Begin
  */
 public class DefaultObjectFactory implements ObjectFactory, Serializable {
-
     private static final long serialVersionUID = -8855120656740914948L;
 
     @Override
@@ -124,5 +123,4 @@ public class DefaultObjectFactory implements ObjectFactory, Serializable {
     public <T> boolean isCollection(Class<T> type) {
         return Collection.class.isAssignableFrom(type);
     }
-
 }

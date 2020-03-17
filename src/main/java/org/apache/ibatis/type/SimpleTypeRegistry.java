@@ -25,7 +25,6 @@ import java.util.Set;
  * @author Clinton Begin
  */
 public class SimpleTypeRegistry {
-
     private static final Set<Class<?>> SIMPLE_TYPE_SET = new HashSet<>();
 
     static {
@@ -48,7 +47,7 @@ public class SimpleTypeRegistry {
         // Prevent Instantiation
     }
 
-    /*
+    /**
      * Tells us if the class passed in is a known common type
      *
      * @param clazz The class to check
@@ -57,5 +56,4 @@ public class SimpleTypeRegistry {
     public static boolean isSimpleType(Class<?> clazz) {
         return SIMPLE_TYPE_SET.contains(clazz);
     }
-
 }

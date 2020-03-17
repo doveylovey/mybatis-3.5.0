@@ -23,7 +23,6 @@ import org.apache.ibatis.cache.Cache;
  * @author Clinton Begin
  */
 public class SynchronizedCache implements Cache {
-
     private final Cache delegate;
 
     public SynchronizedCache(Cache delegate) {
@@ -74,5 +73,4 @@ public class SynchronizedCache implements Cache {
     public ReadWriteLock getReadWriteLock() {
         return null;
     }
-
 }

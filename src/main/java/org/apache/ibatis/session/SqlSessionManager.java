@@ -33,7 +33,6 @@ import java.util.Properties;
  * @author Larry Meadors
  */
 public class SqlSessionManager implements SqlSessionFactory, SqlSession {
-
     private final SqlSessionFactory sqlSessionFactory;
     private final SqlSession sqlSessionProxy;
 
@@ -41,10 +40,7 @@ public class SqlSessionManager implements SqlSessionFactory, SqlSession {
 
     private SqlSessionManager(SqlSessionFactory sqlSessionFactory) {
         this.sqlSessionFactory = sqlSessionFactory;
-        this.sqlSessionProxy = (SqlSession) Proxy.newProxyInstance(
-                SqlSessionFactory.class.getClassLoader(),
-                new Class[]{SqlSession.class},
-                new SqlSessionInterceptor());
+        this.sqlSessionProxy = (SqlSession) Proxy.newProxyInstance(SqlSessionFactory.class.getClassLoader(), new Class[]{SqlSession.class}, new SqlSessionInterceptor());
     }
 
     public static SqlSessionManager newInstance(Reader reader) {
@@ -365,5 +361,4 @@ public class SqlSessionManager implements SqlSessionFactory, SqlSession {
             }
         }
     }
-
 }

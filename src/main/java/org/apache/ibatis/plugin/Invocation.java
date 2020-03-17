@@ -22,7 +22,6 @@ import java.lang.reflect.Method;
  * @author Clinton Begin
  */
 public class Invocation {
-
     private final Object target;
     private final Method method;
     private final Object[] args;
@@ -48,5 +47,4 @@ public class Invocation {
     public Object proceed() throws InvocationTargetException, IllegalAccessException {
         return method.invoke(target, args);
     }
-
 }

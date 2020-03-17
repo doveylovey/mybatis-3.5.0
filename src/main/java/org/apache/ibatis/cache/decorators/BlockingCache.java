@@ -34,7 +34,6 @@ import org.apache.ibatis.cache.CacheException;
  * @author Eduardo Macarron
  */
 public class BlockingCache implements Cache {
-
     private long timeout;
     private final Cache delegate;
     private final ConcurrentHashMap<Object, ReentrantLock> locks;

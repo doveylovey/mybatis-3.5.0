@@ -24,7 +24,6 @@ import java.sql.SQLException;
  * @author Clinton Begin
  */
 public class EnumOrdinalTypeHandler<E extends Enum<E>> extends BaseTypeHandler<E> {
-
     private final Class<E> type;
     private final E[] enums;
 
@@ -85,5 +84,4 @@ public class EnumOrdinalTypeHandler<E extends Enum<E>> extends BaseTypeHandler<E
             }
         }
     }
-
 }

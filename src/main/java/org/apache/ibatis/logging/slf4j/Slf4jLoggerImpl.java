@@ -22,7 +22,6 @@ import org.slf4j.Logger;
  * @author Eduardo Macarron
  */
 class Slf4jLoggerImpl implements Log {
-
     private final Logger log;
 
     public Slf4jLoggerImpl(Logger logger) {
@@ -63,5 +62,4 @@ class Slf4jLoggerImpl implements Log {
     public void warn(String s) {
         log.warn(s);
     }
-
 }

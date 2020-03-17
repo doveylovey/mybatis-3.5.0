@@ -33,7 +33,6 @@ import java.util.Map;
  * @since 3.5.0
  */
 class OgnlMemberAccess implements MemberAccess {
-
     private final boolean canControlMemberAccessible;
 
     OgnlMemberAccess() {
@@ -65,5 +64,4 @@ class OgnlMemberAccess implements MemberAccess {
     public boolean isAccessible(Map context, Object target, Member member, String propertyName) {
         return canControlMemberAccessible;
     }
-
 }

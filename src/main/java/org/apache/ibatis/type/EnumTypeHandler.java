@@ -24,7 +24,6 @@ import java.sql.SQLException;
  * @author Clinton Begin
  */
 public class EnumTypeHandler<E extends Enum<E>> extends BaseTypeHandler<E> {
-
     private final Class<E> type;
 
     public EnumTypeHandler(Class<E> type) {

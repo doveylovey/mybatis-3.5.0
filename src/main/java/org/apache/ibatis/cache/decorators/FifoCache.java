@@ -27,7 +27,6 @@ import org.apache.ibatis.cache.Cache;
  * @author Clinton Begin
  */
 public class FifoCache implements Cache {
-
     private final Cache delegate;
     private final Deque<Object> keyList;
     private int size;
@@ -86,5 +85,4 @@ public class FifoCache implements Cache {
             delegate.removeObject(oldestKey);
         }
     }
-
 }

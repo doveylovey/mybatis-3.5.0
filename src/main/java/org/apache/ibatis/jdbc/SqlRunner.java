@@ -36,7 +36,6 @@ import org.apache.ibatis.type.TypeHandlerRegistry;
  * @author Clinton Begin
  */
 public class SqlRunner {
-
     public static final int NO_GENERATED_KEY = Integer.MIN_VALUE + 1001;
 
     private final Connection connection;
@@ -255,5 +254,4 @@ public class SqlRunner {
             }
         }
     }
-
 }

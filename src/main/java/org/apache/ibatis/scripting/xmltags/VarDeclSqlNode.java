@@ -19,7 +19,6 @@ package org.apache.ibatis.scripting.xmltags;
  * @author Frank D. Martinez [mnesarco]
  */
 public class VarDeclSqlNode implements SqlNode {
-
     private final String name;
     private final String expression;
 
@@ -34,5 +33,4 @@ public class VarDeclSqlNode implements SqlNode {
         context.bind(name, value);
         return true;
     }
-
 }

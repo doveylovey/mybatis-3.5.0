@@ -31,7 +31,6 @@ import org.apache.ibatis.transaction.TransactionFactory;
  * @see JdbcTransaction
  */
 public class JdbcTransactionFactory implements TransactionFactory {
-
     @Override
     public void setProperties(Properties props) {
     }

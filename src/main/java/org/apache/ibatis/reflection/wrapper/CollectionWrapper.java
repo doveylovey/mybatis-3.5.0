@@ -26,7 +26,6 @@ import org.apache.ibatis.reflection.property.PropertyTokenizer;
  * @author Clinton Begin
  */
 public class CollectionWrapper implements ObjectWrapper {
-
     private final Collection<Object> object;
 
     public CollectionWrapper(MetaObject metaObject, Collection<Object> object) {
@@ -97,5 +96,4 @@ public class CollectionWrapper implements ObjectWrapper {
     public <E> void addAll(List<E> element) {
         object.addAll(element);
     }
-
 }

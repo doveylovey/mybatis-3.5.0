@@ -27,10 +27,8 @@ import java.time.LocalTime;
  * @since 3.4.5
  */
 public class LocalTimeTypeHandler extends BaseTypeHandler<LocalTime> {
-
     @Override
-    public void setNonNullParameter(PreparedStatement ps, int i, LocalTime parameter, JdbcType jdbcType)
-            throws SQLException {
+    public void setNonNullParameter(PreparedStatement ps, int i, LocalTime parameter, JdbcType jdbcType) throws SQLException {
         ps.setTime(i, Time.valueOf(parameter));
     }
 

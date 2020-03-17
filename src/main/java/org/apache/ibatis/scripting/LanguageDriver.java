@@ -24,7 +24,6 @@ import org.apache.ibatis.scripting.defaults.DefaultParameterHandler;
 import org.apache.ibatis.session.Configuration;
 
 public interface LanguageDriver {
-
     /**
      * Creates a {@link ParameterHandler} that passes the actual parameters to the the JDBC statement.
      *
@@ -58,5 +57,4 @@ public interface LanguageDriver {
      * @return
      */
     SqlSource createSqlSource(Configuration configuration, String script, Class<?> parameterType);
-
 }

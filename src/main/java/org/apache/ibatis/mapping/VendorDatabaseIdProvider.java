@@ -38,7 +38,6 @@ import org.apache.ibatis.logging.LogFactory;
  * @author Eduardo Macarron
  */
 public class VendorDatabaseIdProvider implements DatabaseIdProvider {
-
     private Properties properties;
 
     @Override
@@ -93,5 +92,4 @@ public class VendorDatabaseIdProvider implements DatabaseIdProvider {
     private static class LogHolder {
         private static final Log log = LogFactory.getLog(VendorDatabaseIdProvider.class);
     }
-
 }

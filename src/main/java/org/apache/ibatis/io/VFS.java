@@ -150,8 +150,7 @@ public abstract class VFS {
      * @throws RuntimeException If anything else goes wrong
      */
     @SuppressWarnings("unchecked")
-    protected static <T> T invoke(Method method, Object object, Object... parameters)
-            throws IOException, RuntimeException {
+    protected static <T> T invoke(Method method, Object object, Object... parameters) throws IOException, RuntimeException {
         try {
             return (T) method.invoke(object, parameters);
         } catch (IllegalArgumentException | IllegalAccessException e) {

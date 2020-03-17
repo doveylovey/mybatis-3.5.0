@@ -36,7 +36,6 @@ import org.apache.ibatis.session.RowBounds;
  * @author Clinton Begin
  */
 public class SimpleStatementHandler extends BaseStatementHandler {
-
     public SimpleStatementHandler(Executor executor, MappedStatement mappedStatement, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql) {
         super(executor, mappedStatement, parameter, rowBounds, resultHandler, boundSql);
     }
@@ -95,5 +94,4 @@ public class SimpleStatementHandler extends BaseStatementHandler {
     public void parameterize(Statement statement) {
         // N/A
     }
-
 }

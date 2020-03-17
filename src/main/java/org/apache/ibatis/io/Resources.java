@@ -277,5 +277,4 @@ public class Resources {
     public static void setCharset(Charset charset) {
         Resources.charset = charset;
     }
-
 }

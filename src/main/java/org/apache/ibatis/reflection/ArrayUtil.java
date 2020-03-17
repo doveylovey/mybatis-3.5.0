@@ -21,7 +21,6 @@ import java.util.Arrays;
  * Provides hashCode, equals and toString methods that can handle array.
  */
 public class ArrayUtil {
-
     /**
      * Returns a hash code for {@code obj}.
      *
@@ -144,5 +143,4 @@ public class ArrayUtil {
             return Arrays.toString((Object[]) obj);
         }
     }
-
 }

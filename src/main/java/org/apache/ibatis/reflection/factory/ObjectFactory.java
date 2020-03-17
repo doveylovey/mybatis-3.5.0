@@ -24,7 +24,6 @@ import java.util.Properties;
  * @author Clinton Begin
  */
 public interface ObjectFactory {
-
     /**
      * Sets configuration properties.
      *
@@ -59,5 +58,4 @@ public interface ObjectFactory {
      * @since 3.1.0
      */
     <T> boolean isCollection(Class<T> type);
-
 }

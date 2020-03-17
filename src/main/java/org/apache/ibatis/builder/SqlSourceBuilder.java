@@ -32,7 +32,6 @@ import org.apache.ibatis.type.JdbcType;
  * @author Clinton Begin
  */
 public class SqlSourceBuilder extends BaseBuilder {
-
     private static final String parameterProperties = "javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName";
 
     public SqlSourceBuilder(Configuration configuration) {
@@ -47,7 +46,6 @@ public class SqlSourceBuilder extends BaseBuilder {
     }
 
     private static class ParameterMappingTokenHandler extends BaseBuilder implements TokenHandler {
-
         private List<ParameterMapping> parameterMappings = new ArrayList<>();
         private Class<?> parameterType;
         private MetaObject metaParameters;
@@ -133,5 +131,4 @@ public class SqlSourceBuilder extends BaseBuilder {
             }
         }
     }
-
 }

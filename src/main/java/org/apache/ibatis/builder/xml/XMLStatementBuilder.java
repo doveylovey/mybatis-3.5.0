@@ -33,7 +33,6 @@ import java.util.Locale;
  * @author Clinton Begin
  */
 public class XMLStatementBuilder extends BaseBuilder {
-
     private final MapperBuilderAssistant builderAssistant;
     private final XNode context;
     private final String requiredDatabaseId;
@@ -101,9 +100,7 @@ public class XMLStatementBuilder extends BaseBuilder {
         if (configuration.hasKeyGenerator(keyStatementId)) {
             keyGenerator = configuration.getKeyGenerator(keyStatementId);
         } else {
-            keyGenerator = context.getBooleanAttribute("useGeneratedKeys",
-                    configuration.isUseGeneratedKeys() && SqlCommandType.INSERT.equals(sqlCommandType))
-                    ? Jdbc3KeyGenerator.INSTANCE : NoKeyGenerator.INSTANCE;
+            keyGenerator = context.getBooleanAttribute("useGeneratedKeys", configuration.isUseGeneratedKeys() && SqlCommandType.INSERT.equals(sqlCommandType)) ? Jdbc3KeyGenerator.INSTANCE : NoKeyGenerator.INSTANCE;
         }
         // 构建 MappedStatement 对象，并将该对象存储到 Configuration 的 mappedStatements 集合中
         builderAssistant.addMappedStatement(id, sqlSource, statementType, sqlCommandType,
@@ -153,9 +150,8 @@ public class XMLStatementBuilder extends BaseBuilder {
         SqlSource sqlSource = langDriver.createSqlSource(configuration, nodeToHandle, parameterTypeClass);
         SqlCommandType sqlCommandType = SqlCommandType.SELECT;
 
-        builderAssistant.addMappedStatement(id, sqlSource, statementType, sqlCommandType,
-                fetchSize, timeout, parameterMap, parameterTypeClass, resultMap, resultTypeClass,
-                resultSetTypeEnum, flushCache, useCache, resultOrdered,
+        builderAssistant.addMappedStatement(id, sqlSource, statementType, sqlCommandType, fetchSize, timeout, parameterMap,
+                parameterTypeClass, resultMap, resultTypeClass, resultSetTypeEnum, flushCache, useCache, resultOrdered,
                 keyGenerator, keyProperty, keyColumn, databaseId, langDriver, null);
 
         id = builderAssistant.applyCurrentNamespace(id, false);
@@ -198,5 +194,4 @@ public class XMLStatementBuilder extends BaseBuilder {
         }
         return builderAssistant.getLanguageDriver(langClass);
     }
-
 }

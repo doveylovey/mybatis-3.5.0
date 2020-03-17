@@ -27,7 +27,6 @@ import org.apache.ibatis.builder.BuilderException;
  * @author Clinton Begin
  */
 public class ExpressionEvaluator {
-
     public boolean evaluateBoolean(String expression, Object parameterObject) {
         Object value = OgnlCache.getValue(expression, parameterObject);
         if (value instanceof Boolean) {
@@ -64,5 +63,4 @@ public class ExpressionEvaluator {
         }
         throw new BuilderException("Error evaluating expression '" + expression + "'.  Return value (" + value + ") was not iterable.");
     }
-
 }

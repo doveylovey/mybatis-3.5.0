@@ -30,7 +30,6 @@ import java.util.Collection;
  * @author Clinton Begin
  */
 public class MetaClass {
-
     private final ReflectorFactory reflectorFactory;
     private final Reflector reflector;
 
@@ -189,5 +188,4 @@ public class MetaClass {
     public boolean hasDefaultConstructor() {
         return reflector.hasDefaultConstructor();
     }
-
 }

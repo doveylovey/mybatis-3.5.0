@@ -40,7 +40,6 @@ import java.util.concurrent.locks.ReadWriteLock;
  */
 
 public interface Cache {
-
     /**
      * @return The identifier of this cache
      */
@@ -93,5 +92,4 @@ public interface Cache {
      * @return A ReadWriteLock
      */
     ReadWriteLock getReadWriteLock();
-
 }

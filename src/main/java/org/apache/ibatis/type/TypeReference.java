@@ -26,7 +26,6 @@ import java.lang.reflect.Type;
  * @since 3.1.0
  */
 public abstract class TypeReference<T> {
-
     private final Type rawType;
 
     protected TypeReference() {
@@ -40,9 +39,7 @@ public abstract class TypeReference<T> {
             if (TypeReference.class != genericSuperclass) {
                 return getSuperclassTypeParameter(clazz.getSuperclass());
             }
-
-            throw new TypeException("'" + getClass() + "' extends TypeReference but misses the type parameter. "
-                    + "Remove the extension or add a type parameter to it.");
+            throw new TypeException("'" + getClass() + "' extends TypeReference but misses the type parameter. Remove the extension or add a type parameter to it.");
         }
 
         Type rawType = ((ParameterizedType) genericSuperclass).getActualTypeArguments()[0];
@@ -62,5 +59,4 @@ public abstract class TypeReference<T> {
     public String toString() {
         return rawType.toString();
     }
-
 }

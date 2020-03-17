@@ -33,7 +33,6 @@ import java.util.Properties;
  * @author Frank D. Martinez [mnesarco]
  */
 public class XMLIncludeTransformer {
-
     private final Configuration configuration;
     private final MapperBuilderAssistant builderAssistant;
 

@@ -27,7 +27,6 @@ import org.apache.ibatis.reflection.ExceptionUtil;
  * @author Clinton Begin
  */
 class PooledConnection implements InvocationHandler {
-
     private static final String CLOSE = "close";
     private static final Class<?>[] IFACES = new Class<?>[]{Connection.class};
 
@@ -246,7 +245,6 @@ class PooledConnection implements InvocationHandler {
         } catch (Throwable t) {
             throw ExceptionUtil.unwrapThrowable(t);
         }
-
     }
 
     private void checkConnection() throws SQLException {
@@ -254,5 +252,4 @@ class PooledConnection implements InvocationHandler {
             throw new SQLException("Error accessing PooledConnection. Connection is invalid.");
         }
     }
-
 }

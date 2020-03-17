@@ -57,7 +57,6 @@ public class TextSqlNode implements SqlNode {
     }
 
     private static class BindingTokenParser implements TokenHandler {
-
         private DynamicContext context;
         private Pattern injectionFilter;
 
@@ -88,7 +87,6 @@ public class TextSqlNode implements SqlNode {
     }
 
     private static class DynamicCheckerTokenParser implements TokenHandler {
-
         private boolean isDynamic;
 
         public DynamicCheckerTokenParser() {
@@ -105,5 +103,4 @@ public class TextSqlNode implements SqlNode {
             return null;
         }
     }
-
 }

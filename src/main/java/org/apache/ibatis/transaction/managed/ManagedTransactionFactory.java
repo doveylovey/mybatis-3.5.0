@@ -31,7 +31,6 @@ import org.apache.ibatis.transaction.TransactionFactory;
  * @see ManagedTransaction
  */
 public class ManagedTransactionFactory implements TransactionFactory {
-
     private boolean closeConnection = true;
 
     @Override

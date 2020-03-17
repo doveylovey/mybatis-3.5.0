@@ -22,7 +22,6 @@ package org.apache.ibatis.builder;
  * @since 3.4.2
  */
 public interface InitializingObject {
-
     /**
      * Initialize a instance.
      * <p>
@@ -32,5 +31,4 @@ public interface InitializingObject {
      * @throws Exception in the event of misconfiguration (such as failure to set an essential property) or if initialization fails
      */
     void initialize() throws Exception;
-
 }

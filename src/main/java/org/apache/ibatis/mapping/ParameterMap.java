@@ -24,7 +24,6 @@ import org.apache.ibatis.session.Configuration;
  * @author Clinton Begin
  */
 public class ParameterMap {
-
     private String id;
     private Class<?> type;
     private List<ParameterMapping> parameterMappings;
@@ -63,5 +62,4 @@ public class ParameterMap {
     public List<ParameterMapping> getParameterMappings() {
         return parameterMappings;
     }
-
 }

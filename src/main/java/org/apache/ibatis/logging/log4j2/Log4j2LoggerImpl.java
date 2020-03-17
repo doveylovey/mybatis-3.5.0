@@ -25,10 +25,8 @@ import org.apache.logging.log4j.MarkerManager;
  * @author Eduardo Macarron
  */
 public class Log4j2LoggerImpl implements Log {
-
-    private static final Marker MARKER = MarkerManager.getMarker(LogFactory.MARKER);
-
     private final Logger log;
+    private static final Marker MARKER = MarkerManager.getMarker(LogFactory.MARKER);
 
     public Log4j2LoggerImpl(Logger logger) {
         log = logger;
@@ -68,5 +66,4 @@ public class Log4j2LoggerImpl implements Log {
     public void warn(String s) {
         log.warn(MARKER, s);
     }
-
 }
