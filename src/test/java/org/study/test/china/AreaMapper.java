@@ -1,4 +1,4 @@
-package com.study.test;
+package org.study.test.china;
 
 import java.util.List;
 

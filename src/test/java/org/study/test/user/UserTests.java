@@ -1,4 +1,4 @@
-package com.study.test;
+package org.study.test.user;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -17,9 +17,19 @@ public class UserTests {
 
     @BeforeAll
     public static void setUp() throws Exception {
-        String resource = "com/study/test/mybatis-config.xml";
+        String resource = "org/study/test/mybatis-config.xml";
         try (Reader reader = Resources.getResourceAsReader(resource)) {
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+            try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
+                final UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+                String tableName = "t_user";
+                int tableCount = userMapper.findTable(tableName);
+                if (tableCount > 0) {
+                    System.out.println("表【" + tableName + "】已存在，即将删除");
+                    userMapper.dropTable(tableName);
+                }
+                userMapper.createTable(tableName);
+            }
         }
     }
 
@@ -64,6 +74,15 @@ public class UserTests {
             String result = userMapper.insert(user) > 0 ? "成功" : "失败";
             System.out.println("新增结果：" + result);
             user = userMapper.selectByPrimaryKey(user.getId());
+            System.out.println("查询结果：" + user);
+        }
+    }
+
+    @Test
+    public void testUser03() {
+        try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
+            final UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+            User user = userMapper.selectByPrimaryKey(1L);
             System.out.println("查询结果：" + user);
         }
     }

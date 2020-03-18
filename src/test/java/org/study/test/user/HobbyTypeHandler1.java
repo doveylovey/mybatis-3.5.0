@@ -1,4 +1,4 @@
-package com.study.test;
+package org.study.test.user;
 
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
@@ -26,7 +26,7 @@ import java.util.Objects;
 //@MappedTypes(List.class)
 // 此处如果不使用该注解指定 jdbcType，在 mybatis-config.xml 中注册该 typeHandler 的时候需要写明 jdbcType="VARCHAR"
 //@MappedJdbcTypes(JdbcType.VARCHAR)
-public class HobbyTypeHandler extends BaseTypeHandler<List<String>> {
+public class HobbyTypeHandler1 extends BaseTypeHandler<List<String>> {
     @Override
     public void setNonNullParameter(PreparedStatement ps, int i, List<String> parameter, JdbcType jdbcType) throws SQLException {
         StringBuilder sb = new StringBuilder();

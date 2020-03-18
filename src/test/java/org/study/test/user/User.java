@@ -1,4 +1,4 @@
-package com.study.test;
+package org.study.test.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

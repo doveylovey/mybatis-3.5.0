@@ -2,7 +2,7 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeHandlers>
-        <typeHandler handler="com.study.test.HobbyTypeHandler" javaType="java.util.List" jdbcType="VARCHAR"/>
+        <typeHandler handler="org.study.test.user.HobbyTypeHandler1" javaType="java.util.List" jdbcType="VARCHAR"/>
     </typeHandlers>
 
     <environments default="dev">
@@ -18,9 +18,10 @@
     </environments>
 
     <mappers>
-        <mapper resource="com/study/test/ProvinceMapper.xml"/>
-        <mapper resource="com/study/test/CityMapper.xml"/>
-        <mapper resource="com/study/test/AreaMapper.xml"/>
-        <mapper resource="com/study/test/UserMapper.xml"/>
+        <mapper resource="org/study/test/china/ProvinceMapper.xml"/>
+        <mapper resource="org/study/test/china/CityMapper.xml"/>
+        <mapper resource="org/study/test/china/AreaMapper.xml"/>
+
+        <mapper resource="org/study/test/user/UserMapper.xml"/>
     </mappers>
 </configuration>

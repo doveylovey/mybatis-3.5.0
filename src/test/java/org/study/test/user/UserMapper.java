@@ -1,4 +1,6 @@
-package com.study.test;
+package org.study.test.user;
+
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @Description: 该接口作用描述
@@ -10,10 +12,32 @@ package com.study.test;
  */
 public interface UserMapper {
     /**
+     * 查询表是否存在
+     *
+     * @param tableName 表名称
+     * @return
+     */
+    int findTable(@Param("tableName") String tableName);
+
+    /**
+     * 删除表
+     *
+     * @param tableName 表名称
+     */
+    void dropTable(@Param("tableName") String tableName);
+
+    /**
+     * 创建表
+     *
+     * @param tableName 表名称
+     */
+    void createTable(@Param("tableName") String tableName);
+
+    /**
      * delete by primary key
      *
      * @param id primaryKey
-     * @return deleteCount
+     * @return delete count
      */
     int deleteByPrimaryKey(Long id);
 

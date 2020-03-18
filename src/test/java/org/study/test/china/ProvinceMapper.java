@@ -1,4 +1,4 @@
-package com.study.test;
+package org.study.test.china;
 
 /**
  * @Description: 该接口作用描述

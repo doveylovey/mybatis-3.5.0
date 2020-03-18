@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.study.test;
+package org.study.test.china;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -30,7 +30,7 @@ public class ChinaTest {
 
     @BeforeAll
     public static void setUp() throws Exception {
-        String resource = "com/study/test/mybatis-config.xml";
+        String resource = "org/study/test/mybatis-config.xml";
         try (Reader reader = Resources.getResourceAsReader(resource)) {
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
         }
