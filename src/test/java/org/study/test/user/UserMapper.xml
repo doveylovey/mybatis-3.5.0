@@ -9,7 +9,8 @@
         <result column="birthday" jdbcType="DATE" property="birthday"/>
         <result column="gender" jdbcType="BOOLEAN" property="gender"/>
         <result column="email" jdbcType="VARCHAR" property="email"/>
-        <result column="hobby" jdbcType="VARCHAR" property="hobby"/>
+        <!--<result column="hobby" jdbcType="VARCHAR" property="hobby"/>-->
+        <result column="hobby" jdbcType="VARCHAR" property="hobby" typeHandler="org.study.test.user.HobbyTypeHandler1"/>
         <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
         <result column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate"/>
     </resultMap>
@@ -63,9 +64,9 @@
         <!--@mbg.generated-->
         insert into t_user (`name`, `password`, birthday, gender, email, hobby, gmt_create, gmt_update)
         values (#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE},
-        #{gender,jdbcType=BOOLEAN},
-        #{email,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP},
-        #{gmtUpdate,jdbcType=TIMESTAMP})
+        #{gender,jdbcType=BOOLEAN}, #{email,jdbcType=VARCHAR},
+        #{hobby,jdbcType=VARCHAR, typeHandler=org.study.test.user.HobbyTypeHandler1},
+        #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtUpdate,jdbcType=TIMESTAMP})
     </insert>
 
     <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="org.study.test.user.User"

@@ -1,7 +1,8 @@
 package org.study.test.user;
 
-import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
+import org.apache.ibatis.type.MappedJdbcTypes;
+import org.apache.ibatis.type.MappedTypes;
 import org.apache.ibatis.type.TypeHandler;
 
 import java.sql.CallableStatement;
@@ -22,9 +23,9 @@ import java.util.Objects;
  * @Copyright: Copyright (c) 2019
  */
 // 此处如果不使用该注解指定 javaType，在 mybatis-config.xml 中注册该 typeHandler 的时候需要写明 javaType="java.util.List"
-//@MappedTypes(List.class)
+@MappedTypes(List.class)
 // 此处如果不使用该注解指定 jdbcType，在 mybatis-config.xml 中注册该 typeHandler 的时候需要写明 jdbcType="VARCHAR"
-//@MappedJdbcTypes(JdbcType.VARCHAR)
+@MappedJdbcTypes(JdbcType.VARCHAR)
 public class HobbyTypeHandler2 implements TypeHandler<List<String>> {
     @Override
     public void setParameter(PreparedStatement ps, int i, List<String> parameter, JdbcType jdbcType) throws SQLException {

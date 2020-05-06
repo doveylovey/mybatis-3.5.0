@@ -1,5 +1,6 @@
 package org.study.test.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
@@ -30,6 +31,7 @@ import java.net.UnknownHostException;
  *
  * @author Administrator
  */
+@Slf4j
 public class SnowFlakeIdWorker {
     /**
      * 开始时间截(2015-01-01)
@@ -131,7 +133,7 @@ public class SnowFlakeIdWorker {
      */
     public synchronized long nextId() {
         long timestamp = timeGen();
-        // 如果当前时间小于上一次ID生成的时间戳，说明系统时钟回退过这个时候应当抛出异常
+        // 如果当前时间小于上一次 ID 生成的时间戳，说明系统时钟回退过这个时候应当抛出异常
         if (timestamp < lastTimestamp) {
             throw new RuntimeException(String.format("Clock moved backwards.  Refusing to generate id for %d milliseconds", lastTimestamp - timestamp));
         }
@@ -140,7 +142,7 @@ public class SnowFlakeIdWorker {
             sequence = (sequence + 1) & sequenceMask;
             // 毫秒内序列溢出
             if (sequence == 0) {
-                // 阻塞到下一个毫秒,获得新的时间戳
+                // 阻塞到下一个毫秒，获得新的时间戳
                 timestamp = tilNextMillis(lastTimestamp);
             }
         }
@@ -148,9 +150,9 @@ public class SnowFlakeIdWorker {
         else {
             sequence = 0L;
         }
-        // 上次生成ID的时间截
+        // 上次生成 ID 的时间截
         lastTimestamp = timestamp;
-        // 移位并通过或运算拼到一起组成64位的ID
+        // 移位并通过或运算拼到一起组成64位的 ID
         return ((timestamp - epoch) << timestampLeftShift) | (dataCenterId << dataCenterIdShift) | (workerId << workerIdShift) | sequence;
     }
 
@@ -180,18 +182,22 @@ public class SnowFlakeIdWorker {
     private static Long getWorkId() {
         try {
             String hostAddress = Inet4Address.getLocalHost().getHostAddress();
-            return stringHostToLong(hostAddress);
+            log.info("当前 HostAddress：{}", hostAddress);
+            return hostToLong(hostAddress);
         } catch (UnknownHostException e) {
+            log.warn("获取 HostAddress 异常，将使用 0~31 的随机数生成 WorkId");
             // 如果获取失败，则使用随机数备用
             return RandomUtils.nextLong(0, 31);
         }
     }
 
     private static Long getDataCenterId() {
-        return stringHostToLong(SystemUtils.getHostName());
+        String hostName = SystemUtils.getHostName();
+        log.info("当前 HostName：{}", hostName);
+        return hostToLong(hostName);
     }
 
-    private static Long stringHostToLong(String host) {
+    private static Long hostToLong(String host) {
         int[] codePoints = StringUtils.toCodePoints(host);
         int sum = 0;
         for (int codePoint : codePoints) {
@@ -206,8 +212,7 @@ public class SnowFlakeIdWorker {
      * @return
      */
     public static Long genId() {
-        long id = idWorker.nextId();
-        return id;
+        return idWorker.nextId();
     }
 
     public static void main(String[] args) {

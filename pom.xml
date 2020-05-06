@@ -26,10 +26,9 @@
         <version>31</version>
         <relativePath/>
     </parent>
-    <artifactId>mybatis</artifactId>
+    <artifactId>mybatis-3.5.0</artifactId>
     <version>3.5.0</version>
     <packaging>jar</packaging>
-    <name>mybatis</name>
     <url>http://www.mybatis.org/mybatis-3</url>
     <description>
         The MyBatis SQL mapper framework makes it easier to use a relational database with object-oriented

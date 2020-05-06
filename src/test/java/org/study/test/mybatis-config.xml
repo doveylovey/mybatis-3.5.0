@@ -23,6 +23,5 @@
         <mapper resource="org/study/test/china/AreaMapper.xml"/>
 
         <mapper resource="org/study/test/user/UserMapper.xml"/>
-        <mapper resource="org/study/test/user/BuySellDetailMapper.xml"/>
     </mappers>
 </configuration>
