@@ -16,6 +16,8 @@
 package org.apache.ibatis.session;
 
 /**
+ * 用于对返回结果进行处理，最终得到自己想要的数据类型，也可以自定义返回类型。
+ *
  * @author Clinton Begin
  */
 public interface ResultHandler<T> {

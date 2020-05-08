@@ -1,5 +1,5 @@
 Mybatis 构建 SqlSessionFactory 对象的三种方式
-============================================
+==========================================
 
 ### 方式一(Reader字符流)：
 - public SqlSessionFactory build(Reader reader)

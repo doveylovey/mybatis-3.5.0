@@ -28,7 +28,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.transaction.Transaction;
 
 /**
- * MyBatis 执行器：是 MyBatis 调度的核心，负责 SQL 语句的生成和查询缓存的维护
+ * 执行器是 MyBatis 调度的核心，负责：根据 SqlSession 传递的参数动态生成需要执行的 SQL 语句、查询缓存的维护等
  *
  * @author Clinton Begin
  */

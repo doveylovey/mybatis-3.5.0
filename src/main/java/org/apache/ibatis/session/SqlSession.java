@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 作为 MyBatis 工作的主要顶层 API，表示和数据库交互的会话，完成数据库必要的增删改查功能
+ * 作为 MyBatis 工作的主要顶层 API，表示和数据库交互的会话，完成数据库必要的增删改查功能。其中包含了执行 SQL 语句的所有方法
  * <p>
  * The primary Java interface for working with MyBatis.
  * Through this interface you can execute commands, get mappers and manage transactions.

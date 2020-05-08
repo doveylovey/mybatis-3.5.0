@@ -29,7 +29,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * 该类维护了一个 <select|update|delete|insert> 节点的封装
+ * 该类维护了一个 <select|update|delete|insert> 节点的封装。
+ * 该类是对映射 SQL 语句的封装，用于存储其 id、参数等信息。
  *
  * @author Clinton Begin
  */

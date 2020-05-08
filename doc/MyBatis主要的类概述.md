@@ -1,5 +1,5 @@
 MyBatis主要的类概述
-============================================
+=================
 ### MyBatis主要的类
 - Configuration：MyBatis 所有的配置信息都维持在 Configuration 对象中。
 - SqlSession：作为 MyBatis 工作的主要顶层 API，表示和数据库交互的会话，完成数据库必要的增删改查功能。
