@@ -20,7 +20,7 @@ public class UserTests {
         String resource = "org/study/test/mybatis-config.xml";
         try (Reader reader = Resources.getResourceAsReader(resource)) {
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-            try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
+            /*try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
                 final UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
                 String tableName = "t_user";
                 int tableCount = userMapper.findTable(tableName);
@@ -29,7 +29,7 @@ public class UserTests {
                     userMapper.dropTable(tableName);
                 }
                 userMapper.createTable(tableName);
-            }
+            }*/
         }
     }
 
