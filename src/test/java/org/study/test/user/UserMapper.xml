@@ -31,18 +31,20 @@
     </update>
 
     <update id="createTable" parameterType="String">
-        CREATE TABLE IF NOT EXISTS ${tableName} (
-        `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-        `name` varchar(32) NOT NULL,
-        `password` varchar(32) NOT NULL,
-        `birthday` date DEFAULT NULL,
-        `gender` tinyint(1) unsigned DEFAULT NULL,
-        `email` varchar(32) DEFAULT NULL,
-        `hobby` varchar(255) DEFAULT NULL,
-        `gmt_create` datetime NOT NULL,
-        `gmt_update` datetime NOT NULL,
-        PRIMARY KEY (`id`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+        CREATE TABLE IF NOT EXISTS ${tableName}
+        (
+            `id`         bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+            `name`       varchar(32)         NOT NULL,
+            `password`   varchar(32)         NOT NULL,
+            `birthday`   date                DEFAULT NULL,
+            `gender`     tinyint(1) unsigned DEFAULT NULL,
+            `email`      varchar(32)         DEFAULT NULL,
+            `hobby`      varchar(255)        DEFAULT NULL,
+            `gmt_create` datetime            NOT NULL,
+            `gmt_update` datetime            NOT NULL,
+            PRIMARY KEY (`id`)
+        ) ENGINE = InnoDB
+          DEFAULT CHARSET = utf8mb4;
     </update>
 
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
@@ -173,4 +175,42 @@
         gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP}
         where id = #{id,jdbcType=BIGINT}
     </update>
+
+    <select id="selectList" parameterType="org.study.test.user.User" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from t_user
+        <where>
+            <if test="name != null">
+                name like #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="gender != null">
+                and gender = #{gender,jdbcType=BOOLEAN}
+            </if>
+            <if test="email != null">
+                and email like #{email,jdbcType=VARCHAR}
+            </if>
+        </where>
+        order by `gmt_create` desc
+    </select>
+
+    <select id="selectListByMethodsArguments" parameterType="java.util.Map" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from t_user
+        <where>
+            <if test="user.name != null">
+                name like #{user.name,jdbcType=VARCHAR}
+            </if>
+            <if test="user.gender != null">
+                and gender = #{user.gender,jdbcType=BOOLEAN}
+            </if>
+            <if test="user.email != null">
+                and email like #{user.email,jdbcType=VARCHAR}
+            </if>
+        </where>
+        order by `gmt_create` desc
+    </select>
 </mapper>

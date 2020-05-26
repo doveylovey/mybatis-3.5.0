@@ -5,12 +5,24 @@
         <typeHandler handler="org.study.test.user.HobbyTypeHandler1" javaType="java.util.List" jdbcType="VARCHAR"/>
     </typeHandlers>
 
+    <plugins>
+        <!-- PageHelper 分页插件配置 -->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!-- 使用 MySQL 方言的分页 -->
+            <property name="helperDialect" value="mysql"/>
+            <property name="pageSizeZero" value="true"/>
+            <property name="supportMethodsArguments" value="true"/>
+            <property name="params" value="pageNum=pageNum;pageSize=pageSize;"/>
+        </plugin>
+    </plugins>
+
     <environments default="dev">
         <environment id="dev">
             <transactionManager type="JDBC"/>
             <dataSource type="UNPOOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://127.0.0.1:3336/mybatis-source?serverTimezone=Asia/Shanghai&amp;useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false"/>
+                <property name="url"
+                          value="jdbc:mysql://192.168.56.102:3306/mybatis-source?serverTimezone=Asia/Shanghai&amp;useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false"/>
                 <property name="username" value="root"/>
                 <property name="password" value="root"/>
             </dataSource>

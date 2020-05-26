@@ -1,6 +1,9 @@
 package org.study.test.user;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
+
+import java.util.List;
 
 /**
  * @Description: 该接口作用描述
@@ -80,4 +83,30 @@ public interface UserMapper {
      * @return update count
      */
     int updateByPrimaryKey(User record);
+
+    /**
+     * 根据条件查询列表
+     *
+     * @param user 查询条件
+     * @return
+     */
+    List<User> selectList(User user);
+
+    /**
+     * 根据条件查询列表：使用 RowBounds 分页
+     *
+     * @param user 查询条件
+     * @return
+     */
+    List<User> selectList(User user, RowBounds rowBounds);
+
+    /**
+     * 根据条件查询列表：会分页，且不需要在 xml 中处理 pageNum、pageSize 参数，但需要配置 supportMethodsArguments=true，见配置文件
+     *
+     * @param user     查询条件
+     * @param pageNum  页码
+     * @param pageSize 每页记录数
+     * @return
+     */
+    List<User> selectListByMethodsArguments(@Param("user") User user, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
 }

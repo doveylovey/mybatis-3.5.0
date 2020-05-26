@@ -34,4 +34,8 @@ public class User implements Serializable {
     private List<String> hobby;
     private LocalDateTime gmtCreate;
     private LocalDateTime gmtUpdate;
+
+    // 下面两个属性是用于分页的，并非数据库字段。注意：参数名必须和 params 配置的名字一致，详见配置文件
+    private Integer pageNum;
+    private Integer pageSize;
 }
