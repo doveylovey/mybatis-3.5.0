@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.study.test.upsert.UserAccountRelationMapper">
+    <resultMap id="BaseResultMap" type="org.study.test.upsert.UserAccountRelation">
+        <!--@mbg.generated-->
+        <!--@Table t_user_account_relation-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="account_id" jdbcType="INTEGER" property="accountId"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <result column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, user_id, account_id, `status`, gmt_create, gmt_update
+    </sql>
+
+    <update id="deleteTable">
+        drop table if exists `t_user_account_relation`;
+  </update>
+
+    <update id="createTable">
+        CREATE TABLE `t_user_account_relation` (
+            `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+            `user_id` int(11) unsigned NOT NULL COMMENT '用户编号',
+            `account_id` int(11) unsigned NOT NULL COMMENT '账户编号',
+            `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '状态：0-禁用、1-启用',
+            `gmt_create` datetime NOT NULL COMMENT '创建时间',
+            `gmt_update` datetime NOT NULL COMMENT '更新时间',
+            PRIMARY KEY (`id`),
+            UNIQUE KEY `idx_user_account` (`user_id`,`account_id`) USING BTREE COMMENT '用户编号、账户编号联合唯一索引'
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户与账户关联关系表';
+  </update>
+
+    <update id="insertData">
+        INSERT INTO `t_user_account_relation`(`id`, `user_id`, `account_id`, `status`, `gmt_create`, `gmt_update`)
+        VALUES (1, 10086, 1008611, 1, '2020-09-09 21:21:21', '2020-09-09 21:21:21');
+  </update>
+
+    <insert id="insertIgnoreInto" keyColumn="id" keyProperty="id" useGeneratedKeys="true"
+            parameterType="org.study.test.upsert.UserAccountRelation">
+        <!--@mbg.generated-->
+        insert ignore into t_user_account_relation (user_id, account_id, `status`, gmt_create, gmt_update)
+        values (#{userId}, #{accountId}, #{status}, #{gmtCreate}, #{gmtUpdate})
+    </insert>
+
+    <insert id="insertOnDuplicateKeyUpdate" keyColumn="id" keyProperty="id" useGeneratedKeys="true"
+            parameterType="org.study.test.upsert.UserAccountRelation">
+        <!--@mbg.generated-->
+        insert into t_user_account_relation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            user_id, account_id, `status`, gmt_create, gmt_update,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            #{userId}, #{accountId}, #{status}, #{gmtCreate}, #{gmtUpdate},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=INTEGER},
+            </if>
+            `status` = #{status}, gmt_update = #{gmtUpdate},
+        </trim>
+    </insert>
+
+    <insert id="insertOnDuplicateKeyUpdate2" keyColumn="id" keyProperty="id" useGeneratedKeys="true"
+            parameterType="org.study.test.upsert.UserAccountRelation">
+        <!--@mbg.generated-->
+        insert into t_user_account_relation (user_id, account_id, `status`, gmt_create, gmt_update)
+        values (#{userId}, #{accountId}, #{status}, #{gmtCreate}, #{gmtUpdate})
+        on duplicate key update
+        `status` = VALUES(status), gmt_update = VALUES(gmt_update)
+    </insert>
+
+    <insert id="insertReplaceInto" keyColumn="id" keyProperty="id" useGeneratedKeys="true"
+            parameterType="org.study.test.upsert.UserAccountRelation">
+        <!--@mbg.generated-->
+        replace into t_user_account_relation (user_id, account_id, `status`, gmt_create, gmt_update)
+        values (#{userId}, #{accountId}, #{status}, #{gmtCreate}, #{gmtUpdate})
+    </insert>
+
+    <insert id="insertIfNotExists" keyColumn="id" keyProperty="id" useGeneratedKeys="true"
+            parameterType="org.study.test.upsert.UserAccountRelation">
+        <!--@mbg.generated-->
+        insert into t_user_account_relation (user_id, account_id, `status`, gmt_create, gmt_update)
+        select #{userId}, #{accountId}, #{status}, #{gmtCreate}, #{gmtUpdate}
+        from t_user_account_relation
+        where not exists (
+        select user_id, account_id
+        from t_user_account_relation
+        where user_id = #{userId} and account_id = #{accountId}
+        )
+    </insert>
+
+    <insert id="insert" keyColumn="id" keyProperty="id" useGeneratedKeys="true"
+            parameterType="org.study.test.upsert.UserAccountRelation">
+        <!--@mbg.generated-->
+        insert into t_user_account_relation (user_id, account_id, `status`, gmt_create, gmt_update)
+        values (#{userId}, #{accountId}, #{status}, #{gmtCreate}, #{gmtUpdate})
+    </insert>
+
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" useGeneratedKeys="true"
+            parameterType="org.study.test.upsert.UserAccountRelation">
+        <!--@mbg.generated-->
+        insert into t_user_account_relation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="accountId != null">
+                account_id,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtUpdate != null">
+                gmt_update,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="accountId != null">
+                #{accountId,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtUpdate != null">
+                #{gmtUpdate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from t_user_account_relation
+        where id = #{id}
+    </delete>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from t_user_account_relation
+        where id = #{id}
+        limit 1
+    </select>
+
+    <select id="selectBySelective" resultMap="BaseResultMap"
+            parameterType="org.study.test.upsert.UserAccountRelation">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from t_user_account_relation
+        <where>
+            <if test="userId != null">
+                and user_id = #{userId,jdbcType=INTEGER}
+            </if>
+            <if test="accountId != null">
+                and account_id = #{accountId,jdbcType=INTEGER}
+            </if>
+            <if test="status != null">
+                and `status` = #{status,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from t_user_account_relation
+    </select>
+
+    <update id="updateByPrimaryKeySelective" parameterType="org.study.test.upsert.UserAccountRelation">
+        <!--@mbg.generated-->
+        update t_user_account_relation
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="accountId != null">
+                account_id = #{accountId,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtUpdate != null">
+                gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="org.study.test.upsert.UserAccountRelation">
+        <!--@mbg.generated-->
+        update t_user_account_relation
+        set user_id = #{userId}, account_id = #{accountId}, `status` = #{status},
+        gmt_create = #{gmtCreate}, gmt_update = #{gmtUpdate}
+        where id = #{id}
+    </update>
+
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into t_user_account_relation (user_id, account_id, `status`, gmt_create, gmt_update)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.userId}, #{item.accountId}, #{item.status}, #{item.gmtCreate}, #{item.gmtUpdate})
+        </foreach>
+    </insert>
+</mapper>
